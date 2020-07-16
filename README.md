@@ -1,8 +1,8 @@
-# TP2 Algoritmos 3: {nombre}
+# TP2 Algoritmos 3: KAHOOT
 
 Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUBA
 
-## Grupo {N}
+## Grupo 8
 
 * **Integrante 1** - [German Escandar](https://github.com/GEscandar)
 * **Integrante 2** - [Javier Zardain](https://github.com/Jaz05)
