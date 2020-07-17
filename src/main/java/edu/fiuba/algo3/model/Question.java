@@ -5,6 +5,7 @@ import java.util.List;
 public abstract class Question {
 
 	private long id;
+	private String text;
 	private List<GameOption> options;
 	protected List<GameOption> correctOptions;
 	
@@ -32,12 +33,20 @@ public abstract class Question {
 		this.correctOptions = correctOptions;
 	}	
 	
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	
 	/***
 	 * Returns the earned or lost points depending on the answer to the question
 	 * @return
 	 */
 	public abstract int calculatePoints(List<GameOption> selectedOptions);
 
-	
 	
 }
