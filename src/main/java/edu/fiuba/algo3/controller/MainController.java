@@ -46,5 +46,10 @@ public class MainController {
 		dialog.initModality(Modality.APPLICATION_MODAL); 
 		dialog.showAndWait();
 	}
+
+	public void newGame(ActionEvent event) throws IOException {
+		Stage stage = (Stage) mainWindow.getScene().getWindow();
+		stage.setScene(SceneLoader.loadScene(Views.PLAYER_NAME_VIEW));
+	}
 	
 }

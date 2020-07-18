@@ -12,7 +12,7 @@
       <menus>
         <Menu mnemonicParsing="false" text="Juego">
           <items>
-            <MenuItem fx:id="newGameOption" mnemonicParsing="false" text="Nuevo juego" />
+            <MenuItem fx:id="newGameOption" onAction="#newGame" mnemonicParsing="false" text="Nuevo juego" />
             <MenuItem fx:id="quitOption" mnemonicParsing="false" onAction="#closeApp" text="Salir" />
           </items>
         </Menu>
