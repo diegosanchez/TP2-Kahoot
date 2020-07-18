@@ -7,8 +7,10 @@ Trabajo Práctico número 2 de la materia Algoritmos y Programación III de FIUB
 * **Integrante 1** - [German Escandar](https://github.com/GEscandar)
 * **Integrante 2** - [Javier Zardain](https://github.com/Jaz05)
 * **Integrante 3** - [Santiago Guerra](https://github.com/SantiG95)
+* **Integrante 4** - [Miroslav Sapunar](https://github.com/MiroslavSapunar)
+* **Integrante 5** - [Nicolas De Sousa](https://github.com/Nicodoxia)
 
-Corrector: **{Corrector}**
+Corrector: **{Diego}**
 
 ### Pre-requisitos
 
