@@ -19,7 +19,7 @@ public class MainController {
 	public VBox mainWindow;
 	
 	@FXML
-	public MenuItem newGameOptiom;
+	public MenuItem newGameOption;
 	
 	@FXML
 	public MenuItem quitOption;

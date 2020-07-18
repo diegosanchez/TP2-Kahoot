@@ -1,0 +1,9 @@
+
+@startuml
+
+actor User
+title Diagrama Secuencia TP2 - Pregunta T/F asignando puntaje a Jugador
+hide footbox
+
+
+@enduml

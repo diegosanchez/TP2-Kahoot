@@ -1,0 +1,39 @@
+@startuml DiagramaUML-Clases-TP2
+hide circle
+skinparam classAttributeIconSize 0
+
+abstract Preguntas{
+    + id : long
+    + options : List<GameOption>
+    # correctOptions : List<GameOption>
+    - calculatePoints(List<GameOptions>) : int
+}
+
+class GameOption{
+
+}
+
+class Panel{
+
+}
+
+class Jugador{
+
+}
+
+interface Multiplicadores{
+
+}
+
+class ExclusividadPuntaje{
+
+}
+
+Jugador "1"..>"*" Multiplicadores
+Jugador "1"..>"*" ExclusividadPuntaje
+Panel  -->  Preguntas
+Panel -->  Jugador
+
+Preguntas "1"*--"*" GameOption
+
+@enduml

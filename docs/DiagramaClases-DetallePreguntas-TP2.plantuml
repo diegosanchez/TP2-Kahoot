@@ -1,0 +1,48 @@
+@startuml DiagramaUML-DetallePreguntas-TP2
+
+skinparam classAttributeIconSize 0
+
+abstract Question{
+    + id : long
+    + text : String
+    + options : List<GameOption>
+    # correctOptions : List<GameOption>
+    - calculatePoints()
+}
+
+class TrueFalseQuestion{
+    - calculatePoints()
+}
+
+class TrueFalseWithPenaltyQuestion{
+    - calculatePoints()
+}
+
+class OrderedChoiceQuestion{
+    - calculatePoints()
+}
+
+class MultipleChoiceQuestion{
+    - calculatePoints()
+}
+
+class MultipleChoiceWithPenaltyQuestion{
+    - calculatePoints()
+}
+
+class GroupChoiceQuestion{
+    - calculatePoints()
+}
+
+
+TrueFalseQuestion --|> Question
+TrueFalseWithPenaltyQuestion --|> Question
+
+OrderedChoiceQuestion --left|> Question
+
+MultipleChoiceQuestion --up|> Question
+MultipleChoiceWithPenaltyQuestion --up|> Question
+
+GroupChoiceQuestion --right|> Question
+
+@enduml
