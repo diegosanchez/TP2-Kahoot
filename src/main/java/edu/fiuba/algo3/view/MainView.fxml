@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.MainController">
+<VBox fx:id="mainWindow" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.MainController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="Juego">
           <items>
-            <MenuItem mnemonicParsing="false" text="Nuevo juego" />
-            <MenuItem mnemonicParsing="false" text="Salir" />
+            <MenuItem fx:id="newGameOption" mnemonicParsing="false" text="Nuevo juego" />
+            <MenuItem fx:id="quitOption" mnemonicParsing="false" onAction="#closeApp" text="Salir" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Opciones">
@@ -24,7 +24,7 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Acerca de">
           <items>
-            <MenuItem mnemonicParsing="false" text="Acerca deTP 2 Kahoot" />
+            <MenuItem fx:id="aboutOption" mnemonicParsing="false" onAction="#showAboutModal" text="Acerca deTP 2 Kahoot" />
           </items>
         </Menu>
       </menus>

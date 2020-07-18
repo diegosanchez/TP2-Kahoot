@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<DialogPane minHeight="291.0" minWidth="453.0" prefHeight="291.0" prefWidth="552.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <header>
+      <VBox alignment="TOP_CENTER" prefHeight="64.0" prefWidth="552.0">
+         <children>
+            <Label text="TP2 KAHOOT">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="ALGORITMOS Y PROGRAMACION III - FIUBA" />
+         </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </VBox>
+   </header>
+   <content>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="TOP" text="Integrantes" underline="true">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label text="Germán Escandar">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Javier Zardain">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Santiago Guerra">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets top="30.0" />
+         </padding>
+      </VBox>
+   </content>
+</DialogPane>

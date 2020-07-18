@@ -2,10 +2,10 @@ package edu.fiuba.algo3;
 
 import java.io.IOException;
 
+import edu.fiuba.algo3.constants.Views;
+import edu.fiuba.algo3.display.SceneLoader;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
@@ -15,12 +15,9 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) {
-        FXMLLoader loader = new FXMLLoader();
-        
-		try {			
-			VBox root = loader.load(ViewFinder.findView("MainView"));
-			Scene scene = new Scene(root);
+    public void start(Stage stage) {        
+		try {						
+			Scene scene = SceneLoader.loadScene(Views.MAIN_VIEW);
 	        stage.setScene(scene);
 	        stage.setTitle("TP2 Kahoot");
 	        stage.show();
