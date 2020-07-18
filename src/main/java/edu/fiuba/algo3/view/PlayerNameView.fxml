@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:controller="edu.fiuba.algo3.controller.PlayerNameController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #42BAE0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Text layoutX="147.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kahoot!" textAlignment="CENTER" wrappingWidth="305.986328125">
+            <font>
+                <Font name="Gigi" size="60.0" />
+            </font>
+        </Text>
+        <TextField fx:id="textField" alignment="CENTER" layoutX="198.0" layoutY="210.0" prefHeight="28.0" prefWidth="200.0" promptText="Nombre">
+            <font>
+                <Font name="Berlin Sans FB Demi Bold" size="25.0" />
+            </font></TextField>
+        <Text fx:id="text" fill="#daf0db" layoutX="220.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jugador 1" textAlignment="CENTER" wrappingWidth="156.74755859375">
+            <font>
+                <Font name="Berlin Sans FB Demi Bold" size="30.0" />
+            </font>
+        </Text>
+        <Button fx:id="nextButton" onAction="#doNext" layoutX="200.0" layoutY="320.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" style="-fx-background-color: #163E4A;" text="Siguiente" textFill="WHITE">
+            <font>
+                <Font name="Berlin Sans FB Demi Bold" size="21.0" />
+            </font></Button>
+    </children>
+</AnchorPane>
