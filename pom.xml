@@ -51,7 +51,10 @@
         <testSourceDirectory>src/main/test</testSourceDirectory>
            <resources>
 		     <resource>
-		       <directory>src/main/resources</directory>
+		       <directory>src/main/java/edu/fiuba/algo3</directory>
+                 <includes>
+                     <include>**/*.fxml</include>
+                 </includes>
 		     </resource>
 		   </resources>
         <plugins>
