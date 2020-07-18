@@ -19,11 +19,21 @@
             <version>11.0.2</version>
         </dependency>
         <dependency>
+		    <groupId>org.openjfx</groupId>
+		    <artifactId>javafx-fxml</artifactId>
+		    <version>11.0.1</version>
+		</dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter-api</artifactId>
+		    <version>${junit.jupiter.version}</version>
+		</dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
@@ -34,6 +44,11 @@
     </dependencies>
     <build>
         <testSourceDirectory>src/main/test</testSourceDirectory>
+           <resources>
+		     <resource>
+		       <directory>src/main/resources</directory>
+		     </resource>
+		   </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -49,12 +64,18 @@
                 <version>0.0.1</version>
                 <configuration>
                     <mainClass>edu.fiuba.algo3.App</mainClass>
+                    <archive>
+						<manifest>
+							<mainClass>edu.fiuba.algo3.App</mainClass>
+						</manifest>
+					</archive>
                 </configuration>
-            </plugin><plugin>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-version}</version>
-            </plugin>
+            </plugin>        
         </plugins>
     </build>
 </project>

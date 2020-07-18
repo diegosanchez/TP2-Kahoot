@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.MainController">
+  <children>
+    <MenuBar VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="Juego">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Nuevo juego" />
+            <MenuItem mnemonicParsing="false" text="Salir" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Opciones">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Editar preguntas" />
+            <MenuItem mnemonicParsing="false" text="Editar parámetros" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Acerca de">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Acerca deTP 2 Kahoot" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS" />
+  </children>
+</VBox>
