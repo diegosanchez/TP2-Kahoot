@@ -9,8 +9,7 @@ public class MultipleChoiceQuestion extends Question {
 
 	@Override
 	public int calculatePoints(List<GameOption> selectedOptions) {
-		//TODO
-		if(selectedOptions.equals(correctOptions)) {
+		if(selectedOptions.size() == correctOptions.size() && selectedOptions.containsAll(correctOptions)) {
 			return 1;
 		}
 		return 0;

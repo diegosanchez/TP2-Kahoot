@@ -27,9 +27,9 @@ public class MultipleChoiceTest {
 		question.setCorrectOptions(listaOpcionesCorrectas);
 		
 		List<GameOption> listaOpcionesElegidas = new ArrayList<GameOption>();
-		listaOpcionesElegidas.add(opcionUno);				
-		listaOpcionesElegidas.add(opcionDos);
+		listaOpcionesElegidas.add(opcionUno);						
 		listaOpcionesElegidas.add(opcionTres);
+		listaOpcionesElegidas.add(opcionDos);
 		
 		assertEquals(1, question.calculatePoints(listaOpcionesElegidas));
 	}
