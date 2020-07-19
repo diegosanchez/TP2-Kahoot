@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -36,15 +37,15 @@ public class MainController {
 	}
 	
 	public void showAboutModal(ActionEvent event) {
-		Stage dialog = new Stage();
 		try {
-			dialog.setScene(SceneLoader.loadScene(Views.ABOUT_VIEW));
+			SceneLoader.loadModalAndShow(mainWindow, Views.ABOUT_VIEW);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		dialog.initOwner(mainWindow.getScene().getWindow());
-		dialog.initModality(Modality.APPLICATION_MODAL); 
-		dialog.showAndWait();
+	}
+
+	public void newGame(ActionEvent event) throws IOException {
+		SceneLoader.loadModalAndShow(mainWindow, Views.PLAYER_NAME_VIEW);
 	}
 	
 }
