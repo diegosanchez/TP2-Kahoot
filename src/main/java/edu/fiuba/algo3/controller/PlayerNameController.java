@@ -50,7 +50,7 @@ public class PlayerNameController{
                 * La idea sería seguir con algo así
                 * */
                 //Stage stage = (Stage) text.getScene().getWindow();
-                //stage.setScene(SceneLoader.loadScene(Views.QUESTION_VIEW));
+                //SceneLoader.loadScene(stage, Views.QUESTION_VIEW);
 
                 //QuestionController controller = (QuestionController) SceneLoader.getSceneController();
                 //controller.play(game);

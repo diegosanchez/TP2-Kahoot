@@ -45,8 +45,7 @@ public class MainController {
 	}
 
 	public void newGame(ActionEvent event) throws IOException {
-		Stage stage = (Stage) mainWindow.getScene().getWindow();
-		SceneLoader.loadScene(stage, Views.PLAYER_NAME_VIEW);
+		SceneLoader.loadModalAndShow(mainWindow, Views.PLAYER_NAME_VIEW);
 	}
 	
 }
