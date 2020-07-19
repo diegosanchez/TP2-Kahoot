@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -58,7 +59,6 @@ public class PlayerNameController{
     }
 
     public void initialize() {
-        textField.setFocusTraversable(false);
         game = new Game();
         players = new ArrayList<>();
     }
