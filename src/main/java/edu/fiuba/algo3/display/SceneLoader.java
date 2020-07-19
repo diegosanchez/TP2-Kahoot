@@ -37,6 +37,6 @@ public class SceneLoader {
 	}
 
 	public static <T> T getSceneController(){
-		return loader.getController();
+		return loader.getController(); //para comunicación entre controladores
 	}
 }
