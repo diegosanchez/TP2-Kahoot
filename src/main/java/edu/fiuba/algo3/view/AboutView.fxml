@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <DialogPane minHeight="291.0" minWidth="453.0" prefHeight="291.0" prefWidth="552.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <header>
       <VBox alignment="TOP_CENTER" prefHeight="64.0" prefWidth="552.0">
@@ -45,6 +44,16 @@
                </font>
             </Label>
             <Label text="Santiago Guerra">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Petri Sapunar">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label text="Nicolás De Sousa">
                <font>
                   <Font size="14.0" />
                </font>

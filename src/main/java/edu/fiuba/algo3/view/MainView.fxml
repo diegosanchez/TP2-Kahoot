@@ -24,7 +24,7 @@
         </Menu>
         <Menu mnemonicParsing="false" text="Acerca de">
           <items>
-            <MenuItem fx:id="aboutOption" mnemonicParsing="false" onAction="#showAboutModal" text="Acerca deTP 2 Kahoot" />
+            <MenuItem fx:id="aboutOption" mnemonicParsing="false" onAction="#showAboutModal" text="Acerca de TP 2 Kahoot" />
           </items>
         </Menu>
       </menus>
