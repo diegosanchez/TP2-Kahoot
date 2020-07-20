@@ -1,11 +1,9 @@
 package edu.fiuba.algo3;
 
-import java.io.IOException;
-
 import edu.fiuba.algo3.constants.Views;
 import edu.fiuba.algo3.display.SceneLoader;
+import edu.fiuba.algo3.exceptions.ViewLoadingException;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
@@ -20,7 +18,7 @@ public class App extends Application {
 			SceneLoader.loadScene(stage, Views.MAIN_VIEW);
 	        stage.setTitle("TP2 Kahoot");
 	        stage.show();
-		} catch (IOException e) {
+		} catch (ViewLoadingException e) {
 			e.printStackTrace();
 		}
     }
