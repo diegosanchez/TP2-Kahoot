@@ -7,9 +7,9 @@ public class ExclusivityMultiplier extends ScoreAugmenter {
 
 	@Override
 	protected void applyNewScore(Player currentPlayer, Player opponent, int score, int opponentScore) {		
-		if(opponentScore == 0) {
+		if(score > opponentScore) {
 			currentPlayer.setScore(currentPlayer.getScore() + score * 2);
-		}else if(score == 0) {
+		}else if(score < opponentScore){
 			opponent.setScore(opponent.getScore() + opponentScore * 2);
 		}
 	}
