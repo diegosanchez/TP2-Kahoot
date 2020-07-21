@@ -6,8 +6,8 @@ import javafx.scene.layout.VBox;
 
 
 import edu.fiuba.algo3.constants.Views;
-import edu.fiuba.algo3.display.SceneLoader;
 import edu.fiuba.algo3.exceptions.ViewLoadingException;
+import edu.fiuba.algo3.loaders.SceneLoader;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 

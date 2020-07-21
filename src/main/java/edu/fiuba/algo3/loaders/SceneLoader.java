@@ -1,8 +1,9 @@
-package edu.fiuba.algo3.display;
+package edu.fiuba.algo3.loaders;
 
 import java.io.IOException;
 
 import edu.fiuba.algo3.exceptions.ViewLoadingException;
+import edu.fiuba.algo3.resources.ViewFinder;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
