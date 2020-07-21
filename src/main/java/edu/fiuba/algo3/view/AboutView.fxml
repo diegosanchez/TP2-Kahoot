@@ -6,16 +6,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane minHeight="291.0" minWidth="453.0" prefHeight="291.0" prefWidth="552.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<DialogPane minHeight="291.0" minWidth="453.0" prefHeight="291.0" prefWidth="552.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.AboutViewController">
    <header>
       <VBox alignment="TOP_CENTER" prefHeight="64.0" prefWidth="552.0">
          <children>
-            <Label text="TP2 KAHOOT">
+            <Label fx:id="title">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label text="ALGORITMOS Y PROGRAMACION III - FIUBA" />
+            <Label fx:id="course"/>
          </children>
          <padding>
             <Insets top="20.0" />
@@ -30,7 +30,7 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label text="Germán Escandar">
+            <Label fx:id="integrantes">
                <font>
                   <Font size="14.0" />
                </font>
@@ -38,22 +38,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <Label text="Javier Zardain">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label text="Santiago Guerra">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label text="Petri Sapunar">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label text="Nicolás De Sousa">
+            <Label fx:id="software">
                <font>
                   <Font size="14.0" />
                </font>
