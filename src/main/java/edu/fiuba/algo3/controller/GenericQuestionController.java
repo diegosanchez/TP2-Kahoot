@@ -1,57 +1,98 @@
 package edu.fiuba.algo3.controller;
 
+import edu.fiuba.algo3.constants.Views;
+import edu.fiuba.algo3.exceptions.ViewLoadingException;
+import edu.fiuba.algo3.loaders.SceneLoader;
 import edu.fiuba.algo3.model.Game;
-import edu.fiuba.algo3.model.Player;
+
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-import java.util.ArrayList;
 
 public class GenericQuestionController {
 
     @FXML
-    public TextField textField;
-
+    public Label playerName;
     @FXML
-    public Button nextButton;
-
+    public Label playerScore;
     @FXML
-    public Text text;
-
-    private Game game;
-    private ArrayList<Player> players;
-
+    public Label questionText;
     @FXML
-    public void doNext(ActionEvent event){
+    public Label questionType;
+    @FXML
+    public Button sumitButton;
+    @FXML
+    public VBox mainWindow;
 
-        if(!textField.getText().isEmpty()){
 
-            players.add(new Player(textField.getText()));
+    private Game localGame;
+    int playerIndex;
+    int questionIndex;
 
-            if(text.getText().equals("Jugador 1")){
-                textField.clear();
-                text.setText("Jugador 2");
-                nextButton.setText("Jugar");
-            }
-            else if(nextButton.getText().equals("Jugar")){
-                game.setPlayers(players);
-                /*
-                * La idea sería seguir con algo así
-                * */
-                //Stage stage = (Stage) text.getScene().getWindow();
-                //SceneLoader.loadScene(stage, Views.QUESTION_VIEW);
+    public void play(Game game){
+        localGame = game;
+        localGame.setCurrentPlayer(localGame.getPlayers().get(playerIndex));
 
-                //QuestionController controller = (QuestionController) SceneLoader.getSceneController();
-                //controller.play(game);
-            }
+        playerName.setText(((localGame.getCurrentPlayer()).getName()));
+        playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
+        questionType.setText(String.valueOf(localGame.getQuestions().get(questionIndex).getType()));
+        questionText.setText(localGame.getQuestions().get(questionIndex).getText());
+    }
+
+    public void doSumit(ActionEvent event) {
+        if(playerIndex == 0){
+            //guardar respuesta player1
+            nextPlayer();
+        }else{
+            //guardar respuesta player2
+            showCorrectAnswer();
         }
     }
 
-    public void initialize() {
-        game = new Game();
-        players = new ArrayList<>();
+    private void nextPlayer(){
+        playerIndex++;
+        localGame.setCurrentPlayer(localGame.getPlayers().get(playerIndex));
+
+        playerName.setText(((localGame.getCurrentPlayer()).getName()));
+        playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
+
+    }
+
+    private void showCorrectAnswer(){
+        nextQuestion();
+    }
+
+    private void nextQuestion(){
+        playerIndex = 0;
+        if(questionIndex < (localGame.getQuestions().size() - 1)){
+            questionIndex++;
+            localGame.setCurrentPlayer(localGame.getPlayers().get(playerIndex));
+
+            playerName.setText(((localGame.getCurrentPlayer()).getName()));
+            playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
+            questionText.setText(localGame.getQuestions().get(questionIndex).getText());
+        }else{
+            System.out.println("Fin Del Juego");
+
+            //try{
+            //    SceneLoader.loadModalAndShow(mainWindow, Views.RESULTS_VIEW);
+            //} catch (ViewLoadingException e) {
+            //    e.printStackTrace();
+            //}
+
+            //ResultsViewController controller = SceneLoader.getSceneController();
+            //controller.Score(localGame);
+        }
+
+    }
+
+    public void initialize(){
+        playerIndex = 0;
+        questionIndex = 0;
     }
 }

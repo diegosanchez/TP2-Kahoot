@@ -1,5 +1,10 @@
 package edu.fiuba.algo3.controller;
 
+import edu.fiuba.algo3.constants.ResourceConstants;
+import edu.fiuba.algo3.constants.Views;
+import edu.fiuba.algo3.exceptions.ViewLoadingException;
+import edu.fiuba.algo3.loaders.QuestionLoader;
+import edu.fiuba.algo3.loaders.SceneLoader;
 import edu.fiuba.algo3.model.Game;
 import edu.fiuba.algo3.model.Player;
 import javafx.event.ActionEvent;
@@ -7,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
 import java.util.ArrayList;
 
 public class PlayerNameController{
@@ -36,15 +43,27 @@ public class PlayerNameController{
                 nextButton.setText("Jugar");
             }
             else if(nextButton.getText().equals("Jugar")){
-                game.setPlayers(players);
-                /*
-                * La idea sería seguir con algo así
-                * */
-                //Stage stage = (Stage) text.getScene().getWindow();
-                //SceneLoader.loadScene(stage, Views.QUESTION_VIEW);
 
-                //QuestionController controller = (QuestionController) SceneLoader.getSceneController();
-                //controller.play(game);
+                game.setPlayers(players);
+
+                //game.setCurrentPlayer(game.getPlayers().get(0));
+                
+                try{
+                    game.setQuestions(QuestionLoader.loadQuestions(ResourceConstants.QUESTIONS_PATH));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+
+                Stage stage = (Stage) text.getScene().getWindow();
+
+                try{
+                    SceneLoader.loadScene(stage, Views.GENERIC_QUESTION_VIEW);
+                } catch (ViewLoadingException e) {
+                    e.printStackTrace();
+                }
+
+                GenericQuestionController controller = SceneLoader.getSceneController();
+                controller.play(game);
             }
         }
     }

@@ -43,7 +43,7 @@ public class ResultsViewController {
         //playerWinner.setText(game.getWinner().getName);
 
         player1Name.setText(game.getPlayers().get(0).getName());
-        player2Name.setText((game.getPlayers().get(1).getName());
+        player2Name.setText((game.getPlayers().get(1).getName()));
 
         player1Score.setText(Integer.toString(game.getPlayers().get(0).getScore()));
         player2Score.setText(Integer.toString(game.getPlayers().get(1).getScore()));

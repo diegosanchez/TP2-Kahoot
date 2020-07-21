@@ -1,20 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<DialogPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="410.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <content>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+<AnchorPane prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.GenericQuestionController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="640.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" />
-            <Pane fx:id="specificQuestionLayout" prefHeight="200.0" prefWidth="200.0" />
-            <Button fx:id="sumitbutton" alignment="CENTER" mnemonicParsing="false" text="confirmar" textAlignment="CENTER" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="640.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="178.0">
+                     <children>
+                        <HBox prefHeight="29.0" prefWidth="158.0">
+                           <children>
+                              <Label text="Player:">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="playerName" text="PlayerName">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="30.0" prefWidth="178.0">
+                           <children>
+                              <Label text="Score:">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="playerScore" text="Score">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="402.0">
+                     <children>
+                        <Label fx:id="questionType" text="Question Type">
+                           <VBox.margin>
+                              <Insets left="30.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="questionText" alignment="CENTER" contentDisplay="CENTER" text="Question Text">
+                           <VBox.margin>
+                              <Insets left="30.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Pane fx:id="optionsPanel" prefHeight="194.0" prefWidth="640.0" />
+            <Button fx:id="sumitButton" mnemonicParsing="false" onAction="#doSumit" text="Button">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
-   </content>
-</DialogPane>
+   </children>
+</AnchorPane>

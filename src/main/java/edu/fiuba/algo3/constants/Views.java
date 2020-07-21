@@ -7,5 +7,6 @@ public class Views {
 	public static final String GENERIC_QUESTION_VIEW = "GenericQuestionView";
 	public static final String GROUP_QUESTION_VIEW = "GroupQuestionView";
 	public static final String ORDERED_QUESTION_VIEW = "OrderedQuestionView";
+	public static final String RESULTS_VIEW = "ResultsView";
 
 }
