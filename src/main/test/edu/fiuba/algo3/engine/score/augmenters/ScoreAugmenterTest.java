@@ -158,6 +158,30 @@ public class ScoreAugmenterTest {
 		}		
 	}
 	
+	@Test
+	public void exclusividadJugadorContestaBienYOponenteMalYAmbosUsaronExclusividadTest(){
+		Player jugador = new Player("jugador 1");
+		jugador.setNewAugmenter(AugmenterType.EXCLUSIVITY, 2);
+		Player oponente = new Player("jugador 2");		
+		oponente.setNewAugmenter(AugmenterType.EXCLUSIVITY, 2);
+		jugador.setScore(4);
+		oponente.setScore(6);
+		int puntajeJugador = 3;
+		int puntajeOponente = 0;
+		ScoreAugmenter aumentador = new ExclusivityMultiplier();
+		aumentador.applyScoreAugmenter(jugador, oponente, puntajeJugador, puntajeOponente);
+		aumentador.applyScoreAugmenter(oponente, jugador, puntajeOponente, puntajeJugador);
+		
+		assertEquals(16, jugador.getScore());
+		assertEquals(6, oponente.getScore());
+		try {
+			assertEquals(1, jugador.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
+			assertEquals(1, oponente.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
+		} catch (NotValidAugmenterException e) {
+			e.printStackTrace();
+		}		
+	}
+	
 
 
 }
