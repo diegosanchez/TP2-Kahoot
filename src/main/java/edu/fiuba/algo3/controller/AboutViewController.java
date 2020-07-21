@@ -12,14 +12,14 @@ public class AboutViewController {
     @FXML
     public Label course;
     @FXML
-    public Label integrantes;
+    public Label list;
     @FXML
     public Label software;
 
     public void initialize() {
         title.setText(SystemInfo.title());
         course.setText(SystemInfo.course());
-        integrantes.setText(SystemInfo.lista());
+        list.setText(SystemInfo.lista());
         software.setText(SystemInfo.software());
     }
 }

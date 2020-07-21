@@ -1,5 +1,8 @@
 package edu.fiuba.algo3;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SystemInfo {
     public static String title() {
         return "TP2 KAHOOT";
@@ -10,11 +13,12 @@ public class SystemInfo {
     }
 
     public static String lista() {
-        return "Germán Escandar\n" +
-                "Javier Zardai\n" +
-                "Santiago Guerra\n" +
-                "Miroslav Sapunar\n" +
-                "Nicolás De Sousa\n";
+        return
+                "Germán Escandar\n"+
+            "Javier Zardain\n"+
+            "Santiago Guerra\n"+
+            "Miroslav Sapunar\n"+
+            "Nicolás De Sousa";
     }
 
     public static String javaVersion() {
@@ -26,7 +30,7 @@ public class SystemInfo {
     }
 
     public static String software() {
-        return ("java " +javaVersion() + " " + "javafx " + javafxVersion());
+        return ("Java " +javaVersion() + "\n" + "JavaFX " + javafxVersion());
     }
 
 }
