@@ -28,12 +28,13 @@ class Player{
     + name : String
 	+ score : int
 	+ augmentersUsesAvailable : Map<AugmenterType, Int>
-
+    - answerQuestion()
 }
 
 abstract ScoreAugmenter{
     + applyScoreAugmenter(currentPlayer, opponent, score, opponentScore)
     + substractUseOfAugmenter(player)
+    - {abstract}applyNewScore(Player currentPlayer, Player opponent, int score, int opponentScore)
 }
 
 
@@ -42,7 +43,11 @@ Game -->  Player
 
 OptionGroup --|> GameOption
 
+Player --right> Question
+Question ..> Player
+
 Player --> ScoreAugmenter
+ScoreAugmenter ..> Player 
 
 Question "1"*--"*" GameOption
 
