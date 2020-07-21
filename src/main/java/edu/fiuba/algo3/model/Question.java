@@ -2,21 +2,15 @@ package edu.fiuba.algo3.model;
 
 import java.util.List;
 
+import edu.fiuba.algo3.constants.QuestionType;
+
 public abstract class Question {
 
-	private long id;
-	private String text;
-	private List<GameOption> options;
-	protected List<GameOption> correctOptions;
+	protected String text;
+	protected QuestionType type;
+	protected List<GameOption> options;
+	protected List<GameOption> correctOptions;	
 	
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public List<GameOption> getOptions() {
 		return options;
 	}
@@ -40,7 +34,14 @@ public abstract class Question {
 	public void setText(String text) {
 		this.text = text;
 	}
+	
+	public QuestionType getType() {
+		return type;
+	}
 
+	public void setType(QuestionType type) {
+		this.type = type;
+	}
 	
 	/***
 	 * Returns the earned or lost points depending on the answer to the question
@@ -48,5 +49,6 @@ public abstract class Question {
 	 */
 	public abstract int calculatePoints(List<GameOption> selectedOptions);
 
+	
 	
 }

@@ -24,31 +24,36 @@ public class GroupChoiceTest {
 		GameOption opcionDos = new GameOption("2");
 		GameOption opcionTres = new GameOption("3");
 		GameOption opcionCuatro = new GameOption("4");
-				
-		grupoPares.addOption(opcionDos);
-		grupoPares.addOption(opcionCuatro);
+
+		opcionDos.setOptionGroup(grupoPares);
+		opcionCuatro.setOptionGroup(grupoPares);
 		
-		grupoImpares.addOption(opcionUno);
-		grupoImpares.addOption(opcionTres);
+		opcionUno.setOptionGroup(grupoImpares);
+		opcionTres.setOptionGroup(grupoImpares);		
 		
-		listaOpcionesCorrectas.add(grupoPares);
-		listaOpcionesCorrectas.add(grupoImpares);
+		listaOpcionesCorrectas.add(opcionUno);
+		listaOpcionesCorrectas.add(opcionDos);
+		listaOpcionesCorrectas.add(opcionTres);
+		listaOpcionesCorrectas.add(opcionCuatro);
 		
 		question.setCorrectOptions(listaOpcionesCorrectas);
 		
-		List<GameOption> listaOpcionesElegidas = new ArrayList<GameOption>();
+		List<GameOption> listaOpcionesElegidas = new ArrayList<GameOption>();				
 		
-		OptionGroup grupoParesElegidas = new OptionGroup("Pares");
-		OptionGroup grupoImparesElegidas = new OptionGroup("Impares");
+		GameOption opcionElegidaUno = new GameOption("1");
+		GameOption opcionElegidaDos = new GameOption("2");
+		GameOption opcionElegidaTres = new GameOption("3");
+		GameOption opcionElegidaCuatro = new GameOption("4");
 		
-		grupoParesElegidas.addOption(opcionDos);
-		grupoParesElegidas.addOption(opcionCuatro);
+		opcionElegidaUno.setOptionGroup(grupoImpares);
+		opcionElegidaDos.setOptionGroup(grupoPares);
+		opcionElegidaTres.setOptionGroup(grupoImpares);
+		opcionElegidaCuatro.setOptionGroup(grupoPares);
 		
-		grupoImparesElegidas.addOption(opcionUno);
-		grupoImparesElegidas.addOption(opcionTres);
-		
-		listaOpcionesElegidas.add(grupoParesElegidas);
-		listaOpcionesElegidas.add(grupoImparesElegidas);
+		listaOpcionesElegidas.add(opcionElegidaUno);
+		listaOpcionesElegidas.add(opcionElegidaDos);
+		listaOpcionesElegidas.add(opcionElegidaTres);
+		listaOpcionesElegidas.add(opcionElegidaCuatro);		
 		
 		assertEquals(1, question.calculatePoints(listaOpcionesElegidas));
 	}
@@ -65,31 +70,36 @@ public class GroupChoiceTest {
 		GameOption opcionDos = new GameOption("2");
 		GameOption opcionTres = new GameOption("3");
 		GameOption opcionCuatro = new GameOption("4");
-				
-		grupoPares.addOption(opcionDos);
-		grupoPares.addOption(opcionCuatro);
+
+		opcionDos.setOptionGroup(grupoPares);
+		opcionCuatro.setOptionGroup(grupoPares);
 		
-		grupoImpares.addOption(opcionUno);
-		grupoImpares.addOption(opcionTres);
+		opcionUno.setOptionGroup(grupoImpares);
+		opcionTres.setOptionGroup(grupoImpares);		
 		
-		listaOpcionesCorrectas.add(grupoPares);
-		listaOpcionesCorrectas.add(grupoImpares);
+		listaOpcionesCorrectas.add(opcionUno);
+		listaOpcionesCorrectas.add(opcionDos);
+		listaOpcionesCorrectas.add(opcionTres);
+		listaOpcionesCorrectas.add(opcionCuatro);
 		
 		question.setCorrectOptions(listaOpcionesCorrectas);
 		
-		List<GameOption> listaOpcionesElegidas = new ArrayList<GameOption>();
+		List<GameOption> listaOpcionesElegidas = new ArrayList<GameOption>();				
 		
-		OptionGroup grupoParesElegidas = new OptionGroup("Pares");
-		OptionGroup grupoImparesElegidas = new OptionGroup("Impares");
+		GameOption opcionElegidaUno = new GameOption("1");
+		GameOption opcionElegidaDos = new GameOption("2");
+		GameOption opcionElegidaTres = new GameOption("3");
+		GameOption opcionElegidaCuatro = new GameOption("4");
 		
-		grupoParesElegidas.addOption(opcionUno);
-		grupoParesElegidas.addOption(opcionCuatro);
+		opcionElegidaUno.setOptionGroup(grupoImpares);
+		opcionElegidaDos.setOptionGroup(grupoImpares);
+		opcionElegidaTres.setOptionGroup(grupoImpares);
+		opcionElegidaCuatro.setOptionGroup(grupoPares);
 		
-		grupoImparesElegidas.addOption(opcionDos);
-		grupoImparesElegidas.addOption(opcionTres);
-		
-		listaOpcionesElegidas.add(grupoParesElegidas);
-		listaOpcionesElegidas.add(grupoImparesElegidas);
+		listaOpcionesElegidas.add(opcionElegidaUno);
+		listaOpcionesElegidas.add(opcionElegidaDos);
+		listaOpcionesElegidas.add(opcionElegidaTres);
+		listaOpcionesElegidas.add(opcionElegidaCuatro);
 		
 		assertEquals(0, question.calculatePoints(listaOpcionesElegidas));
 	}
