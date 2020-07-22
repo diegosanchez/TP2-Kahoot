@@ -7,14 +7,17 @@ import edu.fiuba.algo3.loaders.QuestionLoader;
 import edu.fiuba.algo3.loaders.SceneLoader;
 import edu.fiuba.algo3.model.Game;
 import edu.fiuba.algo3.model.Player;
+import edu.fiuba.algo3.resources.ResourceFinder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class PlayerNameController{
@@ -76,6 +79,8 @@ public class PlayerNameController{
 
         GenericQuestionController controller = SceneLoader.getSceneController();
         controller.play(game);
+        File styles = new File(ResourceConstants.STYLES_ROOT_PATH + "questions.css");
+        scene.getStylesheets().add("file:///" + styles.getAbsolutePath().replace("\\", "/"));
     }
 
     public void initialize() {

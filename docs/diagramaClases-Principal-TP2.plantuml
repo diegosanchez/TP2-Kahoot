@@ -2,7 +2,7 @@
 hide circle
 skinparam classAttributeIconSize 0
 
-abstract Preguntas{
+abstract Question{
     + id : long
     + options : List<GameOption>
     # correctOptions : List<GameOption>
@@ -10,30 +10,45 @@ abstract Preguntas{
 }
 
 class GameOption{
-
+    + id : long
+	+ text : String
 }
 
-class Panel{
-
+class OptionGroup{
+    + options : List<GameOption>
 }
 
-class Jugador{
-
+class Game{
+    + players : List<Player>
+	+ question : List<Question>
+	+ currentPlayer : Player
 }
 
-interface Multiplicadores{
-
+class Player{
+    + name : String
+	+ score : int
+	+ augmentersUsesAvailable : Map<AugmenterType, Int>
+    - answerQuestion()
 }
 
-class ExclusividadPuntaje{
-
+abstract ScoreAugmenter{
+    + applyScoreAugmenter(currentPlayer, opponent, score, opponentScore)
+    + substractUseOfAugmenter(player)
+    - {abstract}applyNewScore(Player currentPlayer, Player opponent, int score, int opponentScore)
 }
 
-Jugador "1"..>"*" Multiplicadores
-Jugador "1"..>"*" ExclusividadPuntaje
-Panel  -->  Preguntas
-Panel -->  Jugador
 
-Preguntas "1"*--"*" GameOption
+Game  -->  Question
+Game -->  Player
+
+OptionGroup --|> GameOption
+
+Player --right> Question
+Question ..> Player
+
+Player --> ScoreAugmenter
+ScoreAugmenter ..> Player 
+
+Question "1"*--"*" GameOption
 
 @enduml

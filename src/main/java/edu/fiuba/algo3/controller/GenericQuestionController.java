@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.controller;
 
+import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.constants.Views;
+import edu.fiuba.algo3.exceptions.FileNotFoundException;
 import edu.fiuba.algo3.exceptions.ViewLoadingException;
 import edu.fiuba.algo3.loaders.SceneLoader;
 import edu.fiuba.algo3.model.Game;
@@ -9,12 +11,20 @@ import edu.fiuba.algo3.model.Player;
 import edu.fiuba.algo3.model.Question;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import edu.fiuba.algo3.resources.ResourceFinder;
+import edu.fiuba.algo3.resources.ResourceLoader;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.Iterator;
+import java.io.File;
 
 
 public class GenericQuestionController {
@@ -24,7 +34,7 @@ public class GenericQuestionController {
     @FXML
     public Label playerScore;
     @FXML
-    public Label questionText;
+    public Text questionText;
     @FXML
     public Label questionType;
     @FXML
@@ -93,6 +103,7 @@ public class GenericQuestionController {
         //mostrar respuestas correctas
         nextQuestion();
     }
+
 
     private void nextQuestion(){
         if(questionIterator.hasNext()){
