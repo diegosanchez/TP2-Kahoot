@@ -4,12 +4,17 @@ import edu.fiuba.algo3.constants.Views;
 import edu.fiuba.algo3.exceptions.ViewLoadingException;
 import edu.fiuba.algo3.loaders.SceneLoader;
 import edu.fiuba.algo3.model.Game;
+import edu.fiuba.algo3.model.Player;
 
-import javafx.event.ActionEvent;
+import edu.fiuba.algo3.model.Question;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+
+import java.util.Iterator;
 
 
 public class GenericQuestionController {
@@ -28,50 +33,81 @@ public class GenericQuestionController {
     public Button abandonButton;
 
     private Game localGame;
-    int playerIndex;
-    int questionIndex;
+    private Question question;
+    Iterator<Player> playersIterator;
+    Iterator<Question> questionIterator;
 
     public void play(Game game){
         localGame = game;
-        localGame.setCurrentPlayer(localGame.getPlayers().get(playerIndex));
+        questionIterator = localGame.getQuestions().iterator();
+        question = questionIterator.next();
 
+        setFirstPlayer();
+        setScenePlayer();
+        setSceneQuestion();
+    }
+
+    private void setFirstPlayer(){
+        playersIterator = localGame.getPlayers().iterator();
+        localGame.setCurrentPlayer(playersIterator.next());
+    }
+
+    private void setScenePlayer(){
         playerName.setText(((localGame.getCurrentPlayer()).getName()));
         playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
-        questionType.setText(String.valueOf(localGame.getQuestions().get(questionIndex).getType()));
-        questionText.setText(localGame.getQuestions().get(questionIndex).getText());
+    }
+    private void setSceneQuestion(){
+        questionType.setText(String.valueOf(question.getType()));
+        questionText.setText(question.getText());
+    }
+
+    public void doAbandon(ActionEvent event) {
+        localGame.getCurrentPlayer().setScore(-1);//cuando anden los puntaje settear a 0 o mandar al controler de ganador el el otro player
+        endGame();
     }
 
     public void doSumitPlayer1(ActionEvent event) {
         //guardar respuesta player1
-        nextPlayer();
+        nextPlayerView();
 
+    }
+    public void doSumitPlayer2(ActionEvent event) {
+        //guardar respuesta player2
         showCorrectAnswer();
+
     }
 
-    public void doAbandon(ActionEvent event) {
-        localGame.getCurrentPlayer().setScore(-1);//cuando anden los puntaje settear a 0
-        endGame();
-    }
-    private void nextPlayer(){
-        localGame.setCurrentPlayer(localGame.getPlayers().get(1));
-        playerName.setText(((localGame.getCurrentPlayer()).getName()));
-        playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
+    private void nextPlayerView(){
+        localGame.setCurrentPlayer(playersIterator.next());
+        setScenePlayer();
+        sumitButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                doSumitPlayer2(actionEvent);
+            }
+        });
 
     }
 
     private void showCorrectAnswer(){
+        //mostrar respuestas correctas
         nextQuestion();
     }
 
     private void nextQuestion(){
-        playerIndex = 0;
-        if(questionIndex < (localGame.getQuestions().size() - 1)){
-            questionIndex++;
-            localGame.setCurrentPlayer(localGame.getPlayers().get(playerIndex));
+        if(questionIterator.hasNext()){
 
-            playerName.setText(((localGame.getCurrentPlayer()).getName()));
-            playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
-            questionText.setText(localGame.getQuestions().get(questionIndex).getText());
+            question = questionIterator.next();
+
+            setFirstPlayer();
+            setScenePlayer();
+            setSceneQuestion();
+            sumitButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    doSumitPlayer1(actionEvent);
+                }
+            });
         }else{
             endGame();
         }
@@ -92,7 +128,5 @@ public class GenericQuestionController {
 
     public void initialize(){
         System.out.println("GenericQuestionController load.");
-        playerIndex = 0;
-        questionIndex = 0;
     }
 }
