@@ -1,7 +1,4 @@
 package edu.fiuba.algo3.loaders;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 
 import edu.fiuba.algo3.constants.QuestionType;
-import edu.fiuba.algo3.exceptions.FileNotFoundException;
+import edu.fiuba.algo3.exceptions.QuestionsNotLoadedException;
 import edu.fiuba.algo3.model.Question;
 import edu.fiuba.algo3.resources.ResourceLoader;
 
@@ -18,9 +15,20 @@ public class QuestionLoader {
 	private static final String TYPE = "type";
 	private static final Gson gson = new Gson();
 	
-	public static List<Question> loadQuestions(String questionsPath) throws IOException, URISyntaxException, FileNotFoundException{
-		String questionJson = ResourceLoader.loadTextFile(questionsPath);
-		return parseToList(new Gson().fromJson(questionJson, List.class));		
+	public static List<Question> loadQuestions(String questionsPath) throws QuestionsNotLoadedException{
+		String questionJson;
+		List<Question> questions = null;
+		try {
+			questionJson = ResourceLoader.loadTextFile(questionsPath);
+			questions = parseToList(new Gson().fromJson(questionJson, List.class));
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			throw new QuestionsNotLoadedException();
+		}
+		if(questions == null) {
+			throw new QuestionsNotLoadedException();
+		}
+		return questions;
 	}
 	
 	private static <K, V> List<Question> parseToList(List<LinkedTreeMap<K,V>> list){
