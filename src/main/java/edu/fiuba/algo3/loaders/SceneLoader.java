@@ -52,4 +52,8 @@ public class SceneLoader {
 	public static <T> T getSceneController(){
 		return loader.getController(); //para comunicación entre controladores
 	}
+
+	public static Scene getLoadedScene(){
+		return ((Parent)loader.getRoot()).getScene();
+	}
 }

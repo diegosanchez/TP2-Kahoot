@@ -1,17 +1,26 @@
 package edu.fiuba.algo3.controller;
 
+import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.constants.Views;
+import edu.fiuba.algo3.exceptions.FileNotFoundException;
 import edu.fiuba.algo3.exceptions.ViewLoadingException;
 import edu.fiuba.algo3.loaders.SceneLoader;
 import edu.fiuba.algo3.model.Game;
 
+import edu.fiuba.algo3.resources.ResourceFinder;
+import edu.fiuba.algo3.resources.ResourceLoader;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.File;
 
 
 public class GenericQuestionController {
@@ -21,13 +30,13 @@ public class GenericQuestionController {
     @FXML
     public Label playerScore;
     @FXML
-    public Label questionText;
+    public Text questionText;
     @FXML
     public Label questionType;
     @FXML
     public Button sumitButton;
     @FXML
-    public VBox mainWindow;
+    public BorderPane mainWindow;
 
 
     private Game localGame;
@@ -39,8 +48,8 @@ public class GenericQuestionController {
         localGame.setCurrentPlayer(localGame.getPlayers().get(playerIndex));
 
         playerName.setText(((localGame.getCurrentPlayer()).getName()));
-        playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
-        questionType.setText(String.valueOf(localGame.getQuestions().get(questionIndex).getType()));
+//        playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
+//        questionType.setText(String.valueOf(localGame.getQuestions().get(questionIndex).getType()));
         questionText.setText(localGame.getQuestions().get(questionIndex).getText());
     }
 
@@ -59,13 +68,14 @@ public class GenericQuestionController {
         localGame.setCurrentPlayer(localGame.getPlayers().get(playerIndex));
 
         playerName.setText(((localGame.getCurrentPlayer()).getName()));
-        playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
+        //playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
 
     }
 
     private void showCorrectAnswer(){
         nextQuestion();
     }
+
 
     private void nextQuestion(){
         playerIndex = 0;
@@ -74,7 +84,7 @@ public class GenericQuestionController {
             localGame.setCurrentPlayer(localGame.getPlayers().get(playerIndex));
 
             playerName.setText(((localGame.getCurrentPlayer()).getName()));
-            playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
+            //playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
             questionText.setText(localGame.getQuestions().get(questionIndex).getText());
         }else{
             System.out.println("Fin Del Juego");
@@ -91,7 +101,7 @@ public class GenericQuestionController {
 
     }
 
-    public void initialize(){
+    public void initialize() {
         playerIndex = 0;
         questionIndex = 0;
     }

@@ -1,0 +1,36 @@
+
+.answerButton{
+	-fx-background-radius: 0;
+	-fx-pref-height: 60;
+	-fx-pref-width: 300;
+	-fx-max-width: 800;
+}
+
+.nextButton{
+	-fx-pref-height: 49;
+	-fx-pref-width: 320;
+	-fx-font-size: 26;
+	-fx-background-color: #EF4649;
+	-fx-text-fill: white;
+}
+
+.root{
+	-fx-background-color: #fbe2c2;
+}
+
+.textControl{
+	-fx-alignment: center;
+	-fx-font-family: "Berlin Sans FB Demi Bold";
+}
+
+.stylishLabel{
+	-fx-pref-width: 58;
+	-fx-pref-height: 55;
+	-fx-padding: 8 9 8 9;
+	-fx-background-radius: 30;
+	-fx-background-color: rgba(235, 21, 35, 0.76);
+	-fx-font-size: 33px;
+	-fx-text-fill: white;
+	-fx-alignment: center;
+	-fx-font-family: "Berlin Sans FB Demi Bold";
+}
