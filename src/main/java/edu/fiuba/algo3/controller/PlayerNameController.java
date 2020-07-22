@@ -59,7 +59,8 @@ public class PlayerNameController{
                 try{
                     SceneLoader.loadScene(stage, Views.GENERIC_QUESTION_VIEW);
                 } catch (ViewLoadingException e) {
-                    e.printStackTrace();
+                	e.printStackTrace();
+        			SceneLoader.loadErrorPage();
                 }
 
                 GenericQuestionController controller = SceneLoader.getSceneController();

@@ -38,11 +38,17 @@ public class MainController {
 			SceneLoader.loadModalAndShow(mainWindow, Views.ABOUT_VIEW);
 		} catch (ViewLoadingException e) {
 			e.printStackTrace();
+			SceneLoader.loadErrorPage();
 		}
 	}
 
-	public void newGame(ActionEvent event) throws ViewLoadingException {
-		SceneLoader.loadModalAndShow(mainWindow, Views.PLAYER_NAME_VIEW);
+	public void newGame(ActionEvent event)  {
+		try {
+			SceneLoader.loadModalAndShow(mainWindow, Views.PLAYER_NAME_VIEW);
+		} catch (ViewLoadingException e) {
+			e.printStackTrace();
+			SceneLoader.loadErrorPage();
+		}
 	}
 	
 }

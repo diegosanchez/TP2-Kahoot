@@ -17,6 +17,7 @@ public class GameLoader {
 			game.setQuestions(QuestionLoader.loadQuestions(ResourceConstants.QUESTIONS_PATH));
 		} catch (QuestionsNotLoadedException ex) {
 			ex.printStackTrace();
+			SceneLoader.loadErrorPage();
 		}
 		return game;
 	}
