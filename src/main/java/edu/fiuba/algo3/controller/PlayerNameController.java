@@ -73,6 +73,7 @@ public class PlayerNameController{
                 scene.getStylesheets().add("file:///" + styles.getAbsolutePath().replace("\\", "/"));
 
                 controller.play(game);
+
             }
         }
     }

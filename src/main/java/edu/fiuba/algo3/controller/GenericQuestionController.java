@@ -38,7 +38,6 @@ public class GenericQuestionController {
     @FXML
     public BorderPane mainWindow;
 
-
     private Game localGame;
     int playerIndex;
     int questionIndex;

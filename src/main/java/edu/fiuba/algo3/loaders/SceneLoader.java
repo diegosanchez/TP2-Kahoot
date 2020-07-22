@@ -50,7 +50,7 @@ public class SceneLoader {
 	}
 
 	public static <T> T getSceneController(){
-		return loader.getController(); //para comunicación entre controladores
+		return loader.getController();
 	}
 
 	public static Scene getLoadedScene(){
