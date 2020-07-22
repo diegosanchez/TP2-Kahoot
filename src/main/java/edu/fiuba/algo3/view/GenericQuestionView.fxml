@@ -11,52 +11,58 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.GenericQuestionController">
    <children>
-      <VBox fx:id="mainWindow" alignment="CENTER" prefHeight="400.0" prefWidth="640.0">
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="640.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="640.0">
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="178.0">
                      <children>
-                        <HBox prefHeight="29.0" prefWidth="158.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="178.0">
                            <children>
                               <Label text="Player:">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="playerName" text="PlayerName">
+                              <Label fx:id="playerName" prefHeight="20.0" prefWidth="122.0" text="PlayerName">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
                            </children>
                         </HBox>
-                        <HBox prefHeight="30.0" prefWidth="178.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="178.0">
                            <children>
-                              <Label text="Score:">
+                              <Label prefHeight="20.0" prefWidth="57.0" text="Score:">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="playerScore" text="Score">
+                              <Label fx:id="playerScore" prefHeight="20.0" prefWidth="123.0" text="Score">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
                            </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="402.0">
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="416.0">
                      <children>
-                        <Label fx:id="questionType" text="Question Type">
+                        <Label fx:id="questionType" alignment="CENTER" prefHeight="20.0" prefWidth="350.0" text="Question Type">
                            <VBox.margin>
-                              <Insets left="30.0" />
+                              <Insets left="15.0" />
                            </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
                         </Label>
-                        <Label fx:id="questionText" alignment="CENTER" contentDisplay="CENTER" text="Question Text">
+                        <Label fx:id="questionText" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="350.0" text="Question Text">
                            <VBox.margin>
-                              <Insets left="30.0" top="10.0" />
+                              <Insets left="15.0" top="10.0" />
                            </VBox.margin>
                            <font>
                               <Font size="14.0" />
@@ -67,11 +73,20 @@
                </children>
             </HBox>
             <Pane fx:id="optionsPanel" prefHeight="194.0" prefWidth="640.0" />
-            <Button fx:id="sumitButton" mnemonicParsing="false" onAction="#doSumit" text="Button">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Button>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="sumitButton" mnemonicParsing="false" onAction="#doSumitPlayer1" text="Responder">
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="abandonButton" mnemonicParsing="false" onAction="#doAbandon" text="Abandonar">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>

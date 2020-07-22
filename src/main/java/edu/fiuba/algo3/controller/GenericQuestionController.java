@@ -5,12 +5,10 @@ import edu.fiuba.algo3.exceptions.ViewLoadingException;
 import edu.fiuba.algo3.loaders.SceneLoader;
 import edu.fiuba.algo3.model.Game;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
@@ -27,8 +25,7 @@ public class GenericQuestionController {
     @FXML
     public Button sumitButton;
     @FXML
-    public VBox mainWindow;
-
+    public Button abandonButton;
 
     private Game localGame;
     int playerIndex;
@@ -44,20 +41,19 @@ public class GenericQuestionController {
         questionText.setText(localGame.getQuestions().get(questionIndex).getText());
     }
 
-    public void doSumit(ActionEvent event) {
-        if(playerIndex == 0){
-            //guardar respuesta player1
-            nextPlayer();
-        }else{
-            //guardar respuesta player2
-            showCorrectAnswer();
-        }
+    public void doSumitPlayer1(ActionEvent event) {
+        //guardar respuesta player1
+        nextPlayer();
+
+        showCorrectAnswer();
     }
 
+    public void doAbandon(ActionEvent event) {
+        localGame.getCurrentPlayer().setScore(-1);//cuando anden los puntaje settear a 0
+        endGame();
+    }
     private void nextPlayer(){
-        playerIndex++;
-        localGame.setCurrentPlayer(localGame.getPlayers().get(playerIndex));
-
+        localGame.setCurrentPlayer(localGame.getPlayers().get(1));
         playerName.setText(((localGame.getCurrentPlayer()).getName()));
         playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
 
@@ -77,18 +73,21 @@ public class GenericQuestionController {
             playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
             questionText.setText(localGame.getQuestions().get(questionIndex).getText());
         }else{
-            System.out.println("Fin Del Juego");
-            Stage stage = (Stage) mainWindow.getScene().getWindow();
-            try{
-                SceneLoader.loadScene(stage, Views.RESULTS_VIEW);
-            } catch (ViewLoadingException e) {
-                e.printStackTrace();
-            }
-
-            ResultsViewController controller = SceneLoader.getSceneController();
-            controller.initialize(localGame);
+            endGame();
         }
 
+    }
+
+    private void endGame(){
+        Stage stage = (Stage) sumitButton.getScene().getWindow();
+        try{
+            SceneLoader.loadScene(stage, Views.RESULTS_VIEW);
+        } catch (ViewLoadingException e) {
+            e.printStackTrace();
+        }
+
+        ResultsViewController controller = SceneLoader.getSceneController();
+        controller.initialize(localGame);
     }
 
     public void initialize(){

@@ -1,19 +1,15 @@
 package edu.fiuba.algo3.controller;
 
-import edu.fiuba.algo3.SystemInfo;
-
 import edu.fiuba.algo3.constants.Views;
 import edu.fiuba.algo3.exceptions.ViewLoadingException;
 import edu.fiuba.algo3.loaders.SceneLoader;
 import edu.fiuba.algo3.model.Game;
-import edu.fiuba.algo3.model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
 
 public class ResultsViewController {
 
@@ -55,6 +51,7 @@ public class ResultsViewController {
     }
 
     public void initialize(Game game) {
+        System.out.println("ResultsViewController load.");
         //Aqui deberia de haber una funcion que nos de el nombre del ganador
         //de la partida
 
