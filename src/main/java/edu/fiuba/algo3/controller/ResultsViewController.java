@@ -2,12 +2,16 @@ package edu.fiuba.algo3.controller;
 
 import edu.fiuba.algo3.SystemInfo;
 
+import edu.fiuba.algo3.constants.Views;
+import edu.fiuba.algo3.exceptions.ViewLoadingException;
+import edu.fiuba.algo3.loaders.SceneLoader;
 import edu.fiuba.algo3.model.Game;
 import edu.fiuba.algo3.model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
@@ -32,8 +36,22 @@ public class ResultsViewController {
     public Button retryButton;
 
     @FXML
-    public void doNext(ActionEvent event){
-        //Deberia de empezar de nuevo el juego
+    public Button closeButton;
+
+    @FXML
+    public void doRestart(ActionEvent event){
+        Stage stage = (Stage) retryButton.getScene().getWindow();
+        try{
+            SceneLoader.loadScene(stage, Views.PLAYER_NAME_VIEW);
+        }catch (ViewLoadingException e){
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void doClose(ActionEvent event){
+        Stage stage = (Stage) retryButton.getScene().getWindow();
+        stage.close();
     }
 
     public void initialize(Game game) {

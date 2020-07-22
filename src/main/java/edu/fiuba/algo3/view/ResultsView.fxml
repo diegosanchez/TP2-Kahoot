@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #42BAE0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.ResultsViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: #42BAE0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.ResultsViewController">
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -75,14 +75,26 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </HBox>
-            <Button fx:id="retryButton" alignment="CENTER" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doNext" prefHeight="49.0" prefWidth="320.0" style="-fx-background-color: #163E4A;" text="Reintentar" textFill="WHITE">
-               <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="21.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="160.0" right="160.0" top="100.0" />
-               </VBox.margin>
-            </Button>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="retryButton" alignment="CENTER" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doRestart" prefHeight="49.0" prefWidth="320.0" style="-fx-background-color: #163E4A;" text="Reintentar" textFill="WHITE">
+                     <font>
+                        <Font name="Berlin Sans FB Demi Bold" size="21.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="50.0" right="40.0" top="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="closeButton" alignment="CENTER" mnemonicParsing="false" onAction="#doClose" prefHeight="101.0" prefWidth="320.0" style="-fx-background-color: #b53535;" text="Terminar" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets bottom="20.0" left="40.0" right="50.0" top="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </center>

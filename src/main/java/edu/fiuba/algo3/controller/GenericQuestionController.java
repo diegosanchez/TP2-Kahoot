@@ -78,20 +78,21 @@ public class GenericQuestionController {
             questionText.setText(localGame.getQuestions().get(questionIndex).getText());
         }else{
             System.out.println("Fin Del Juego");
+            Stage stage = (Stage) mainWindow.getScene().getWindow();
+            try{
+                SceneLoader.loadScene(stage, Views.RESULTS_VIEW);
+            } catch (ViewLoadingException e) {
+                e.printStackTrace();
+            }
 
-            //try{
-            //    SceneLoader.loadModalAndShow(mainWindow, Views.RESULTS_VIEW);
-            //} catch (ViewLoadingException e) {
-            //    e.printStackTrace();
-            //}
-
-            //ResultsViewController controller = SceneLoader.getSceneController();
-            //controller.Score(localGame);
+            ResultsViewController controller = SceneLoader.getSceneController();
+            controller.initialize(localGame);
         }
 
     }
 
     public void initialize(){
+        System.out.println("GenericQuestionController load.");
         playerIndex = 0;
         questionIndex = 0;
     }
