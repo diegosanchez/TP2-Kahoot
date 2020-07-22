@@ -73,8 +73,17 @@ public class PlayerNameController{
             e.printStackTrace();
         }
 
-        GenericQuestionController controller = SceneLoader.getSceneController();
-        controller.play(game);
+                try{
+                    SceneLoader.loadScene(stage, Views.GENERIC_QUESTION_VIEW);
+                } catch (ViewLoadingException e) {
+                	e.printStackTrace();
+        			SceneLoader.loadErrorPage();
+                }
+
+                GenericQuestionController controller = SceneLoader.getSceneController();
+                controller.play(game);
+            }
+        }
     }
 
     public void initialize() {
