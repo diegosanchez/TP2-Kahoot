@@ -78,9 +78,13 @@ public class PlayerNameController{
         }
 
         GenericQuestionController controller = SceneLoader.getSceneController();
-        controller.play(game);
+        Scene scene = SceneLoader.getLoadedScene();
+
         File styles = new File(ResourceConstants.STYLES_ROOT_PATH + "questions.css");
         scene.getStylesheets().add("file:///" + styles.getAbsolutePath().replace("\\", "/"));
+
+        controller.play(game);
+
     }
 
     public void initialize() {

@@ -34,7 +34,7 @@ public class GenericQuestionController {
     @FXML
     public Label playerScore;
     @FXML
-    public Text questionText;
+    public Label questionText;
     @FXML
     public Label questionType;
     @FXML
