@@ -1,4 +1,4 @@
-package edu.fiuba.algo3.engine.loaders;
+package edu.fiuba.algo3.loaders;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
