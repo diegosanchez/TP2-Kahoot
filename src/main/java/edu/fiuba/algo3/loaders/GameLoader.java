@@ -8,6 +8,8 @@ import edu.fiuba.algo3.model.Game;
 import edu.fiuba.algo3.model.Player;
 
 public class GameLoader {
+	
+	private GameLoader() {}
 
 	public static Game loadGame(List<Player> players) {
 		Game game = new Game();

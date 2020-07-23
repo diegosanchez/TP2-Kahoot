@@ -9,7 +9,7 @@ import edu.fiuba.algo3.exceptions.StylesheetLoadingException;
 public class StylesheetLoaderTest {
 	
 	@Test
-	public void cargarUnaHojaDeEstilosInexistenteDebeTirarUnError() {
+	public void cargarUnaHojaDeEstilosInexistenteDebeTirarUnErrorTest() {
 		assertThrows(StylesheetLoadingException.class, () -> {
 		    StylesheetLoader.loadStylesheet(null, "test");
 		});

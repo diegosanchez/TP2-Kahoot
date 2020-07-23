@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.fiuba.algo3.constants.AugmenterType;
-import edu.fiuba.algo3.exceptions.NotValidAugmenterException;
 
 public class Player {
 	
@@ -44,11 +43,11 @@ public class Player {
 		augmentersUsesAvailable.put(augmenterType, uses);
 	}
 	
-	public Integer getAugmentersUsesAvailable(AugmenterType augmenterType) throws NotValidAugmenterException {
-		if(augmentersUsesAvailable == null || !augmentersUsesAvailable.containsKey(augmenterType)) {
-			throw new NotValidAugmenterException();
+	public Integer getAugmentersUsesAvailable(AugmenterType augmenterType)  {
+		if(augmentersUsesAvailable != null && augmentersUsesAvailable.containsKey(augmenterType)) {
+			return augmentersUsesAvailable.get(augmenterType);
 		}
-		return augmentersUsesAvailable.get(augmenterType);
+		return 0;
 	}
 
 	

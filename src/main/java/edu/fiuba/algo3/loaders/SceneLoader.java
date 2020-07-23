@@ -13,6 +13,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SceneLoader {
+	
+	private SceneLoader() {}
 
 	private static FXMLLoader loader;
 

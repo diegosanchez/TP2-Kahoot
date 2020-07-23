@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.model.GameOption;
 import edu.fiuba.algo3.model.OptionGroup;
 
-public class GroupChoiceTest {
+class GroupChoiceTest {
 	
 	@Test
 	public void opcionesCorrectasSumaUnPunto() {

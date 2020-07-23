@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 import edu.fiuba.algo3.exceptions.FileNotFoundException;
 
 public class ResourceLoader {
+	
+	private ResourceLoader() {}
 
 	public static String loadTextFile(String resourcePath) throws IOException, URISyntaxException, FileNotFoundException {
 		return new String(Files.readAllBytes(Paths.get(ResourceFinder.findResource(resourcePath).toURI())));
