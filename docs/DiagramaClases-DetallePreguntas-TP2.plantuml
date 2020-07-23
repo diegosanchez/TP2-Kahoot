@@ -7,31 +7,31 @@ abstract Question{
     + text : String
     + options : List<GameOption>
     # correctOptions : List<GameOption>
-    - calculatePoints()
+    - calculatePoints() : int
 }
 
 class TrueFalseQuestion{
-    - calculatePoints()
+    - calculatePoints(List<GameOption> selectedOptions) : int
 }
 
 class TrueFalseWithPenaltyQuestion{
-    - calculatePoints()
+    - calculatePoints(List<GameOption> selectedOptions) : int
 }
 
 class OrderedChoiceQuestion{
-    - calculatePoints()
+    - calculatePoints(List<GameOption> selectedOptions) : int
 }
 
 class MultipleChoiceQuestion{
-    - calculatePoints()
+    - calculatePoints(List<GameOption> selectedOptions) : int
 }
 
 class MultipleChoiceWithPenaltyQuestion{
-    - calculatePoints()
+    - calculatePoints(List<GameOption> selectedOptions) : int
 }
 
 class GroupChoiceQuestion{
-    - calculatePoints()
+    - calculatePoints(List<GameOption> selectedOptions) : int
 }
 
 
