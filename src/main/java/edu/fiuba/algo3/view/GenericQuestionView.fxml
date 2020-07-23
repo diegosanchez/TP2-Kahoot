@@ -81,7 +81,7 @@
    <bottom>
       <VBox alignment="CENTER" fillWidth="false">
          <children>
-            <Button mnemonicParsing="false" onAction="#doSumit" style="-fx-background-color: #EF4649;" text="Siguiente" textFill="WHITE">
+            <Button fx:id="sumitButton" mnemonicParsing="false" onAction="#doSumitPlayer1" style="-fx-background-color: #EF4649;" text="Siguiente" textFill="WHITE">
                <styleClass>
                   <String fx:value="textControl" />
                   <String fx:value="nextButton" />
@@ -144,3 +144,4 @@
       </VBox>
    </right>
 </BorderPane>
+
