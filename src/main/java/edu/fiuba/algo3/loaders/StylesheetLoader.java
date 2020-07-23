@@ -10,6 +10,8 @@ public class StylesheetLoader {
 	
 	private static final String CSS_EXTENSION = ".css";
 	
+	private StylesheetLoader() {}
+	
 	public static void loadStylesheet(Scene scene, String stylesheetName) throws StylesheetLoadingException {
 		try {
 			String stylesheetPath = ResourceFinder.findResource(ResourceConstants.STYLES_PATH + stylesheetName + CSS_EXTENSION).toExternalForm();

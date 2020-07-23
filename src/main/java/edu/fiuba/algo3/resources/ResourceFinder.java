@@ -8,6 +8,8 @@ import edu.fiuba.algo3.exceptions.FileNotFoundException;
 
 public class ResourceFinder {
 
+	private ResourceFinder() {}
+	
 	public static URL findResource(String resourcePath) throws FileNotFoundException {
 		URL viewUrl = App.class.getResource(ResourceConstants.RESOURCES_ROOT_PATH + resourcePath);
 		if(viewUrl == null) {

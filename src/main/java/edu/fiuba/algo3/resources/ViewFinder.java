@@ -11,6 +11,8 @@ public class ViewFinder {
 	private static final String VIEW_PACKAGE = "view/";
 	private static final String FXML_PREFIX = ".fxml";
 
+	private ViewFinder() {}
+	
 	public static URL findView(String viewName) throws ViewNotFoundException {
 		try {
 			return ResourceFinder.findResource(VIEW_PACKAGE + viewName + FXML_PREFIX);

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.constants.AugmenterType;
-import edu.fiuba.algo3.exceptions.NotValidAugmenterException;
 import edu.fiuba.algo3.model.Player;
 
 public class ScoreAugmenterTest {
@@ -22,12 +21,7 @@ public class ScoreAugmenterTest {
 		aumentador.applyScoreAugmenter(jugador, oponente, puntajeJugador, puntajeOponente);
 		
 		assertEquals(8, jugador.getScore());
-		try {
-			assertEquals(1, jugador.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_TWO));
-		} catch (NotValidAugmenterException e) {
-			e.printStackTrace();
-		}
-		
+		assertEquals(1, jugador.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_TWO));
 	}
 	
 	@Test
@@ -42,12 +36,7 @@ public class ScoreAugmenterTest {
 		aumentador.applyScoreAugmenter(jugador, oponente, puntajeJugador, puntajeOponente);
 		
 		assertEquals(10, jugador.getScore());
-		try {
-			assertEquals(1, jugador.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_THREE));
-		} catch (NotValidAugmenterException e) {
-			e.printStackTrace();
-		}
-		
+		assertEquals(1, jugador.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_THREE));
 	}
 	
 	@Test
@@ -64,11 +53,8 @@ public class ScoreAugmenterTest {
 		
 		assertEquals(8, jugador.getScore());
 		assertEquals(6, oponente.getScore());
-		try {
-			assertEquals(1, jugador.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
-		} catch (NotValidAugmenterException e) {
-			e.printStackTrace();
-		}		
+		assertEquals(1, jugador.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
+				
 	}
 	
 	@Test
@@ -85,11 +71,8 @@ public class ScoreAugmenterTest {
 		
 		assertEquals(4, jugador.getScore());
 		assertEquals(6, oponente.getScore());
-		try {
-			assertEquals(1, jugador.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
-		} catch (NotValidAugmenterException e) {
-			e.printStackTrace();
-		}		
+		assertEquals(1, jugador.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
+			
 	}
 	
 	@Test
@@ -106,11 +89,8 @@ public class ScoreAugmenterTest {
 		
 		assertEquals(4, jugador.getScore());
 		assertEquals(6, oponente.getScore());
-		try {
-			assertEquals(1, jugador.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
-		} catch (NotValidAugmenterException e) {
-			e.printStackTrace();
-		}		
+		assertEquals(1, jugador.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
+			
 	}
 	
 	@Test
@@ -127,11 +107,7 @@ public class ScoreAugmenterTest {
 		
 		assertEquals(4, jugador.getScore());
 		assertEquals(10, oponente.getScore());
-		try {
-			assertEquals(1, jugador.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
-		} catch (NotValidAugmenterException e) {
-			e.printStackTrace();
-		}		
+		assertEquals(1, jugador.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));	
 	}
 	
 	@Test
@@ -150,12 +126,9 @@ public class ScoreAugmenterTest {
 		
 		assertEquals(4, jugador.getScore());
 		assertEquals(14, oponente.getScore());
-		try {
-			assertEquals(1, jugador.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
-			assertEquals(1, oponente.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
-		} catch (NotValidAugmenterException e) {
-			e.printStackTrace();
-		}		
+		assertEquals(1, jugador.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
+		assertEquals(1, oponente.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
+			
 	}
 	
 	@Test
@@ -174,12 +147,8 @@ public class ScoreAugmenterTest {
 		
 		assertEquals(16, jugador.getScore());
 		assertEquals(6, oponente.getScore());
-		try {
-			assertEquals(1, jugador.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
-			assertEquals(1, oponente.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
-		} catch (NotValidAugmenterException e) {
-			e.printStackTrace();
-		}		
+		assertEquals(1, jugador.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
+		assertEquals(1, oponente.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));		
 	}
 	
 
