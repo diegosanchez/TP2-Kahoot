@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.model.GameOption;
 import edu.fiuba.algo3.model.OptionGroup;
 
-class GroupChoiceTest {
+public class GroupChoiceTest {
 	
 	@Test
-	public void opcionesCorrectasSumaUnPunto() {
+	public void opcionesCorrectasSumaUnPuntoTest() {
 		GroupChoiceQuestion question = new GroupChoiceQuestion();
 		List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
 		
@@ -59,7 +59,7 @@ class GroupChoiceTest {
 	}
 
 	@Test
-	public void opcionesIncorrectasDevuelveCero() {
+	public void opcionesIncorrectasDevuelveCeroTest() {
 		GroupChoiceQuestion question = new GroupChoiceQuestion();
 		List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
 		
