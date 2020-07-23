@@ -9,6 +9,7 @@ import edu.fiuba.algo3.model.Game;
 import edu.fiuba.algo3.model.Player;
 import edu.fiuba.algo3.resources.ResourceFinder;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -34,51 +35,60 @@ public class PlayerNameController{
     private ArrayList<Player> players;
 
     @FXML
-    public void doNext(ActionEvent event){
+    public void initialAction(ActionEvent event){
 
-        if(!textField.getText().isEmpty()){
-
+        if(!textField.getText().isEmpty()) {
             players.add(new Player(textField.getText()));
-
-            if(text.getText().equals("Jugador 1")){
-                textField.clear();
-                text.setText("Jugador 2");
-                nextButton.setText("Jugar");
-            }
-            else if(nextButton.getText().equals("Jugar")){
-
-                game.setPlayers(players);
-
-                //game.setCurrentPlayer(game.getPlayers().get(0));
-                
-                try{
-                    game.setQuestions(QuestionLoader.loadQuestions(ResourceConstants.QUESTIONS_PATH));
-                } catch (Exception ex) {
-                    ex.printStackTrace();
+            textField.clear();
+            text.setText("Jugador 2");
+            nextButton.setText("Jugar");
+            nextButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    finalAction(actionEvent);
                 }
-
-                Stage stage = (Stage) text.getScene().getWindow();
-
-                try{
-                    SceneLoader.loadScene(stage, Views.GENERIC_QUESTION_VIEW);
-                } catch (ViewLoadingException e) {
-                	e.printStackTrace();
-        			SceneLoader.loadErrorPage();
-                }
-
-                GenericQuestionController controller = SceneLoader.getSceneController();
-                Scene scene = SceneLoader.getLoadedScene();
-
-                File styles = new File(ResourceConstants.STYLES_ROOT_PATH + "questions.css");
-                scene.getStylesheets().add("file:///" + styles.getAbsolutePath().replace("\\", "/"));
-
-                controller.play(game);
-
-            }
+            });
         }
     }
 
+    @FXML
+    public void finalAction(ActionEvent event){
+        if(!textField.getText().isEmpty()) {
+            players.add(new Player(textField.getText()));
+            nextScene();
+        }
+    }
+
+    public void nextScene(){
+        game.setPlayers(players);
+
+        try{
+            game.setQuestions(QuestionLoader.loadQuestions(ResourceConstants.QUESTIONS_PATH));
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        Stage stage = (Stage) text.getScene().getWindow();
+
+        try{
+            SceneLoader.loadScene(stage, Views.GENERIC_QUESTION_VIEW);
+        } catch (ViewLoadingException e) {
+            e.printStackTrace();
+            SceneLoader.loadErrorPage();
+        }
+
+        GenericQuestionController controller = SceneLoader.getSceneController();
+        Scene scene = SceneLoader.getLoadedScene();
+
+        File styles = new File(ResourceConstants.STYLES_ROOT_PATH + "questions.css");
+        scene.getStylesheets().add("file:///" + styles.getAbsolutePath().replace("\\", "/"));
+
+        controller.play(game);
+
+    }
+
     public void initialize() {
+        System.out.println("PlayerNameController load.");
         game = new Game();
         players = new ArrayList<>();
     }

@@ -6,12 +6,15 @@ import edu.fiuba.algo3.exceptions.FileNotFoundException;
 import edu.fiuba.algo3.exceptions.ViewLoadingException;
 import edu.fiuba.algo3.loaders.SceneLoader;
 import edu.fiuba.algo3.model.Game;
+import edu.fiuba.algo3.model.Player;
 
+import edu.fiuba.algo3.model.Question;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import edu.fiuba.algo3.resources.ResourceFinder;
 import edu.fiuba.algo3.resources.ResourceLoader;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -20,6 +23,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.Iterator;
 import java.io.File;
 
 
@@ -30,78 +34,110 @@ public class GenericQuestionController {
     @FXML
     public Label playerScore;
     @FXML
-    public Text questionText;
+    public Label questionText;
     @FXML
     public Label questionType;
     @FXML
     public Button sumitButton;
     @FXML
-    public BorderPane mainWindow;
+    public Button abandonButton;
 
     private Game localGame;
-    int playerIndex;
-    int questionIndex;
+    private Question question;
+    Iterator<Player> playersIterator;
+    Iterator<Question> questionIterator;
 
     public void play(Game game){
         localGame = game;
-        localGame.setCurrentPlayer(localGame.getPlayers().get(playerIndex));
+        questionIterator = localGame.getQuestions().iterator();
+        question = questionIterator.next();
 
-        playerName.setText(((localGame.getCurrentPlayer()).getName()));
-//        playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
-//        questionType.setText(String.valueOf(localGame.getQuestions().get(questionIndex).getType()));
-        questionText.setText(localGame.getQuestions().get(questionIndex).getText());
+        setFirstPlayer();
+        setScenePlayer();
+        setSceneQuestion();
     }
 
-    public void doSumit(ActionEvent event) {
-        if(playerIndex == 0){
-            //guardar respuesta player1
-            nextPlayer();
-        }else{
-            //guardar respuesta player2
-            showCorrectAnswer();
-        }
+    private void setFirstPlayer(){
+        playersIterator = localGame.getPlayers().iterator();
+        localGame.setCurrentPlayer(playersIterator.next());
     }
 
-    private void nextPlayer(){
-        playerIndex++;
-        localGame.setCurrentPlayer(localGame.getPlayers().get(playerIndex));
-
+    private void setScenePlayer(){
         playerName.setText(((localGame.getCurrentPlayer()).getName()));
-        //playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
+        playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
+    }
+    private void setSceneQuestion(){
+        questionType.setText(String.valueOf(question.getType()));
+        questionText.setText(question.getText());
+    }
+
+    public void doAbandon(ActionEvent event) {
+        localGame.getCurrentPlayer().setScore(-1);//cuando anden los puntaje settear a 0 o mandar al controler de ganador el el otro player
+        endGame();
+    }
+
+    public void doSumitPlayer1(ActionEvent event) {
+        //guardar respuesta player1
+        nextPlayerView();
+
+    }
+    public void doSumitPlayer2(ActionEvent event) {
+        //guardar respuesta player2
+        showCorrectAnswer();
+
+    }
+
+    private void nextPlayerView(){
+        localGame.setCurrentPlayer(playersIterator.next());
+        setScenePlayer();
+        sumitButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                doSumitPlayer2(actionEvent);
+            }
+        });
 
     }
 
     private void showCorrectAnswer(){
+        //mostrar respuestas correctas
         nextQuestion();
     }
 
 
     private void nextQuestion(){
-        playerIndex = 0;
-        if(questionIndex < (localGame.getQuestions().size() - 1)){
-            questionIndex++;
-            localGame.setCurrentPlayer(localGame.getPlayers().get(playerIndex));
+        if(questionIterator.hasNext()){
 
-            playerName.setText(((localGame.getCurrentPlayer()).getName()));
-            //playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
-            questionText.setText(localGame.getQuestions().get(questionIndex).getText());
+            question = questionIterator.next();
+
+            setFirstPlayer();
+            setScenePlayer();
+            setSceneQuestion();
+            sumitButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    doSumitPlayer1(actionEvent);
+                }
+            });
         }else{
-            System.out.println("Fin Del Juego");
-
-            //try{
-            //    SceneLoader.loadModalAndShow(mainWindow, Views.RESULTS_VIEW);
-            //} catch (ViewLoadingException e) {
-            //    e.printStackTrace();
-            //}
-
-            //ResultsViewController controller = SceneLoader.getSceneController();
-            //controller.Score(localGame);
+            endGame();
         }
 
     }
 
-    public void initialize() {
-        playerIndex = 0;
-        questionIndex = 0;
+    private void endGame(){
+        Stage stage = (Stage) sumitButton.getScene().getWindow();
+        try{
+            SceneLoader.loadScene(stage, Views.RESULTS_VIEW);
+        } catch (ViewLoadingException e) {
+            e.printStackTrace();
+        }
+
+        ResultsViewController controller = SceneLoader.getSceneController();
+        controller.initialize(localGame);
+    }
+
+    public void initialize(){
+        System.out.println("GenericQuestionController load.");
     }
 }

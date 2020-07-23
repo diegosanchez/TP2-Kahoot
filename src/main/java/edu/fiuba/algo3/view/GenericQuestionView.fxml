@@ -1,147 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<BorderPane prefHeight="480.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.GenericQuestionController">
-   <center>
-      <AnchorPane maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="328.0">
+<AnchorPane prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.GenericQuestionController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="640.0">
          <children>
-            <VBox alignment="CENTER" layoutX="36.0" layoutY="22.0" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="22.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="640.0">
                <children>
-                  <Text fx:id="questionText" strokeType="OUTSIDE" strokeWidth="0.0" text="¿Cuánto es 2 + 2?">
-                     <font>
-                        <Font name="Berlin Sans FB Demi Bold" size="30.0" />
-                     </font>
-                  </Text>
-                  <StackPane maxWidth="1.7976931348623157E308">
+                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="178.0">
                      <children>
-                        <VBox alignment="CENTER" prefWidth="300.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="178.0">
                            <children>
-                              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #43B5E1;" styleClass="answerButton" text="Opcion 1" textFill="WHITE">
+                              <Label text="Player:">
                                  <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="32.0" />
+                                    <Font size="16.0" />
                                  </font>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </Button>
-                              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #eb1321;" styleClass="answerButton" text="Opcion 2" textFill="WHITE">
+                              </Label>
+                              <Label fx:id="playerName" prefHeight="20.0" prefWidth="122.0" text="PlayerName">
                                  <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="32.0" />
+                                    <Font name="System Bold" size="16.0" />
                                  </font>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </Button>
-                              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #F3D333;" styleClass="answerButton" text="Opcion 3" textFill="WHITE">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="32.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </Button>
-                              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #28B62D;" styleClass="answerButton" text="Opcion 4" textFill="WHITE">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="32.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </Button>
-                              <Button layoutX="10.0" layoutY="230.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-background-color: #a952eb;" styleClass="answerButton" text="Opcion 5" textFill="WHITE">
-                                 <font>
-                                    <Font name="Berlin Sans FB Demi Bold" size="32.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </Button>
+                              </Label>
                            </children>
-                        </VBox>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="178.0">
+                           <children>
+                              <Label prefHeight="20.0" prefWidth="57.0" text="Score:">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="playerScore" prefHeight="20.0" prefWidth="123.0" text="Score">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
                      </children>
-                  </StackPane>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="416.0">
+                     <children>
+                        <Label fx:id="questionType" alignment="CENTER" prefHeight="20.0" prefWidth="350.0" text="Question Type">
+                           <VBox.margin>
+                              <Insets left="15.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="questionText" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="350.0" text="Question Text">
+                           <VBox.margin>
+                              <Insets left="15.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
+            </HBox>
+            <Pane fx:id="optionsPanel" prefHeight="194.0" prefWidth="640.0" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="sumitButton" mnemonicParsing="false" onAction="#doSumitPlayer1" text="Responder">
+                     <HBox.margin>
+                        <Insets right="30.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="abandonButton" mnemonicParsing="false" onAction="#doAbandon" text="Abandonar">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </AnchorPane>
-   </center>
-   <bottom>
-      <VBox alignment="CENTER" fillWidth="false">
-         <children>
-            <Button mnemonicParsing="false" onAction="#doSumit" style="-fx-background-color: #EF4649;" text="Siguiente" textFill="WHITE">
-               <styleClass>
-                  <String fx:value="textControl" />
-                  <String fx:value="nextButton" />
-               </styleClass></Button>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="20.0" />
-         </BorderPane.margin>
       </VBox>
-   </bottom>
-   <left>
-      <VBox alignment="TOP_CENTER" prefHeight="450.0" prefWidth="109.0">
-         <children>
-            <Label fx:id="playerName" alignment="CENTER" prefHeight="32.0" prefWidth="140.0" text="Jugador 1" textFill="#706e6ed5">
-               <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="26.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Label>
-            <Label styleClass="stylishLabel" text="x2">
-               <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="33.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="30.0" top="130.0" />
-               </VBox.margin>
-            </Label>
-            <Label styleClass="stylishLabel" text="x3" />
-         </children>
-         <BorderPane.margin>
-            <Insets left="10.0" />
-         </BorderPane.margin>
-      </VBox>
-   </left>
-   <right>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-         <children>
-            <Label styleClass="stylishLabel" text="60">
-               <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="33.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Label>
-            <Label styleClass="stylishLabel" text="Ex" textFill="WHITE">
-               <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="33.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="140.0" />
-               </VBox.margin>
-            </Label>
-         </children>
-         <BorderPane.margin>
-            <Insets right="10.0" />
-         </BorderPane.margin>
-      </VBox>
-   </right>
-</BorderPane>
-
+   </children>
+</AnchorPane>
