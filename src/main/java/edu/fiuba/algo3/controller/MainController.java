@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
 
-
+import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.constants.Views;
 import edu.fiuba.algo3.exceptions.ViewLoadingException;
 import edu.fiuba.algo3.loaders.SceneLoader;
@@ -44,7 +44,7 @@ public class MainController {
 
 	public void newGame(ActionEvent event)  {
 		try {
-			SceneLoader.loadModalAndShow(mainWindow, Views.PLAYER_NAME_VIEW);
+			SceneLoader.loadScene(App.getMainStage(),Views.PLAYER_NAME_VIEW);
 		} catch (ViewLoadingException e) {
 			e.printStackTrace();
 			SceneLoader.loadErrorPage();
