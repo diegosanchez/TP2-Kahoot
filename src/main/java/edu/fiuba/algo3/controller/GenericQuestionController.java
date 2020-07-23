@@ -34,7 +34,7 @@ public class GenericQuestionController {
     @FXML
     public Label playerScore;
     @FXML
-    public Label questionText;
+    public Text questionText;
     @FXML
     public Label questionType;
     @FXML
@@ -64,10 +64,10 @@ public class GenericQuestionController {
 
     private void setScenePlayer(){
         playerName.setText(((localGame.getCurrentPlayer()).getName()));
-        playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
+        //playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
     }
     private void setSceneQuestion(){
-        questionType.setText(String.valueOf(question.getType()));
+        //questionType.setText(String.valueOf(question.getType()));
         questionText.setText(question.getText());
     }
 

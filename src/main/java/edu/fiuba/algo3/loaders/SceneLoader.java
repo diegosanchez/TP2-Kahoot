@@ -13,6 +13,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SceneLoader {
+	
+	private SceneLoader() {}
 
 	private static FXMLLoader loader;
 
@@ -50,7 +52,7 @@ public class SceneLoader {
 	}
 
 	public static <T> T getSceneController(){
-		return loader.getController(); //para comunicación entre controladores
+		return loader.getController();
 	}
 
 	public static Scene getLoadedScene(){

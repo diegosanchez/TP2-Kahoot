@@ -10,6 +10,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <junit.jupiter.version>5.4.0</junit.jupiter.version>
         <mockito-mockito-core-version>3.3.0</mockito-mockito-core-version>
+        <mockito-mockito-all-version>1.10.19</mockito-mockito-all-version>
         <maven-surefire-version>3.0.0-M3</maven-surefire-version>
     </properties>
     <dependencies>
@@ -41,6 +42,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+		    <groupId>org.mockito</groupId>
+		    <artifactId>mockito-all</artifactId>
+		    <version>${mockito-mockito-all-version}</version>
+		    <scope>test</scope>
+		</dependency>
+        <dependency>
 		    <groupId>com.google.code.gson</groupId>
 		    <artifactId>gson</artifactId>
 		    <version>2.8.5</version>
@@ -50,12 +57,6 @@
     <build>
         <testSourceDirectory>src/main/test</testSourceDirectory>
            <resources>
-		     <resource>
-		       <directory>src/main/java/edu/fiuba/algo3</directory>
-                 <includes>
-                     <include>**/*.fxml</include>
-                 </includes>
-		     </resource>
 		     <resource>
 		       <directory>src/main/resources</directory>
 		     </resource>

@@ -15,24 +15,25 @@ public class QuestionLoader {
 	private static final String TYPE = "type";
 	private static final Gson gson = new Gson();
 	
+	private QuestionLoader() {}
+	
 	public static List<Question> loadQuestions(String questionsPath) throws QuestionsNotLoadedException{
 		String questionJson;
 		List<Question> questions = null;
 		try {
 			questionJson = ResourceLoader.loadTextFile(questionsPath);
 			questions = parseToList(new Gson().fromJson(questionJson, List.class));
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			throw new QuestionsNotLoadedException();
+		} catch (Exception ex) {			
+			throw new QuestionsNotLoadedException(ex.getMessage());
 		}
 		if(questions == null) {
-			throw new QuestionsNotLoadedException();
+			throw new QuestionsNotLoadedException("Questions couldn't be loaded");
 		}
 		return questions;
 	}
 	
 	private static <K, V> List<Question> parseToList(List<LinkedTreeMap<K,V>> list){
-		List<Question> questionList = new ArrayList<Question>();
+		List<Question> questionList = new ArrayList<>();
 		for(LinkedTreeMap<K,V> element : list) {
 			String type = element.get(TYPE).toString();
 			Question question = (Question) gson.fromJson(gson.toJson(element), QuestionType.valueOf(type).getQuestionClass());

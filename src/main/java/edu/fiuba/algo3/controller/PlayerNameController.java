@@ -1,13 +1,15 @@
 package edu.fiuba.algo3.controller;
 
 import edu.fiuba.algo3.constants.ResourceConstants;
+import edu.fiuba.algo3.constants.Stylesheets;
 import edu.fiuba.algo3.constants.Views;
+import edu.fiuba.algo3.exceptions.StylesheetLoadingException;
 import edu.fiuba.algo3.exceptions.ViewLoadingException;
 import edu.fiuba.algo3.loaders.QuestionLoader;
 import edu.fiuba.algo3.loaders.SceneLoader;
+import edu.fiuba.algo3.loaders.StylesheetLoader;
 import edu.fiuba.algo3.model.Game;
 import edu.fiuba.algo3.model.Player;
-import edu.fiuba.algo3.resources.ResourceFinder;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,7 +19,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class PlayerNameController{
@@ -79,12 +80,14 @@ public class PlayerNameController{
 
         GenericQuestionController controller = SceneLoader.getSceneController();
         Scene scene = SceneLoader.getLoadedScene();
-
-        File styles = new File(ResourceConstants.STYLES_ROOT_PATH + "questions.css");
-        scene.getStylesheets().add("file:///" + styles.getAbsolutePath().replace("\\", "/"));
+        
+        try {
+			StylesheetLoader.loadStylesheet(scene, Stylesheets.QUESTIONS_CSS);
+		} catch (StylesheetLoadingException e1) {
+			e1.printStackTrace();
+		}
 
         controller.play(game);
-
     }
 
     public void initialize() {

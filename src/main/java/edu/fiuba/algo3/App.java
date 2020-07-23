@@ -17,7 +17,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {        
 		try {			
-			this.stage = stage;
+			App.stage = stage;
 			SceneLoader.loadScene(stage, Views.MAIN_VIEW);
 	        stage.setTitle("TP2 Kahoot");
 	        stage.show();
