@@ -5,6 +5,7 @@ import edu.fiuba.algo3.constants.Stylesheets;
 import edu.fiuba.algo3.constants.Views;
 import edu.fiuba.algo3.exceptions.StylesheetLoadingException;
 import edu.fiuba.algo3.exceptions.ViewLoadingException;
+import edu.fiuba.algo3.loaders.GameLoader;
 import edu.fiuba.algo3.loaders.QuestionLoader;
 import edu.fiuba.algo3.loaders.SceneLoader;
 import edu.fiuba.algo3.loaders.StylesheetLoader;
@@ -32,7 +33,6 @@ public class PlayerNameController{
     @FXML
     public Text text;
 
-    private Game game;
     private ArrayList<Player> players;
 
     @FXML
@@ -61,13 +61,6 @@ public class PlayerNameController{
     }
 
     public void nextScene(){
-        game.setPlayers(players);
-
-        try{
-            game.setQuestions(QuestionLoader.loadQuestions(ResourceConstants.QUESTIONS_PATH));
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
 
         Stage stage = (Stage) text.getScene().getWindow();
 
@@ -87,12 +80,11 @@ public class PlayerNameController{
 			e1.printStackTrace();
 		}
 
-        controller.play(game);
+        controller.play(GameLoader.loadGame(players));
     }
 
     public void initialize() {
         System.out.println("PlayerNameController load.");
-        game = new Game();
         players = new ArrayList<>();
     }
 }

@@ -78,7 +78,7 @@
    <bottom>
       <VBox alignment="CENTER" fillWidth="false" prefHeight="40.0" prefWidth="640.0">
          <children>
-            <Button fx:id="sumitButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#doSumitPlayer1" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #EF4649;" text="Siguiente" textFill="WHITE">
+            <Button fx:id="sumitButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#doNext" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #EF4649;" text="Siguiente" textFill="WHITE">
                <styleClass>
                   <String fx:value="textControl" />
                   <String fx:value="nextButton" />
