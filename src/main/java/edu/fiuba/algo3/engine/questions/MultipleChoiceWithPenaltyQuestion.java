@@ -23,4 +23,9 @@ public class MultipleChoiceWithPenaltyQuestion extends Question {
 		}
 		return puntaje;
 	}
+
+	@Override
+	public boolean hasPenalty() {
+		return true;
+	}
 }

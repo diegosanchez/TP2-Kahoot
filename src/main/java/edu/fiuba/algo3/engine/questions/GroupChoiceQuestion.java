@@ -31,5 +31,8 @@ public class GroupChoiceQuestion extends Question {
 		return optionGroupList;
 	}
 
-
+	@Override
+	public boolean hasPenalty() {
+		return false;
+	}
 }

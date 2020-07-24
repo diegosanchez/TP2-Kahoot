@@ -1,16 +1,19 @@
 package edu.fiuba.algo3.engine.score.augmenters;
 
 import edu.fiuba.algo3.constants.AugmenterType;
-import edu.fiuba.algo3.model.Player;
+import edu.fiuba.algo3.model.Score;
 
 public class ExclusivityMultiplier extends ScoreAugmenter {
 
 	@Override
-	protected void applyNewScore(Player currentPlayer, Player opponent, int score, int opponentScore) {		
-		if(score > opponentScore) {
-			currentPlayer.setScore(currentPlayer.getScore() + score * 2);
-		}else if(score < opponentScore){
-			opponent.setScore(opponent.getScore() + opponentScore * 2);
+	public void applyScoreAugmenter(Score questionScore, Score opponentQuestionScore) {		
+		if(questionScore.getValue() == opponentQuestionScore.getValue()){
+			questionScore.setValue(0);
+			opponentQuestionScore.setValue(0);
+		}else if(questionScore.getValue() > 0) {
+			questionScore.setValue(questionScore.getValue() * 2);			
+		}else {
+			opponentQuestionScore.setValue(opponentQuestionScore.getValue() * 2);
 		}
 	}
 

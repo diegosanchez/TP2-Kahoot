@@ -24,8 +24,13 @@ public class Player {
 	public int getScore() {
 		return score;
 	}
+	
 	public void setScore(int score) {
 		this.score = score;
+	}
+	
+	public void addScore(int score) {
+		this.score = this.score + score;
 	}
 
 	public Map<AugmenterType, Integer> getAugmentersUsesAvailable() {
@@ -48,6 +53,11 @@ public class Player {
 			return augmentersUsesAvailable.get(augmenterType);
 		}
 		return 0;
+	}
+	
+	public void substractUseOfAugmenter(AugmenterType scoreAugmenter) {
+		Integer currentUses = augmentersUsesAvailable.get(scoreAugmenter);
+		augmentersUsesAvailable.put(scoreAugmenter, currentUses - 1);
 	}
 
 	

@@ -19,4 +19,9 @@ public class OrderedChoiceQuestion extends Question {
 		return 0;
 	}
 
+	@Override
+	public boolean hasPenalty() {
+		return false;
+	}
+
 }
