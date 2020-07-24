@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.controller;
 
-import edu.fiuba.algo3.model.GameManager;
+import edu.fiuba.algo3.constants.AugmenterType;
+import edu.fiuba.algo3.model.TurnManager;
 import edu.fiuba.algo3.constants.Views;
 import edu.fiuba.algo3.exceptions.ViewLoadingException;
 import edu.fiuba.algo3.loaders.SceneLoader;
@@ -15,8 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 
 public class GenericQuestionController {
@@ -36,10 +36,12 @@ public class GenericQuestionController {
     @FXML
     public Button abandonButton;
 
-    private GameManager manager;
+    private TurnManager manager;
+    private ArrayList<GameOption> selectedAnswers;
+    private AugmenterType augmenterType = null;
 
     public void play(Game game){
-        manager = new GameManager(game);
+        manager = new TurnManager(game);
         repaint();
     }
 
@@ -56,8 +58,10 @@ public class GenericQuestionController {
         }
         int i = 0;
         for (GameOption option : (question.getOptions())) {
-            buttonList.get(i).setVisible(true);
-            buttonList.get(i).setText(option.getText());
+            Button button = buttonList.get(i);
+            button.setVisible(true);
+            button.setText(option.getText());
+            button.setOnAction((event)-> addAnswer(event));
             i++;
         }
     }
@@ -67,7 +71,18 @@ public class GenericQuestionController {
         endGame();
     }
 
-    public void repaint(){
+    public void addAnswer(ActionEvent event){
+        Button source = (Button) event.getSource();
+        GameOption option = new GameOption(source.getText());
+
+        if(!selectedAnswers.contains(option)){
+            selectedAnswers.add(option);
+            source.setVisible(false);
+        }
+
+    }
+
+    private void repaint(){
         playerName.setText(manager.getCurrentPlayerName());
         questionText.setText(manager.getCurrentQuestion().getText());
         setSceneQuestion(manager.getCurrentQuestion());
@@ -75,8 +90,11 @@ public class GenericQuestionController {
 
     public void doNext(){
         if(!manager.gameIsOver()){
-            manager.doNext();
+            manager.nextQuestion(selectedAnswers, augmenterType);
             repaint();
+
+            selectedAnswers = new ArrayList<GameOption>();
+            augmenterType = null;
         }
         else endGame();
     }
@@ -95,5 +113,6 @@ public class GenericQuestionController {
 
     public void initialize(){
         System.out.println("GenericQuestionController load.");
+        selectedAnswers = new ArrayList<GameOption>();
     }
 }
