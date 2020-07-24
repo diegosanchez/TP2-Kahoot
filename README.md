@@ -42,7 +42,9 @@ Este comando crea el reporte de cobertura para CI y el reporte HTML que pueden a
 
 Se deberá ejecutar el siguiente comando dentro del directorio del proyecto:
 
-mvn javafx:run
+```bash
+	mvn javafx:run
+```
 
 ## Licencia
 

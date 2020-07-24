@@ -2,6 +2,7 @@ package edu.fiuba.algo3.model;
 
 import java.util.List;
 
+import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.constants.QuestionType;
 
 public abstract class Question {
@@ -53,8 +54,8 @@ public abstract class Question {
 	 * Returns the earned or lost points depending on the answer to the question
 	 * @return
 	 */
-	protected abstract int calculatePoints(List<GameOption> selectedOptions);
+	public abstract int calculatePoints(List<GameOption> selectedOptions);
 
-	
+	public abstract boolean hasPenalty();
 	
 }

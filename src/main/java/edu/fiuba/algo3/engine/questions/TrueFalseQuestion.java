@@ -13,7 +13,7 @@ public class TrueFalseQuestion extends Question {
 	}
 
 	@Override
-	protected int calculatePoints(List<GameOption> selectedOptions) {
+	public int calculatePoints(List<GameOption> selectedOptions) {
 		if(selectedOptions.equals(correctOptions)) {
 			return 1;
 		}
@@ -29,6 +29,11 @@ public class TrueFalseQuestion extends Question {
 	public void setCorrectOption(GameOption option) {
 		this.correctOptions = new ArrayList<>();
 		this.correctOptions.add(option);
+	}
+
+	@Override
+	public boolean hasPenalty() {
+		return false;
 	}
 
 }

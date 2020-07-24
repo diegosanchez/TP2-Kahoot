@@ -60,8 +60,8 @@ public class ResultsViewController {
         player1Name.setText(game.getPlayers().get(0).getName());
         player2Name.setText((game.getPlayers().get(1).getName()));
 
-        player1Score.setText(Integer.toString(game.getPlayers().get(0).getScore()));
-        player2Score.setText(Integer.toString(game.getPlayers().get(1).getScore()));
+        player1Score.setText(Integer.toString(game.getPlayers().get(0).getScore().getValue()));
+        player2Score.setText(Integer.toString(game.getPlayers().get(1).getScore().getValue()));
 
     }
 }
