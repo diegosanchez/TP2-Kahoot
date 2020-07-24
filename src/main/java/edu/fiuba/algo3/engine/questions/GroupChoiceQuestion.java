@@ -9,6 +9,10 @@ import edu.fiuba.algo3.model.Question;
 
 public class GroupChoiceQuestion extends Question {	
 	
+	public GroupChoiceQuestion(String text) {
+		super(text);
+	}
+	
 	@Override
 	public int calculatePoints(List<GameOption> selectedOptions) {
 		if(selectedOptions.equals(correctOptions)) {
