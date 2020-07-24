@@ -14,7 +14,7 @@ public class OrderedChoiceTest {
 	
 	@Test
 	public void opcionesEnOrdenCorrectoSumaUnPunto() {
-		OrderedChoiceQuestion question = new OrderedChoiceQuestion();
+		OrderedChoiceQuestion question = new OrderedChoiceQuestion("Ordenar los numeros de menor a mayor");
 		
 		GameOption opcionUno = new GameOption("1");
 		GameOption opcionDos = new GameOption("2");
@@ -37,7 +37,7 @@ public class OrderedChoiceTest {
 	
 	@Test
 	public void opcionesEnOrdenCorrectoDevuelveCero() {
-		OrderedChoiceQuestion question = new OrderedChoiceQuestion();
+		OrderedChoiceQuestion question = new OrderedChoiceQuestion("Ordenar los numeros de menor a mayor");
 		
 		GameOption opcionUno = new GameOption("1");
 		GameOption opcionDos = new GameOption("2");

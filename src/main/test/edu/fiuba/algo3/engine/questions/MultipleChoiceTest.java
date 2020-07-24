@@ -13,15 +13,13 @@ public class MultipleChoiceTest {
 	
 	@Test
 	public void opcionesCorrectasSumaUnPunto() {
-		MultipleChoiceQuestion question = new MultipleChoiceQuestion();
+		MultipleChoiceQuestion question = new MultipleChoiceQuestion("¿Que numeros son impares?");
 		
 		GameOption opcionUno = new GameOption("1");
-		GameOption opcionDos = new GameOption("2");
 		GameOption opcionTres = new GameOption("3");
 		
 		List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
 		listaOpcionesCorrectas.add(opcionUno);
-		listaOpcionesCorrectas.add(opcionDos);
 		listaOpcionesCorrectas.add(opcionTres);
 		
 		question.setCorrectOptions(listaOpcionesCorrectas);
@@ -29,30 +27,26 @@ public class MultipleChoiceTest {
 		List<GameOption> listaOpcionesElegidas = new ArrayList<GameOption>();
 		listaOpcionesElegidas.add(opcionUno);						
 		listaOpcionesElegidas.add(opcionTres);
-		listaOpcionesElegidas.add(opcionDos);
 		
 		assertEquals(1, question.calculatePoints(listaOpcionesElegidas));
 	}
 	
 	@Test
 	public void opcionesIncorrectasDevuelveCero() {
-		MultipleChoiceQuestion question = new MultipleChoiceQuestion();
+		MultipleChoiceQuestion question = new MultipleChoiceQuestion("¿Que numeros son impares?");
 		
 		GameOption opcionUno = new GameOption("1");
-		GameOption opcionDos = new GameOption("2");
 		GameOption opcionTres = new GameOption("3");
 		GameOption opcionCuatro = new GameOption("4");
 		
 		List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
 		listaOpcionesCorrectas.add(opcionUno);
-		listaOpcionesCorrectas.add(opcionDos);
 		listaOpcionesCorrectas.add(opcionTres);
 		
 		question.setCorrectOptions(listaOpcionesCorrectas);
 		
 		List<GameOption> listaOpcionesElegidas = new ArrayList<GameOption>();
-		listaOpcionesElegidas.add(opcionUno);				
-		listaOpcionesElegidas.add(opcionDos);
+		listaOpcionesElegidas.add(opcionUno);	
 		listaOpcionesElegidas.add(opcionCuatro);
 		
 		assertEquals(0, question.calculatePoints(listaOpcionesElegidas));
@@ -60,45 +54,39 @@ public class MultipleChoiceTest {
 	
 	@Test
 	public void opcionCorrectaFaltanteDevuelveCero() {
-		MultipleChoiceQuestion question = new MultipleChoiceQuestion();
+		MultipleChoiceQuestion question = new MultipleChoiceQuestion("¿Que numeros son impares?");
 		
 		GameOption opcionUno = new GameOption("1");
-		GameOption opcionDos = new GameOption("2");
 		GameOption opcionTres = new GameOption("3");
 		
 		List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
 		listaOpcionesCorrectas.add(opcionUno);
-		listaOpcionesCorrectas.add(opcionDos);
 		listaOpcionesCorrectas.add(opcionTres);
 		
 		question.setCorrectOptions(listaOpcionesCorrectas);
 		
 		List<GameOption> listaOpcionesElegidas = new ArrayList<GameOption>();
-		listaOpcionesElegidas.add(opcionUno);				
-		listaOpcionesElegidas.add(opcionDos);
+		listaOpcionesElegidas.add(opcionUno);	
 		
 		assertEquals(0, question.calculatePoints(listaOpcionesElegidas));
 	}
 	
 	@Test
 	public void opcionesDeMasDevuelveCero() {
-		MultipleChoiceQuestion question = new MultipleChoiceQuestion();
+		MultipleChoiceQuestion question = new MultipleChoiceQuestion("¿Que numeros son impares?");
 		
 		GameOption opcionUno = new GameOption("1");
-		GameOption opcionDos = new GameOption("2");
 		GameOption opcionTres = new GameOption("3");
 		GameOption opcionCuatro = new GameOption("4");
 		
 		List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
 		listaOpcionesCorrectas.add(opcionUno);
-		listaOpcionesCorrectas.add(opcionDos);
 		listaOpcionesCorrectas.add(opcionTres);
 		
 		question.setCorrectOptions(listaOpcionesCorrectas);
 		
 		List<GameOption> listaOpcionesElegidas = new ArrayList<GameOption>();
-		listaOpcionesElegidas.add(opcionUno);				
-		listaOpcionesElegidas.add(opcionDos);
+		listaOpcionesElegidas.add(opcionUno);	
 		listaOpcionesElegidas.add(opcionTres);
 		listaOpcionesElegidas.add(opcionCuatro);
 		

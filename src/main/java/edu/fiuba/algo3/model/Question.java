@@ -11,6 +11,12 @@ public abstract class Question {
 	protected List<GameOption> options;
 	protected List<GameOption> correctOptions;	
 	
+	public Question() {}
+	
+	public Question(String text) {
+		this.text = text;
+	}
+	
 	public List<GameOption> getOptions() {
 		return options;
 	}
@@ -47,7 +53,7 @@ public abstract class Question {
 	 * Returns the earned or lost points depending on the answer to the question
 	 * @return
 	 */
-	public abstract int calculatePoints(List<GameOption> selectedOptions);
+	protected abstract int calculatePoints(List<GameOption> selectedOptions);
 
 	
 	
