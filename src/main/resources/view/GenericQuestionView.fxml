@@ -107,7 +107,7 @@
                   <Insets top="80.0" />
                </VBox.margin>
             </Label>
-            <Label styleClass="stylishLabel" text="x2">
+            <Label onMouseClicked="#addAugmenter" styleClass="stylishLabel" text="x2">
                <font>
                   <Font name="Berlin Sans FB Demi Bold" size="33.0" />
                </font>
@@ -115,7 +115,7 @@
                   <Insets bottom="30.0" top="60.0" />
                </VBox.margin>
             </Label>
-            <Label styleClass="stylishLabel" text="x3">
+            <Label onMouseClicked="#addAugmenter" styleClass="stylishLabel" text="x3">
                <font>
                   <Font size="34.0" />
                </font></Label>
@@ -136,7 +136,7 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <Label styleClass="stylishLabel" text="Ex">
+            <Label onMouseClicked="#addAugmenter" styleClass="stylishLabel" text="Ex">
                <font>
                   <Font name="Berlin Sans FB Demi Bold" size="33.0" />
                </font>

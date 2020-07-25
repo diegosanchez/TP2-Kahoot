@@ -42,7 +42,8 @@ public class Player {
 		if(augmentersUsesAvailable == null) {
 			augmentersUsesAvailable = new HashMap<>();
 		}
-		augmentersUsesAvailable.put(augmenterType, uses);
+		if(!augmentersUsesAvailable.containsKey(augmenterType))
+			augmentersUsesAvailable.put(augmenterType, uses);
 	}
 	
 	public Integer getAugmentersUsesAvailable(AugmenterType augmenterType)  {

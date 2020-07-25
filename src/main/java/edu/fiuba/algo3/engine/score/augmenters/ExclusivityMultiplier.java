@@ -18,7 +18,7 @@ public class ExclusivityMultiplier extends ScoreAugmenter {
 	}
 
 	@Override
-	protected AugmenterType getAugmenterType() {
+	public AugmenterType getAugmenterType() {
 		return AugmenterType.EXCLUSIVITY;
 	}
 
