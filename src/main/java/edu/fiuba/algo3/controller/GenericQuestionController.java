@@ -74,6 +74,7 @@ public class GenericQuestionController {
     public void addAnswer(ActionEvent event){
         Button source = (Button) event.getSource();
         GameOption option = new GameOption(source.getText());
+        sumitButton.setVisible(true);
 
         if(!selectedAnswers.contains(option)){
             selectedAnswers.add(option);
@@ -83,6 +84,7 @@ public class GenericQuestionController {
     }
 
     private void repaint(){
+        sumitButton.setVisible(false);
         playerName.setText(manager.getCurrentPlayerName());
         questionText.setText(manager.getCurrentQuestion().getText());
         setSceneQuestion(manager.getCurrentQuestion());
