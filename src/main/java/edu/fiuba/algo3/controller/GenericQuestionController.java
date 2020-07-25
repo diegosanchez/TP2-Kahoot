@@ -93,7 +93,7 @@ public class GenericQuestionController {
     }
 
     public void doAbandon(ActionEvent event) {
-        localGame.getCurrentPlayer().setScore(-1);//cuando anden los puntajes settear a 0 o mandar al ResultsControler el otro player
+        localGame.getCurrentPlayer().getScore().setValue(-1);//cuando anden los puntajes settear a 0 o mandar al ResultsControler el otro player
         endGame();
     }
 

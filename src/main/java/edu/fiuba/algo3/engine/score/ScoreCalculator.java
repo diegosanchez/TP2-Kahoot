@@ -15,8 +15,8 @@ public class ScoreCalculator {
 		checkAugmenters(playerOneResult, playerOneQuestionScore, playerTwoQuestionScore);
 		checkAugmenters(playerTwoResult, playerTwoQuestionScore, playerOneQuestionScore);
 		
-		playerOneResult.getPlayer().addScore(playerOneQuestionScore.getValue());
-		playerTwoResult.getPlayer().addScore(playerTwoQuestionScore.getValue());
+		playerOneResult.getPlayer().getScore().sumScore(playerOneQuestionScore);
+		playerTwoResult.getPlayer().getScore().sumScore(playerTwoQuestionScore);
 	}
 	
 	private static void checkAugmenters(MatchResult playerResult, Score playerScore, Score opponentScore) {

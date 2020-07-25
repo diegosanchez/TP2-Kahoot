@@ -8,7 +8,7 @@ import edu.fiuba.algo3.constants.AugmenterType;
 public class Player {
 	
 	private String name;
-	private int score;
+	private Score score = new Score(0);
 	private Map<AugmenterType, Integer> augmentersUsesAvailable;
 
 	public Player(String name){
@@ -21,16 +21,13 @@ public class Player {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getScore() {
+
+	public Score getScore() {
 		return score;
 	}
-	
-	public void setScore(int score) {
+
+	public void setScore(Score score) {
 		this.score = score;
-	}
-	
-	public void addScore(int score) {
-		this.score = this.score + score;
 	}
 
 	public Map<AugmenterType, Integer> getAugmentersUsesAvailable() {

@@ -15,4 +15,8 @@ public class Score {
 	public void setValue(int value) {
 		this.value = value;
 	}
+	
+	public void sumScore(Score score) {
+		this.value = this.value + score.getValue();
+	}
 }
