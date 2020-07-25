@@ -77,12 +77,10 @@ public class GenericQuestionController {
     public void addAnswer(ActionEvent event){
         Button source = (Button) event.getSource();
         GameOption option = new GameOption(source.getText());
-        sumitButton.setVisible(true);
 
-        if(!selectedAnswers.contains(option)){
-            selectedAnswers.add(option);
-            source.setVisible(false);
-        }
+        selectedAnswers.add(option);
+        source.setVisible(false);
+        sumitButton.setVisible(true);
     }
 
     public void addAugmenter(MouseEvent event){
