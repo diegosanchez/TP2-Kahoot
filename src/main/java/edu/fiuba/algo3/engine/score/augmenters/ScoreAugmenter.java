@@ -7,7 +7,7 @@ import edu.fiuba.algo3.model.Score;
 public abstract class ScoreAugmenter {
 	
 	public abstract void applyScoreAugmenter(Score questionScore, Score opponentQuestionScore);
-	protected abstract AugmenterType getAugmenterType();
+	public abstract AugmenterType getAugmenterType();
 	
 	
 }

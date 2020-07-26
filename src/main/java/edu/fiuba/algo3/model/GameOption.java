@@ -38,9 +38,6 @@ public class GameOption {
 			if(!text.equals(gameOption.getText())) {
 				return false;
 			}
-			if(id != gameOption.getId()) {
-				return false;
-			}
 			if(optionGroup != null && !optionGroup.equals(gameOption.getOptionGroup())) {
 				return false;
 			}

@@ -11,7 +11,7 @@ public class TwoMultiplier extends ScoreAugmenter {
 	}
 
 	@Override
-	protected AugmenterType getAugmenterType() {
+	public AugmenterType getAugmenterType() {
 		return AugmenterType.MULTIPLY_PER_TWO;
 	}
 

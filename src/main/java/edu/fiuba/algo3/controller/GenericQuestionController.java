@@ -1,6 +1,8 @@
 package edu.fiuba.algo3.controller;
 
+import edu.fiuba.algo3.engine.score.ScoreAugmenterFactory;
 import edu.fiuba.algo3.constants.AugmenterType;
+import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;
 import edu.fiuba.algo3.model.TurnManager;
 import edu.fiuba.algo3.constants.Views;
 import edu.fiuba.algo3.exceptions.ViewLoadingException;
@@ -13,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -38,7 +41,7 @@ public class GenericQuestionController {
 
     private TurnManager manager;
     private ArrayList<GameOption> selectedAnswers;
-    private AugmenterType augmenterType = null;
+    private AugmenterType augmenterType;
 
     public void play(Game game){
         manager = new TurnManager(game);
@@ -67,20 +70,24 @@ public class GenericQuestionController {
     }
 
     public void doAbandon(ActionEvent event) {
-        manager.getGame().getCurrentPlayer().getScore().setValue(-1);;//cuando anden los puntajes settear a 0 o mandar al ResultsControler el otro player
+        manager.getGame().getCurrentPlayer().getScore().setValue(-1);//cuando anden los puntajes settear a 0 o mandar al ResultsControler el otro player
         endGame();
     }
 
     public void addAnswer(ActionEvent event){
         Button source = (Button) event.getSource();
         GameOption option = new GameOption(source.getText());
+
+        selectedAnswers.add(option);
+        source.setVisible(false);
         sumitButton.setVisible(true);
+    }
 
-        if(!selectedAnswers.contains(option)){
-            selectedAnswers.add(option);
-            source.setVisible(false);
-        }
+    public void addAugmenter(MouseEvent event){
+        Label source = (Label) event.getSource();
+        ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(source.getText(), manager.getCurrentQuestion());
 
+        if(augmenter != null) augmenterType = augmenter.getAugmenterType();
     }
 
     private void repaint(){
@@ -95,7 +102,7 @@ public class GenericQuestionController {
             manager.nextQuestion(selectedAnswers, augmenterType);
             repaint();
 
-            selectedAnswers = new ArrayList<GameOption>();
+            selectedAnswers = new ArrayList<>();
             augmenterType = null;
         }
         else endGame();
@@ -115,6 +122,7 @@ public class GenericQuestionController {
 
     public void initialize(){
         System.out.println("GenericQuestionController load.");
-        selectedAnswers = new ArrayList<GameOption>();
+        selectedAnswers = new ArrayList<>();
+        augmenterType = null;
     }
 }

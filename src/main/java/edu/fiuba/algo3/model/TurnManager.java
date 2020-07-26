@@ -20,10 +20,42 @@ public class TurnManager {
 
     public TurnManager(Game game){
         this.game = game;
+        initPlayers();
+
         questionIterator = game.getQuestions().iterator();
         currentQuestion = questionIterator.next();
         playerResults = new HashMap<Player, MatchResult>();
-        initPlayers();
+    }
+
+    public void nextQuestion(List<GameOption> selectedOptions, AugmenterType selectedAugmenter){
+        Player currentPlayer = game.getCurrentPlayer();
+        if(selectedAugmenter != null) currentPlayer.setNewAugmenter(selectedAugmenter, 2);
+        // corregir: no todos los augmenters tienen dos usos
+
+        MatchResult result = new MatchResult(currentPlayer, selectedOptions, selectedAugmenter);
+        playerResults.put(currentPlayer, result);
+
+        if(playersIterator.hasNext()){
+            game.setCurrentPlayer(playersIterator.next());
+        }
+        else if(questionIterator.hasNext()){
+            MatchResult resultPlayerOne = playerResults.get(game.getPlayers().get(0));
+            MatchResult resultPlayerTwo = playerResults.get(game.getPlayers().get(1));
+
+            ScoreCalculator.calculateAndAssignPoints(resultPlayerOne, resultPlayerTwo, currentQuestion);
+
+            currentQuestion = questionIterator.next();
+            initPlayers();
+        }
+    }
+
+    public boolean gameIsOver(){
+        return !questionIterator.hasNext();
+    }
+
+    public void initPlayers(){
+        playersIterator = game.getPlayers().iterator();
+        game.setCurrentPlayer(playersIterator.next());
     }
 
     public String getCurrentPlayerName(){
@@ -37,33 +69,4 @@ public class TurnManager {
     public Game getGame(){
         return game;
     }
-
-    private void initPlayers(){
-        playersIterator = game.getPlayers().iterator();
-        game.setCurrentPlayer(playersIterator.next());
-    }
-
-    public void nextQuestion(List<GameOption> selectedOptions, AugmenterType selectedAugmenter){
-        MatchResult result = new MatchResult(game.getCurrentPlayer(), selectedOptions, selectedAugmenter);
-        playerResults.put(game.getCurrentPlayer(), result);
-
-        if(playersIterator.hasNext()){
-            game.setCurrentPlayer(playersIterator.next());
-        }
-        else if(questionIterator.hasNext()){
-            MatchResult resultPlayerOne = playerResults.get(game.getPlayers().get(0));
-            MatchResult resultPlayerTwo = playerResults.get(game.getPlayers().get(1));
-
-            ScoreCalculator.calculateAndAssignPoints(resultPlayerOne, resultPlayerTwo, currentQuestion);
-            currentQuestion = questionIterator.next();
-            initPlayers();
-        }
-
-    }
-
-    public boolean gameIsOver(){
-        return !questionIterator.hasNext();
-    }
-
-
 }
