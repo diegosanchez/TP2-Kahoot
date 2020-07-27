@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.fiuba.algo3.constants.AugmenterType;
@@ -13,6 +14,13 @@ public class MatchResult {
 	public MatchResult(Player player, List<GameOption> selectedOptions, AugmenterType selectedAugmenter) {
 		this.player = player;
 		this.selectedOptions = selectedOptions;
+		this.selectedAugmenter = selectedAugmenter;
+	}
+	
+	public MatchResult(Player player, GameOption selectedOption, AugmenterType selectedAugmenter) {
+		this.player = player;
+		this.selectedOptions = new ArrayList<>();
+		selectedOptions.add(selectedOption);
 		this.selectedAugmenter = selectedAugmenter;
 	}
 	
