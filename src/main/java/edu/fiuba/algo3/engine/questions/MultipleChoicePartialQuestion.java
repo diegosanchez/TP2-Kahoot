@@ -6,6 +6,10 @@ import edu.fiuba.algo3.model.GameOption;
 import edu.fiuba.algo3.model.Question;
 
 public class MultipleChoicePartialQuestion extends Question {
+	
+	public MultipleChoicePartialQuestion(String text) {
+		super(text);
+	}
 
 	@Override
 	public int calculatePoints(List<GameOption> selectedOptions) {
@@ -18,6 +22,11 @@ public class MultipleChoicePartialQuestion extends Question {
 			}			
 		}
 		return puntaje;
+	}
+
+	@Override
+	public boolean hasPenalty() {
+		return false;
 	}
 
 }

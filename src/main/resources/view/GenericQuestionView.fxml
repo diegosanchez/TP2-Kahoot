@@ -78,7 +78,7 @@
    <bottom>
       <VBox alignment="CENTER" fillWidth="false" prefHeight="40.0" prefWidth="640.0">
          <children>
-            <Button fx:id="sumitButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#doSumitPlayer1" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #EF4649;" text="Siguiente" textFill="WHITE">
+            <Button fx:id="sumitButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#doNext" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #EF4649;" text="Siguiente" textFill="WHITE" visible="false">
                <styleClass>
                   <String fx:value="textControl" />
                   <String fx:value="nextButton" />
@@ -107,7 +107,7 @@
                   <Insets top="80.0" />
                </VBox.margin>
             </Label>
-            <Label styleClass="stylishLabel" text="x2">
+            <Label onMouseClicked="#addAugmenter" styleClass="stylishLabel" text="x2">
                <font>
                   <Font name="Berlin Sans FB Demi Bold" size="33.0" />
                </font>
@@ -115,7 +115,7 @@
                   <Insets bottom="30.0" top="60.0" />
                </VBox.margin>
             </Label>
-            <Label styleClass="stylishLabel" text="x3">
+            <Label onMouseClicked="#addAugmenter" styleClass="stylishLabel" text="x3">
                <font>
                   <Font size="34.0" />
                </font></Label>
@@ -136,7 +136,7 @@
                   <Insets />
                </VBox.margin>
             </Label>
-            <Label styleClass="stylishLabel" text="Ex">
+            <Label onMouseClicked="#addAugmenter" styleClass="stylishLabel" text="Ex">
                <font>
                   <Font name="Berlin Sans FB Demi Bold" size="33.0" />
                </font>

@@ -1,35 +1,25 @@
 package edu.fiuba.algo3.controller;
 
-import edu.fiuba.algo3.App;
+import edu.fiuba.algo3.engine.score.ScoreAugmenterFactory;
+import edu.fiuba.algo3.constants.AugmenterType;
+import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;
+import edu.fiuba.algo3.model.TurnManager;
 import edu.fiuba.algo3.constants.Views;
-import edu.fiuba.algo3.exceptions.FileNotFoundException;
 import edu.fiuba.algo3.exceptions.ViewLoadingException;
 import edu.fiuba.algo3.loaders.SceneLoader;
 import edu.fiuba.algo3.model.Game;
 import edu.fiuba.algo3.model.GameOption;
-import edu.fiuba.algo3.model.Player;
 
 import edu.fiuba.algo3.model.Question;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import edu.fiuba.algo3.resources.ResourceFinder;
-import edu.fiuba.algo3.resources.ResourceLoader;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.Iterator;
-import java.io.File;
-import java.util.List;
+import java.util.*;
 
 
 public class GenericQuestionController {
@@ -49,31 +39,16 @@ public class GenericQuestionController {
     @FXML
     public Button abandonButton;
 
-    private Game localGame;
-    private Question question;
-    Iterator<Player> playersIterator;
-    Iterator<Question> questionIterator;
+    private TurnManager manager;
+    private ArrayList<GameOption> selectedAnswers;
+    private AugmenterType augmenterType;
 
     public void play(Game game){
-        localGame = game;
-        questionIterator = localGame.getQuestions().iterator();
-        question = questionIterator.next();
-
-        setFirstPlayer();
-        setScenePlayer();
-        setSceneQuestion();
+        manager = new TurnManager(game);
+        repaint();
     }
 
-    private void setFirstPlayer(){
-        playersIterator = localGame.getPlayers().iterator();
-        localGame.setCurrentPlayer(playersIterator.next());
-    }
-
-    private void setScenePlayer(){
-        playerName.setText(((localGame.getCurrentPlayer()).getName()));
-        //playerScore.setText(String.valueOf((localGame.getCurrentPlayer()).getScore()));
-    }
-    private void setSceneQuestion() {
+    private void setSceneQuestion(Question question) {
         Iterator<GameOption> iteratorOptions = question.getOptions().iterator();
         GameOption gameOption = iteratorOptions.next();
 
@@ -86,63 +61,51 @@ public class GenericQuestionController {
         }
         int i = 0;
         for (GameOption option : (question.getOptions())) {
-            buttonList.get(i).setVisible(true);
-            buttonList.get(i).setText(option.getText());
+            Button button = buttonList.get(i);
+            button.setVisible(true);
+            button.setText(option.getText());
+            button.setOnAction((event)-> addAnswer(event));
             i++;
         }
     }
 
     public void doAbandon(ActionEvent event) {
-        localGame.getCurrentPlayer().setScore(-1);//cuando anden los puntajes settear a 0 o mandar al ResultsControler el otro player
+        manager.getGame().getCurrentPlayer().getScore().setValue(-1);//cuando anden los puntajes settear a 0 o mandar al ResultsControler el otro player
         endGame();
     }
 
-    public void doSumitPlayer1(ActionEvent event) {
-        //guardar respuesta player1
-        nextPlayerView();
+    public void addAnswer(ActionEvent event){
+        Button source = (Button) event.getSource();
+        GameOption option = new GameOption(source.getText());
 
-    }
-    public void doSumitPlayer2(ActionEvent event) {
-        //guardar respuesta player2
-        showCorrectAnswer();
-
+        selectedAnswers.add(option);
+        source.setVisible(false);
+        sumitButton.setVisible(true);
     }
 
-    private void nextPlayerView(){
-        localGame.setCurrentPlayer(playersIterator.next());
-        setScenePlayer();
-        sumitButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                doSumitPlayer2(actionEvent);
-            }
-        });
+    public void addAugmenter(MouseEvent event){
+        Label source = (Label) event.getSource();
+        ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(source.getText(), manager.getCurrentQuestion());
+
+        if(augmenter != null) augmenterType = augmenter.getAugmenterType();
     }
 
-    private void showCorrectAnswer(){
-        //mostrar respuestas correctas
-        nextQuestion();
+    private void repaint(){
+        sumitButton.setVisible(false);
+        playerName.setText(manager.getCurrentPlayerName());
+        questionText.setText(manager.getCurrentQuestion().getText());
+        setSceneQuestion(manager.getCurrentQuestion());
     }
 
+    public void doNext(){
+        if(!manager.gameIsOver()){
+            manager.nextQuestion(selectedAnswers, augmenterType);
+            repaint();
 
-    private void nextQuestion(){
-        if(questionIterator.hasNext()){
-
-            question = questionIterator.next();
-
-            setFirstPlayer();
-            setScenePlayer();
-            setSceneQuestion();
-            sumitButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    doSumitPlayer1(actionEvent);
-                }
-            });
-        }else{
-            endGame();
+            selectedAnswers = new ArrayList<>();
+            augmenterType = null;
         }
-
+        else endGame();
     }
 
     private void endGame(){
@@ -154,10 +117,12 @@ public class GenericQuestionController {
         }
 
         ResultsViewController controller = SceneLoader.getSceneController();
-        controller.initialize(localGame);
+        controller.initialize(manager.getGame());
     }
 
     public void initialize(){
         System.out.println("GenericQuestionController load.");
+        selectedAnswers = new ArrayList<>();
+        augmenterType = null;
     }
 }

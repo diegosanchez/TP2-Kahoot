@@ -13,8 +13,8 @@ import edu.fiuba.algo3.model.OptionGroup;
 public class GroupChoiceTest {
 	
 	@Test
-	public void opcionesCorrectasSumaUnPuntoTest() {
-		GroupChoiceQuestion question = new GroupChoiceQuestion();
+	public void opcionesCorrectasSumaUnPunto() {
+		GroupChoiceQuestion question = new GroupChoiceQuestion("Agrupar las opciones según corresponda.");
 		List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
 		
 		OptionGroup grupoPares = new OptionGroup("Pares");
@@ -59,8 +59,8 @@ public class GroupChoiceTest {
 	}
 
 	@Test
-	public void opcionesIncorrectasDevuelveCeroTest() {
-		GroupChoiceQuestion question = new GroupChoiceQuestion();
+	public void opcionesIncorrectasDevuelveCero() {
+		GroupChoiceQuestion question = new GroupChoiceQuestion("Agrupar las opciones según corresponda.");
 		List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
 		
 		OptionGroup grupoPares = new OptionGroup("Pares");
