@@ -20,14 +20,14 @@ public class QuestionLoader {
 	@SuppressWarnings("unchecked")
 	public static List<Question> loadQuestions(String questionsPath) throws QuestionsNotLoadedException{
 		String questionJson;
-		List<Question> questions = null;
+		List<Question> questions = new ArrayList<>();
 		try {
 			questionJson = ResourceLoader.loadTextFile(questionsPath);
 			questions = parseToList(new Gson().fromJson(questionJson, List.class));
 		} catch (Exception ex) {			
 			throw new QuestionsNotLoadedException(ex.getMessage());
 		}
-		if(questions == null) {
+		if(questions.isEmpty()) {
 			throw new QuestionsNotLoadedException("Questions couldn't be loaded");
 		}
 		return questions;
