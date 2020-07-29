@@ -2,8 +2,64 @@
 @startuml
 
 actor User
-title Diagrama Secuencia TP2 - Pregunta T/F asignando puntaje a Jugador
+title Diagrama Secuencia TP2 - Pregunta True/False asignando puntaje a Jugador
 hide footbox
+
+
+participant "question : Question" as question
+
+participant "opTrue : GameOption" as opTrue
+participant "opFalse : GameOption" as opFalse
+
+participant "jugador1 : Player" as jugador1
+participant "jugador2 : Player" as jugador2
+
+participant "match1 : MatchR" as match1
+participant "match2 : MatchR" as match2
+
+
+User -> question ** : new TrueFalseQuestion
+activate question
+question --> User : question
+deactivate question
+
+
+User -> jugador1 ** : new Player("Jugador1")
+activate jugador1
+jugador1 --> User : jugador1
+deactivate jugador1
+
+
+User -> jugador2 ** : new Player("Jugador2")
+activate jugador2
+jugador2 --> User : jugador2
+deactivate jugador2
+
+
+User -> opTrue ** : new GameOption("True")
+User -> opFalse ** : new GameOption("False")
+
+User -> question : setCorrectOption(opFalse)
+
+
+User -> ScoreCalculator : calculateAndAssignPoints(match1, match2, question)
+activate ScoreCalculator
+
+participant "newScore : Score" as puntaje
+ScoreCalculator -> question : calculatePoints
+question --> ScoreCalculator : newScore
+ScoreCalculator -> puntaje : new Score(newScore)
+
+ScoreCalculator -> ScoreCalculator : checkAugmenters(match1, scorePlayer1, scorePlayer2)
+activate ScoreCalculator
+deactivate ScoreCalculator
+
+ScoreCalculator -> match1 : getPlayer()
+match1 -> jugador1 : getScore()
+jugador1 -> jugador1 : sumScore(newScore)
+
+deactivate ScoreCalculator
+
 
 
 @enduml
