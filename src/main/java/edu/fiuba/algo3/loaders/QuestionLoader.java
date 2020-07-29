@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.loaders;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
-import com.google.gson.internal.LinkedTreeMap;
 
 import edu.fiuba.algo3.constants.QuestionType;
 import edu.fiuba.algo3.exceptions.QuestionsNotLoadedException;
@@ -17,6 +17,7 @@ public class QuestionLoader {
 	
 	private QuestionLoader() {}
 	
+	@SuppressWarnings("unchecked")
 	public static List<Question> loadQuestions(String questionsPath) throws QuestionsNotLoadedException{
 		String questionJson;
 		List<Question> questions = null;
@@ -32,10 +33,11 @@ public class QuestionLoader {
 		return questions;
 	}
 	
-	private static <K, V> List<Question> parseToList(List<LinkedTreeMap<K,V>> list){
-		List<Question> questionList = new ArrayList<>();
-		for(LinkedTreeMap<K,V> element : list) {
-			String type = element.get(TYPE).toString();
+	@SuppressWarnings("unchecked")
+	private static List<Question> parseToList(List<Map<String, String>> list){
+		List<Question> questionList = new ArrayList<>();		
+		for(Map<String, String> element : list) {
+			String type = element.get(TYPE);
 			Question question = (Question) gson.fromJson(gson.toJson(element), QuestionType.valueOf(type).getQuestionClass());
 			questionList.add(question);
 		}
