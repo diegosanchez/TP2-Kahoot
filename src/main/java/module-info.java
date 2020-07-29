@@ -8,4 +8,5 @@ module edu.fiuba.algo3 {
 	
     exports edu.fiuba.algo3;
     exports edu.fiuba.algo3.controller;
+    exports edu.fiuba.algo3.model;
 }
