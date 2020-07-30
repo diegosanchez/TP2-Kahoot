@@ -128,7 +128,7 @@
    <right>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <Label alignment="CENTER" styleClass="stylishLabel" text="60">
+            <Label fx:id="playerScore" alignment="CENTER" styleClass="stylishLabel" text="60">
                <font>
                   <Font name="Berlin Sans FB Demi Bold" size="33.0" />
                </font>

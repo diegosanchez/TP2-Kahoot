@@ -93,6 +93,7 @@ public class GenericQuestionController {
     private void repaint(){
         //sumitButton.setVisible(false);
         playerName.setText(game.getCurrentPlayer().getName());
+        playerScore.setText((Integer.toString(game.getCurrentPlayer().getScore().getValue())));
         questionText.setText(game.getCurrentQuestion().getText());
         setSceneQuestion(game.getCurrentQuestion());
     }
