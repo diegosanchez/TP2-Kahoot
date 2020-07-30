@@ -5,33 +5,4 @@ actor User
 title Diagrama Secuencia TP2 - Pregunta Multiple Choice asgina puntajes a jugadores
 hide footbox
 
-
-participant "question : Question" as question
-
-participant "opTrue : GameOption" as opTrue
-participant "opFalse : GameOption" as opFalse
-
-participant "jugador1 : Player" as jugador1
-participant "jugador2 : Player" as jugador2
-
-participant "match1 : MatchR" as match1
-participant "match2 : MatchR" as match2
-
-User -> question ** : new TrueFalseQuestion
-
-User -> jugador1 ** : new Player("Jugador1")
-User -> jugador2 ** : new Player("Jugador2")
-
-User -> opTrue ** : new Player("Jugador2")
-User -> opFalse ** : new Player("Jugador2")
-
-User -> question : setCorrectOption(opFalse)
-
-activate ScoreCalculator
-
-activate Player
-
-activate MatchResult
-
-
 @enduml

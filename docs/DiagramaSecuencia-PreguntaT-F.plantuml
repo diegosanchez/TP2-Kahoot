@@ -2,21 +2,16 @@
 @startuml
 
 actor User
-title Diagrama Secuencia TP2 - Pregunta True/False asignando puntaje a Jugador
+title Diagrama Secuencia TP2 - Prueba para pregunta True/False asignando puntaje a Jugador - Entrega 0
 hide footbox
 
 
 participant "question : Question" as question
 
-participant "opTrue : GameOption" as opTrue
-participant "opFalse : GameOption" as opFalse
+participant "true : GameOption" as true
+participant "false : GameOption" as false
 
 participant "jugador1 : Player" as jugador1
-participant "jugador2 : Player" as jugador2
-
-participant "match1 : MatchR" as match1
-participant "match2 : MatchR" as match2
-
 
 User -> question ** : new TrueFalseQuestion
 activate question
@@ -29,37 +24,55 @@ activate jugador1
 jugador1 --> User : jugador1
 deactivate jugador1
 
+User -> true ** : new GameOption("True")
+activate true 
+true --> User : true
+deactivate true 
 
-User -> jugador2 ** : new Player("Jugador2")
-activate jugador2
-jugador2 --> User : jugador2
-deactivate jugador2
+User -> false ** : new GameOption("False")
+activate false
+false --> User : false
+deactivate false 
 
+User -> question : setCorrectOption(false)
+activate question
+question -> question : correctOptions.add(false)
+deactivate question
 
-User -> opTrue ** : new GameOption("True")
-User -> opFalse ** : new GameOption("False")
+participant "match1 : MatchR" as match1
 
-User -> question : setCorrectOption(opFalse)
-
+User -> match1 **: new MatchResult(jugador1, selectedOptionsPl1, null)
+activate match1
+match1 --> User : resultJugadorUno
+deactivate match1 
 
 User -> ScoreCalculator : calculateAndAssignPoints(match1, match2, question)
 activate ScoreCalculator
 
 participant "newScore : Score" as puntaje
 ScoreCalculator -> question : calculatePoints
+activate question
 question --> ScoreCalculator : newScore
-ScoreCalculator -> puntaje : new Score(newScore)
+deactivate question
 
-ScoreCalculator -> ScoreCalculator : checkAugmenters(match1, scorePlayer1, scorePlayer2)
+ScoreCalculator -> puntaje **: new Score(newScore)
+activate puntaje
+puntaje --> ScoreCalculator : newScore
+deactivate puntaje
+
+ScoreCalculator -> ScoreCalculator : checkAugmenters(match1, \nscorePlayer1, scorePlayer2)
 activate ScoreCalculator
 deactivate ScoreCalculator
 
 ScoreCalculator -> match1 : getPlayer()
+activate match1
 match1 -> jugador1 : getScore()
+activate jugador1
 jugador1 -> jugador1 : sumScore(newScore)
+deactivate jugador1
+deactivate match1
 
 deactivate ScoreCalculator
 
-
-
+@enduml
 @enduml
