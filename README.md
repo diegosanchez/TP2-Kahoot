@@ -46,6 +46,24 @@ Se deberá ejecutar el siguiente comando dentro del directorio del proyecto:
 	mvn javafx:run
 ```
 
+## Diagramas
+
+Diagrama de clases principal del proyecto:
+
+<img src="https://github.com/GEscandar/TP2-Kahoot/blob/master/docs/out/diagramaClases-Principal-TP2/DiagramaUML-Clases-TP2.png?raw=true">
+
+Para la clase abstracta ScoreAugmenter, se creó un diagrama de clases en detalle:
+
+<img src="https://github.com/GEscandar/TP2-Kahoot/blob/master/docs/out/DiagramaUML-DetalleAugmentatio/DiagramaUML-DetalleAugmentation-TP2.png?raw=true">
+
+Lo mismo para el detalle de la clase abstracta Question:
+
+<img src="https://github.com/GEscandar/TP2-Kahoot/blob/master/docs/out/DiagramaClases-DetallePreguntas-TP2/DiagramaUML-DetallePreguntas-TP2.png?raw=true">
+
+Diagrama de Secuencia para calculo de puntaje a un jugador:
+
+<img src="https://github.com/GEscandar/TP2-Kahoot/blob/master/docs/out/DiagramaSecuencia-PreguntaT-F/Diagrama%20Secuencia%20TP2%20-%20Prueba%20para%20pregunta%20True%20False%20asignando%20puntaje%20a%20Jugador%20-%20Entrega%200.png?raw=true">
+
 ## Licencia
 
 Este repositorio está bajo la Licencia MIT
