@@ -3,7 +3,6 @@ package edu.fiuba.algo3.controller;
 import edu.fiuba.algo3.engine.score.ScoreAugmenterFactory;
 import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;
-import edu.fiuba.algo3.model.TurnManager;
 import edu.fiuba.algo3.constants.Views;
 import edu.fiuba.algo3.exceptions.ViewLoadingException;
 import edu.fiuba.algo3.loaders.SceneLoader;
@@ -24,7 +23,7 @@ import java.util.*;
 
 public class GenericQuestionController {
 
-    @FXML
+
     public Label playerName;
     @FXML
     public Label playerScore;
@@ -39,12 +38,13 @@ public class GenericQuestionController {
     @FXML
     public Button abandonButton;
 
-    private TurnManager manager;
+    private Game game;
     private ArrayList<GameOption> selectedAnswers;
     private AugmenterType augmenterType;
 
     public void play(Game game){
-        manager = new TurnManager(game);
+        this.game = game;
+        game.start();
         repaint();
     }
 
@@ -70,7 +70,7 @@ public class GenericQuestionController {
     }
 
     public void doAbandon(ActionEvent event) {
-        manager.getGame().getCurrentPlayer().getScore().setValue(-1);//cuando anden los puntajes settear a 0 o mandar al ResultsControler el otro player
+        game.getCurrentPlayer().getScore().setValue(-1);//cuando anden los puntajes settear a 0 o mandar al ResultsControler el otro player
         endGame();
     }
 
@@ -85,21 +85,22 @@ public class GenericQuestionController {
 
     public void addAugmenter(MouseEvent event){
         Label source = (Label) event.getSource();
-        ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(source.getText(), manager.getCurrentQuestion());
+        ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(source.getText(), game.getCurrentQuestion());
 
         if(augmenter != null) augmenterType = augmenter.getAugmenterType();
     }
 
     private void repaint(){
-        sumitButton.setVisible(false);
-        playerName.setText(manager.getCurrentPlayerName());
-        questionText.setText(manager.getCurrentQuestion().getText());
-        setSceneQuestion(manager.getCurrentQuestion());
+        //sumitButton.setVisible(false);
+        playerName.setText(game.getCurrentPlayer().getName());
+        playerScore.setText((Integer.toString(game.getCurrentPlayer().getScore().getValue())));
+        questionText.setText(game.getCurrentQuestion().getText());
+        setSceneQuestion(game.getCurrentQuestion());
     }
 
     public void doNext(){
-        if(!manager.gameIsOver()){
-            manager.nextQuestion(selectedAnswers, augmenterType);
+        if(!game.isOver()){
+            game.nextTurn(selectedAnswers, augmenterType);
             repaint();
 
             selectedAnswers = new ArrayList<>();
@@ -117,7 +118,7 @@ public class GenericQuestionController {
         }
 
         ResultsViewController controller = SceneLoader.getSceneController();
-        controller.initialize(manager.getGame());
+        controller.initialize(game);
     }
 
     public void initialize(){
