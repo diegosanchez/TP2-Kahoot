@@ -76,4 +76,11 @@ public class Game {
 			initPlayers();
 		}
 	}
+
+	public Player getWinner() {
+		if (players.get(0).getScore().getValue() > players.get(1).getScore().getValue()){
+			return players.get(0);
+		}
+		return players.get(1);
+	}
 }

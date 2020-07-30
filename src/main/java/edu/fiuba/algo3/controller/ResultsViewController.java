@@ -55,7 +55,7 @@ public class ResultsViewController {
         //Aqui deberia de haber una funcion que nos de el nombre del ganador
         //de la partida
 
-        //playerWinner.setText(game.getWinner().getName);
+        playerWinner.setText(game.getWinner().getName());
 
         player1Name.setText(game.getPlayers().get(0).getName());
         player2Name.setText((game.getPlayers().get(1).getName()));
