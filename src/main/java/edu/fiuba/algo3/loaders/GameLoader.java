@@ -14,7 +14,7 @@ public class GameLoader {
 	public static Game loadGame(List<Player> players) {
 		Game game = new Game();
 		game.setPlayers(players);
-		game.setCurrentPlayer(players.get(0));
+
 		try {
 			game.setQuestions(QuestionLoader.loadQuestions(ResourceConstants.QUESTIONS_PATH));
 		} catch (QuestionsNotLoadedException ex) {
