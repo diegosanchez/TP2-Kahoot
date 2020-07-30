@@ -10,6 +10,19 @@ public class MatchResult {
 	private Player player;
 	private List<GameOption> selectedOptions;
 	private AugmenterType selectedAugmenter;
+	private Score matchScore;
+	
+	
+	public MatchResult(Player player, List<GameOption> selectedOptions) {
+		this.player = player;
+		this.selectedOptions = selectedOptions;
+	}
+	
+	public MatchResult(Player player, GameOption selectedOption) {
+		this.player = player;
+		this.selectedOptions = new ArrayList<>();
+		selectedOptions.add(selectedOption);
+	}
 	
 	public MatchResult(Player player, List<GameOption> selectedOptions, AugmenterType selectedAugmenter) {
 		this.player = player;
@@ -43,6 +56,18 @@ public class MatchResult {
 
 	public void setSelectedAugmenter(AugmenterType selectedAugmenter) {
 		this.selectedAugmenter = selectedAugmenter;
+	}
+
+	public Score getMatchScore() {
+		return matchScore;
+	}
+
+	public void setMatchScore(Score matchScore) {
+		this.matchScore = matchScore;
+	}
+	
+	public void sumMatchScoreToPlayer() {
+		player.getScore().sumScore(matchScore);
 	}
 	
 }

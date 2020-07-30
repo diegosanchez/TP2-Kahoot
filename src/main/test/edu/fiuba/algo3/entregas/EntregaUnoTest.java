@@ -15,6 +15,7 @@ import edu.fiuba.algo3.engine.score.ScoreCalculator;
 import edu.fiuba.algo3.model.GameOption;
 import edu.fiuba.algo3.model.MatchResult;
 import edu.fiuba.algo3.model.Player;
+import edu.fiuba.algo3.model.Score;
 
 public class EntregaUnoTest {
 	
@@ -96,9 +97,9 @@ public class EntregaUnoTest {
 		
 		question.setCorrectOption(opcionFalse);
 		
-		MatchResult resultJugadorUno = new MatchResult(jugadorUno, opcionTrue, null);
-		MatchResult resultJugadorDos = new MatchResult(jugadorDos, opcionFalse, null);
-		ScoreCalculator.calculateAndAssignPoints(resultJugadorUno, resultJugadorDos, question);
+		MatchResult resultJugadorUno = new MatchResult(jugadorUno, opcionTrue);
+		MatchResult resultJugadorDos = new MatchResult(jugadorDos, opcionFalse);
+		ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
 		
 		assertEquals(-1, jugadorUno.getScore().getValue());
 		assertEquals(1, jugadorDos.getScore().getValue());
@@ -133,9 +134,9 @@ public class EntregaUnoTest {
 		opcionesJugadorDos.add(opcionUno);						
 		opcionesJugadorDos.add(opcionDos);
 		
-		MatchResult resultJugadorUno = new MatchResult(jugadorUno, opcionesJugadorUno, null);
-		MatchResult resultJugadorDos = new MatchResult(jugadorDos, opcionesJugadorDos, null);
-		ScoreCalculator.calculateAndAssignPoints(resultJugadorUno, resultJugadorDos, question);
+		MatchResult resultJugadorUno = new MatchResult(jugadorUno, opcionesJugadorUno);
+		MatchResult resultJugadorDos = new MatchResult(jugadorDos, opcionesJugadorDos);
+		ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
 		
 		assertEquals(1, jugadorUno.getScore().getValue());
 		assertEquals(0, jugadorDos.getScore().getValue());
@@ -168,12 +169,12 @@ public class EntregaUnoTest {
 		opcionesJugadorDos.add(opcionUno);						
 		opcionesJugadorDos.add(opcionTres);
 		
-		MatchResult resultJugadorUno = new MatchResult(jugadorUno, opcionesJugadorUno, null);
-		MatchResult resultJugadorDos = new MatchResult(jugadorDos, opcionesJugadorDos, null);
-		ScoreCalculator.calculateAndAssignPoints(resultJugadorUno, resultJugadorDos, question);
+		MatchResult resultJugadorUno = new MatchResult(jugadorUno, opcionesJugadorUno);
+		MatchResult resultJugadorDos = new MatchResult(jugadorDos, opcionesJugadorDos);
+		ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
 		
-		assertEquals(1, jugadorUno.getScore().getValue());
-		assertEquals(2, jugadorDos.getScore().getValue());
+		assertEquals(new Score(1), jugadorUno.getScore());
+		assertEquals(new Score(2), jugadorDos.getScore());
 	}
 
 }

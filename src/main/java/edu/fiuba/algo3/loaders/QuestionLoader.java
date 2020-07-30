@@ -35,12 +35,12 @@ public class QuestionLoader {
 	
 	@SuppressWarnings("unchecked")
 	private static List<Question> parseToList(List<Map<String, String>> list){
-		List<Question> questionList = new ArrayList<>();		
-		for(Map<String, String> element : list) {
+		List<Question> questionList = new ArrayList<>();	
+		list.stream().forEach(element -> {
 			String type = element.get(TYPE);
 			Question question = (Question) gson.fromJson(gson.toJson(element), QuestionType.valueOf(type).getQuestionClass());
 			questionList.add(question);
-		}
+		});
 		return questionList;
 	}	
 
