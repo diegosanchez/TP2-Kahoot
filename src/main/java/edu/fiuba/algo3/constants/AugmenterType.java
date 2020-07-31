@@ -10,6 +10,7 @@ public enum AugmenterType {
 	private ScoreAugmenter scoreAugmenter;
 	private boolean forPenaltyQuestions;
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	AugmenterType(Class scoreAugmenterClass, boolean forPenaltyQuestions){
 		try {
 			this.scoreAugmenter = (ScoreAugmenter) scoreAugmenterClass.getDeclaredConstructor().newInstance();
