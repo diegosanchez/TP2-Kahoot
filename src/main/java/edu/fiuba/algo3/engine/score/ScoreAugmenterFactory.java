@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.engine.score;
 
-import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.constants.StringConstants;
 import edu.fiuba.algo3.engine.score.augmenters.ExclusivityMultiplier;
 import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;

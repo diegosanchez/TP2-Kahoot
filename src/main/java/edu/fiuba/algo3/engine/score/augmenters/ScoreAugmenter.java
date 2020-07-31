@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.engine.score.augmenters;
 
 import edu.fiuba.algo3.constants.AugmenterType;
-import edu.fiuba.algo3.model.Player;
 import edu.fiuba.algo3.model.Score;
 
 public abstract class ScoreAugmenter {

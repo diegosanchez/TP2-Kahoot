@@ -70,7 +70,7 @@ public class Game {
 			MatchResult resultPlayerOne = playerResults.get(players.get(0));
 			MatchResult resultPlayerTwo = playerResults.get(players.get(1));
 
-			ScoreCalculator.calculateAndAssignPoints(resultPlayerOne, resultPlayerTwo, currentQuestion);
+			ScoreCalculator.calculateAndAssignPoints(currentQuestion, resultPlayerOne, resultPlayerTwo);
 
 			currentQuestion = questionIterator.next();
 			initPlayers();
