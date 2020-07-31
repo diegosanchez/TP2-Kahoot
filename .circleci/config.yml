@@ -14,4 +14,6 @@ jobs:
       - run : mvn test
       - store_artifacts:
           path:  target
+    ignore:
+      - "src/main/java/edu/fiuba/algo3/controller"
 
