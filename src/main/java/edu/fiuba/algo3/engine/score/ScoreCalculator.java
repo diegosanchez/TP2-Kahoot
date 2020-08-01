@@ -42,7 +42,7 @@ public class ScoreCalculator {
 	
 	private static void checkAugmenters(MatchResult playerResult, Score playerScore, Score opponentScore) {
 		if(playerResult.getSelectedAugmenter() != null) {
-			playerResult.getSelectedAugmenter().getInstance().applyScoreAugmenter(playerScore, opponentScore);
+			playerResult.calculateForScoreAugmenter(playerScore, opponentScore);
 		}
 	}
 

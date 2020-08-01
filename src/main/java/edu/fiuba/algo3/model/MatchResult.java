@@ -69,5 +69,8 @@ public class MatchResult {
 	public void sumMatchScoreToPlayer() {
 		player.getScore().sumScore(matchScore);
 	}
-	
+
+	public void calculateForScoreAugmenter(Score playerScore,Score opponentScore) {
+		selectedAugmenter.calculateForInstance(playerScore, opponentScore);
+	}
 }
