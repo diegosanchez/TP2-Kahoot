@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import edu.fiuba.algo3.constants.AugmenterType;
@@ -58,6 +59,22 @@ public class Player {
 		augmentersUsesAvailable.put(scoreAugmenter, currentUses - 1);
 	}
 
-	
-	
+	public MatchResult answerQuestion(GameOption selectedOption) {
+		return new MatchResult(this, selectedOption);
+	}
+
+	public MatchResult answerQuestion(List<GameOption> selectedOption) {
+		return new MatchResult(this, selectedOption);
+	}
+
+	public MatchResult answerQuestionWithAugmenter(List<GameOption> selectedOption, AugmenterType augmenter) {
+		//REFACTOR HERE (MAYBE)
+		if (this.getAugmentersUsesAvailable().get(augmenter) <= 0)
+			return this.answerQuestion(selectedOption);
+		else
+			this.substractUseOfAugmenter(augmenter);
+			return new MatchResult(this, selectedOption, augmenter);
+	}
+
+
 }
