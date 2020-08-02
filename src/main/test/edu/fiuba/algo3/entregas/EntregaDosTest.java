@@ -327,4 +327,35 @@ public class EntregaDosTest {
         assertEquals(1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_THREE));
     }
 
+    /***
+     * Una Pregunta de Verdadero/Falso con Penalidad es contestada incorrectamnte por jugador
+     * que utiliza un multiplicador x2 y le resta 2 veces el valor.
+     */
+
+    @Test
+    public void calculoDePreguntaTrueFalseRestaPuntosAlJugadorConMultiplicadorx2YTieneUnUsoMenosTest() {
+        Player jugadorUno = new Player("JugadorUno");
+        Player jugadorDos = new Player("JugadorDos");
+        jugadorDos.setNewAugmenter(AugmenterType.MULTIPLY_PER_TWO, 2);
+
+        TrueFalseWithPenaltyQuestion question = new TrueFalseWithPenaltyQuestion("¿1 es mayor que 2?");
+
+        GameOption opcionTrue = new GameOption("True");
+        GameOption opcionFalse = new GameOption("False");
+
+        question.setCorrectOption(opcionFalse);
+
+        List<GameOption> opcionJugadorUno = new ArrayList<GameOption>();
+        opcionJugadorUno.add(opcionFalse);
+        List<GameOption> opcionJugadorDos = new ArrayList<GameOption>();
+        opcionJugadorDos.add(opcionTrue);
+
+        MatchResult resultJugadorUno = jugadorUno.answerQuestion(opcionJugadorUno);
+        MatchResult resultJugadorDos = jugadorDos.answerQuestionWithAugmenter(opcionJugadorDos, AugmenterType.MULTIPLY_PER_TWO);
+        ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
+
+        assertEquals(new Score(1), jugadorUno.getScore());
+        assertEquals(new Score(-2), jugadorDos.getScore());
+        assertEquals(1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_TWO));
+    }
 }

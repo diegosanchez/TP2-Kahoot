@@ -5,7 +5,6 @@ actor User
 title Diagrama Secuencia TP2 - Prueba para pregunta True/False asignando puntaje a Jugador - Entrega 0
 hide footbox
 
-
 participant "question : Question" as question
 
 participant "true : GameOption" as true
@@ -14,20 +13,9 @@ participant "false : GameOption" as false
 participant "jugadorN : Player" as jugadorN
 
 User -> question ** : new TrueFalseQuestion
-activate question
-question --> User : question
-deactivate question
-
 
 User -> true ** : new GameOption("True")
-activate true 
-true --> User : true
-deactivate true 
-
 User -> false ** : new GameOption("False")
-activate false
-false --> User : false
-deactivate false 
 
 User -> question : setCorrectOption(false)
 activate question
@@ -36,21 +24,19 @@ deactivate question
 
 loop 2 Jugadores
 User -> jugadorN ** : new Player("Jugador1")
-activate jugadorN
-jugadorN --> User : jugadorN
-deactivate jugadorN
 
 participant "matchN : MatchR" as matchN
 
-User -> matchN **: new MatchResult(jugadorN, selectedOptionsPlN, null)
-activate matchN
-matchN --> User : resultJugador
-deactivate matchN 
+User -> jugadorN : answerQuestion(selectedOptionsPlayerN)
+jugadorN -> matchN **: new MatchResult(jugadorN, \nselectedOptionsPlayerN)
+jugadorN -> User : matchRN
+
 end loop
 
 User -> ScoreCalculator : calculateAndAssignPoints(matchN, match2, question)
 activate ScoreCalculator
 
+loop 2 Jugadores
 participant "newScore : Score" as puntaje
 ScoreCalculator -> question : calculatePoints
 activate question
@@ -58,9 +44,6 @@ question --> ScoreCalculator : newScore
 deactivate question
 
 ScoreCalculator -> puntaje **: new Score(newScore)
-activate puntaje
-puntaje --> ScoreCalculator : newScore
-deactivate puntaje
 
 ScoreCalculator -> ScoreCalculator : checkAugmenters(matchN, \nscorePlayer1, scorePlayer2)
 activate ScoreCalculator
@@ -73,8 +56,8 @@ activate jugadorN
 jugadorN -> jugadorN : sumScore(newScore)
 deactivate jugadorN
 deactivate matchN
+end loop
 
 deactivate ScoreCalculator
 
-@enduml
 @enduml
