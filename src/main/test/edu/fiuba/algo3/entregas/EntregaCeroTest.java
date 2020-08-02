@@ -2,6 +2,7 @@ package edu.fiuba.algo3.entregas;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import edu.fiuba.algo3.model.Score;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.engine.questions.TrueFalseQuestion;
@@ -42,12 +43,12 @@ public class EntregaCeroTest {
 		GameOption opcionFalse = new GameOption("False");
 		
 		question.setCorrectOption(opcionFalse);
-		
-		MatchResult resultJugadorUno = new MatchResult(jugadorUno, opcionTrue);
-		MatchResult resultJugadorDos = new MatchResult(jugadorDos, opcionFalse);
+
+		MatchResult resultJugadorUno = jugadorUno.answerQuestion(opcionTrue);
+		MatchResult resultJugadorDos = jugadorDos.answerQuestion(opcionFalse);
 		ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
-		
-		assertEquals(0, jugadorUno.getScore().getValue());
-		assertEquals(1, jugadorDos.getScore().getValue());
+
+		assertEquals(new Score(0), jugadorUno.getScore());
+		assertEquals(new Score(1), jugadorDos.getScore());
 	}
 }

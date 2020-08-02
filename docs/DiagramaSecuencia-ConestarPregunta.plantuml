@@ -1,0 +1,46 @@
+
+@startuml
+
+actor User
+title Diagrama Secuencia TP2 - Jugador contesta una pregunta
+hide footbox
+
+participant "player : Player" as player
+
+User -> augmenter ** : new ScoreAugmenter\n("multiplicarX2")
+User -> player ** : new Player("Jugador1")
+
+participant "match : MatchR" as match
+
+User -> player : answerQuestion\n(selectedOptionsPlayerN)
+player -> match **: new MatchResult(jugadorN, \nselectedOptionsPlayerN)
+player -> User : matchRN
+
+User -> ScoreCalculator : calculateAndAssignPoints(match, match2, question)
+activate ScoreCalculator
+
+
+participant "newScore : Score" as puntaje
+ScoreCalculator -> Question : calculatePoints
+activate Question
+Question --> ScoreCalculator : newScore
+deactivate Question
+
+ScoreCalculator -> puntaje **: new Score(newScore)
+
+ScoreCalculator -> ScoreCalculator : checkAugmenters(match, \nscorePlayer1, scorePlayer2)
+activate ScoreCalculator
+deactivate ScoreCalculator
+
+ScoreCalculator -> match : getPlayer()
+activate match
+match -> player : getScore()
+activate player
+player -> player : sumScore(newScore)
+deactivate player
+deactivate match
+
+
+deactivate ScoreCalculator
+
+@enduml

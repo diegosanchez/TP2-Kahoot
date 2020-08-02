@@ -96,13 +96,12 @@ public class EntregaUnoTest {
 		GameOption opcionFalse = new GameOption("False");
 		
 		question.setCorrectOption(opcionFalse);
-		
-		MatchResult resultJugadorUno = new MatchResult(jugadorUno, opcionTrue);
-		MatchResult resultJugadorDos = new MatchResult(jugadorDos, opcionFalse);
+		MatchResult resultJugadorUno = jugadorUno.answerQuestion(opcionTrue);
+		MatchResult resultJugadorDos = jugadorDos.answerQuestion(opcionFalse);
 		ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
-		
-		assertEquals(-1, jugadorUno.getScore().getValue());
-		assertEquals(1, jugadorDos.getScore().getValue());
+
+		assertEquals(new Score(-1), jugadorUno.getScore());
+		assertEquals(new Score(1), jugadorDos.getScore());
 	}
 	
 	/***
@@ -133,13 +132,13 @@ public class EntregaUnoTest {
 		List<GameOption> opcionesJugadorDos = new ArrayList<GameOption>();
 		opcionesJugadorDos.add(opcionUno);						
 		opcionesJugadorDos.add(opcionDos);
-		
-		MatchResult resultJugadorUno = new MatchResult(jugadorUno, opcionesJugadorUno);
-		MatchResult resultJugadorDos = new MatchResult(jugadorDos, opcionesJugadorDos);
+
+		MatchResult resultJugadorUno = jugadorUno.answerQuestion(opcionesJugadorUno);
+		MatchResult resultJugadorDos = jugadorDos.answerQuestion(opcionesJugadorDos);
 		ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
-		
-		assertEquals(1, jugadorUno.getScore().getValue());
-		assertEquals(0, jugadorDos.getScore().getValue());
+
+		assertEquals(new Score(1), jugadorUno.getScore());
+		assertEquals(new Score(0), jugadorDos.getScore());
 	}
 	
 	/***
@@ -168,9 +167,9 @@ public class EntregaUnoTest {
 		List<GameOption> opcionesJugadorDos = new ArrayList<GameOption>();
 		opcionesJugadorDos.add(opcionUno);						
 		opcionesJugadorDos.add(opcionTres);
-		
-		MatchResult resultJugadorUno = new MatchResult(jugadorUno, opcionesJugadorUno);
-		MatchResult resultJugadorDos = new MatchResult(jugadorDos, opcionesJugadorDos);
+
+		MatchResult resultJugadorUno = jugadorUno.answerQuestion(opcionesJugadorUno);
+		MatchResult resultJugadorDos = jugadorDos.answerQuestion(opcionesJugadorDos);
 		ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
 		
 		assertEquals(new Score(1), jugadorUno.getScore());

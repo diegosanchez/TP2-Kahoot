@@ -1,18 +1,11 @@
 package edu.fiuba.algo3.controller;
 
-import edu.fiuba.algo3.constants.ResourceConstants;
 import edu.fiuba.algo3.constants.Stylesheets;
-import edu.fiuba.algo3.constants.Views;
 import edu.fiuba.algo3.exceptions.StylesheetLoadingException;
-import edu.fiuba.algo3.exceptions.ViewLoadingException;
 import edu.fiuba.algo3.loaders.GameLoader;
-import edu.fiuba.algo3.loaders.QuestionLoader;
 import edu.fiuba.algo3.loaders.SceneLoader;
 import edu.fiuba.algo3.loaders.StylesheetLoader;
-import edu.fiuba.algo3.model.Game;
 import edu.fiuba.algo3.model.Player;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -36,24 +29,19 @@ public class PlayerNameController{
     private ArrayList<Player> players;
 
     @FXML
-    public void initialAction(ActionEvent event){
+    public void initialAction(){
 
         if(!textField.getText().isEmpty()) {
             players.add(new Player(textField.getText()));
             textField.clear();
             text.setText("Jugador 2");
             nextButton.setText("Jugar");
-            nextButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent actionEvent) {
-                    finalAction(actionEvent);
-                }
-            });
+            nextButton.setOnAction((event)-> finalAction());
         }
     }
 
     @FXML
-    public void finalAction(ActionEvent event){
+    public void finalAction(){
         if(!textField.getText().isEmpty()) {
             players.add(new Player(textField.getText()));
             nextScene();
@@ -61,29 +49,12 @@ public class PlayerNameController{
     }
 
     public void nextScene(){
-
         Stage stage = (Stage) text.getScene().getWindow();
-
-        try{
-            SceneLoader.loadScene(stage, Views.GENERIC_QUESTION_VIEW);
-        } catch (ViewLoadingException e) {
-            e.printStackTrace();
-            SceneLoader.loadErrorPage();
-        }
-
-        GenericQuestionController controller = SceneLoader.getSceneController();
-        Scene scene = SceneLoader.getLoadedScene();
-        
-        try {
-			StylesheetLoader.loadStylesheet(scene, Stylesheets.QUESTIONS_CSS);
-		} catch (StylesheetLoadingException e1) {
-			e1.printStackTrace();
-		}
-
-        controller.play(GameLoader.loadGame(players));
+        GameController controller = new GameController();
+        controller.play(GameLoader.loadGame(players), stage);
     }
 
-    public void initialize() {
+    public void initialize(){
         System.out.println("PlayerNameController load.");
         players = new ArrayList<>();
     }

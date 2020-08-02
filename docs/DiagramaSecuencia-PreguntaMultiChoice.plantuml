@@ -1,8 +1,0 @@
-
-@startuml
-
-actor User
-title Diagrama Secuencia TP2 - Pregunta Multiple Choice asgina puntajes a jugadores
-hide footbox
-
-@enduml

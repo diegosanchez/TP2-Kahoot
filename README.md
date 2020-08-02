@@ -50,7 +50,7 @@ Se deberá ejecutar el siguiente comando dentro del directorio del proyecto:
 
 Diagrama de clases principal del proyecto:
 
-<img src="https://github.com/GEscandar/TP2-Kahoot/blob/master/docs/out/diagramaClases-Principal-TP2/DiagramaUML-Clases-TP2.png?raw=true">
+<img src="https://github.com/GEscandar/TP2-Kahoot/blob/develop/docs/out/diagramaClases-Principal-TP2/DiagramaUML-Clases-TP2.png?raw=true">
 
 Para la clase abstracta ScoreAugmenter, se creó un diagrama de clases en detalle:
 

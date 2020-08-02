@@ -5,8 +5,12 @@ public class Views {
 	public static final String ABOUT_VIEW = "AboutView";
 	public static final String PLAYER_NAME_VIEW = "PlayerNameView";
 	public static final String GENERIC_QUESTION_VIEW = "GenericQuestionView";
-	public static final String GROUP_QUESTION_VIEW = "GroupQuestionView";
-	public static final String ORDERED_QUESTION_VIEW = "OrderedQuestionView";
+	public static final String GROUP_CHOICE_QUESTION_VIEW = "GroupChoiceQuestionView";
+	public static final String MULTIPLE_CHOICE_PARTIAL_QUESTION_VIEW = "MultipleChoicePartialQuestionView";
+	public static final String MULTIPLE_CHOICE_QUESTION_VIEW = "MultipleChoiceQuestionView";
+	public static final String MULTIPLE_CHOICE_WITH_PENALTY_QUESTION_VIEW = "MultipleChoiceWithPenaltyQuestionView";
+	public static final String ORDERED_CHOICE_QUESTION_VIEW = "OrderedChoiceQuestionView";
+	public static final String TRUE_FALSE_QUESTION_VIEW = "TrueFalseQuestionView";
 	public static final String RESULTS_VIEW = "ResultsView";
 	public static final String ERROR_VIEW = "ErrorView";
 
