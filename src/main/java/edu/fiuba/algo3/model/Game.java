@@ -38,7 +38,7 @@ public class Game {
 	}
 
 	public boolean isOver(){
-		return !questionIterator.hasNext();
+		return (!playersIterator.hasNext() && !questionIterator.hasNext());
 	}
 
 	public Question getCurrentQuestion(){
@@ -63,10 +63,9 @@ public class Game {
 		MatchResult result = new MatchResult(currentPlayer, selectedOptions, selectedAugmenter);
 		playerResults.put(currentPlayer, result);
 
-		if(playersIterator.hasNext()){
+		if(playersIterator.hasNext()) {
 			currentPlayer = playersIterator.next();
-		}
-		else if(questionIterator.hasNext()){
+		}else if(questionIterator.hasNext()){
 			MatchResult resultPlayerOne = playerResults.get(players.get(0));
 			MatchResult resultPlayerTwo = playerResults.get(players.get(1));
 

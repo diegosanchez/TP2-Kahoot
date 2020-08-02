@@ -57,5 +57,9 @@ public abstract class Question {
 	public abstract int calculatePoints(List<GameOption> selectedOptions);
 
 	public abstract boolean hasPenalty();
-	
+	/***
+	 * Returns the correspondent view for this question
+	 * @return
+	 */
+	public abstract String getView();
 }
