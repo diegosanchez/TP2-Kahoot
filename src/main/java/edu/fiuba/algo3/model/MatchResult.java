@@ -54,10 +54,6 @@ public class MatchResult {
 		return selectedAugmenter;
 	}
 
-	public void setSelectedAugmenter(AugmenterType selectedAugmenter) {
-		this.selectedAugmenter = selectedAugmenter;
-	}
-
 	public Score getMatchScore() {
 		return matchScore;
 	}

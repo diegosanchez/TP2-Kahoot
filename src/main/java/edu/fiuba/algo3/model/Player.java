@@ -19,9 +19,6 @@ public class Player {
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public Score getScore() {
 		return score;
@@ -33,10 +30,6 @@ public class Player {
 
 	public Map<AugmenterType, Integer> getAugmentersUsesAvailable() {
 		return augmentersUsesAvailable;
-	}
-
-	public void setAugmentersUsesAvailable(Map<AugmenterType, Integer> augmentersUsesAvailable) {
-		this.augmentersUsesAvailable = augmentersUsesAvailable;
 	}
 	
 	public void setNewAugmenter(AugmenterType augmenterType, Integer uses) {
