@@ -82,4 +82,8 @@ public class Game {
 		}
 		return players.get(1);
 	}
+
+	public int getTurnCount(){
+		return players.size() * questions.size();
+	}
 }
