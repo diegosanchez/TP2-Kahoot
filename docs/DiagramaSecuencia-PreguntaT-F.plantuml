@@ -11,18 +11,13 @@ participant "question : Question" as question
 participant "true : GameOption" as true
 participant "false : GameOption" as false
 
-participant "jugador1 : Player" as jugador1
+participant "jugadorN : Player" as jugadorN
 
 User -> question ** : new TrueFalseQuestion
 activate question
 question --> User : question
 deactivate question
 
-
-User -> jugador1 ** : new Player("Jugador1")
-activate jugador1
-jugador1 --> User : jugador1
-deactivate jugador1
 
 User -> true ** : new GameOption("True")
 activate true 
@@ -39,14 +34,21 @@ activate question
 question -> question : correctOptions.add(false)
 deactivate question
 
-participant "match1 : MatchR" as match1
+loop 2 Jugadores
+User -> jugadorN ** : new Player("Jugador1")
+activate jugadorN
+jugadorN --> User : jugadorN
+deactivate jugadorN
 
-User -> match1 **: new MatchResult(jugador1, selectedOptionsPl1, null)
-activate match1
-match1 --> User : resultJugadorUno
-deactivate match1 
+participant "matchN : MatchR" as matchN
 
-User -> ScoreCalculator : calculateAndAssignPoints(match1, match2, question)
+User -> matchN **: new MatchResult(jugadorN, selectedOptionsPlN, null)
+activate matchN
+matchN --> User : resultJugador
+deactivate matchN 
+end loop
+
+User -> ScoreCalculator : calculateAndAssignPoints(matchN, match2, question)
 activate ScoreCalculator
 
 participant "newScore : Score" as puntaje
@@ -60,17 +62,17 @@ activate puntaje
 puntaje --> ScoreCalculator : newScore
 deactivate puntaje
 
-ScoreCalculator -> ScoreCalculator : checkAugmenters(match1, \nscorePlayer1, scorePlayer2)
+ScoreCalculator -> ScoreCalculator : checkAugmenters(matchN, \nscorePlayer1, scorePlayer2)
 activate ScoreCalculator
 deactivate ScoreCalculator
 
-ScoreCalculator -> match1 : getPlayer()
-activate match1
-match1 -> jugador1 : getScore()
-activate jugador1
-jugador1 -> jugador1 : sumScore(newScore)
-deactivate jugador1
-deactivate match1
+ScoreCalculator -> matchN : getPlayer()
+activate matchN
+matchN -> jugadorN : getScore()
+activate jugadorN
+jugadorN -> jugadorN : sumScore(newScore)
+deactivate jugadorN
+deactivate matchN
 
 deactivate ScoreCalculator
 

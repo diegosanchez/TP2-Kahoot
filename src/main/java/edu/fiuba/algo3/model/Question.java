@@ -22,10 +22,6 @@ public abstract class Question {
 		return options;
 	}
 
-	public void setOptions(List<GameOption> options) {
-		this.options = options;
-	}	
-	
 	public List<GameOption> getCorrectOptions() {
 		return correctOptions;
 	}
@@ -46,10 +42,6 @@ public abstract class Question {
 		return type;
 	}
 
-	public void setType(QuestionType type) {
-		this.type = type;
-	}
-	
 	/***
 	 * Returns the earned or lost points depending on the answer to the question
 	 * @return
