@@ -15,4 +15,9 @@ public class TwoMultiplier extends ScoreAugmenter {
 		return AugmenterType.MULTIPLY_PER_TWO;
 	}
 
+	@Override
+	public boolean isNil() {
+		return false;
+	}
+
 }

@@ -11,9 +11,11 @@ public class Player {
 	private String name;
 	private Score score = new Score(0);
 	private Map<AugmenterType, Integer> augmentersUsesAvailable;
+	private int exclusivityUses;
 
 	public Player(String name){
 		this.name = name;
+		exclusivityUses = 2;
 	}
 
 	public String getName() {
@@ -70,4 +72,11 @@ public class Player {
 	}
 
 
+	public void substractExclusivityUse() {
+		exclusivityUses -= 1;
+	}
+
+	public int getExclusivityUses() {
+		return exclusivityUses;
+	}
 }

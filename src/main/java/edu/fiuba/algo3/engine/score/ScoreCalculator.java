@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import edu.fiuba.algo3.model.MatchResult;
+import edu.fiuba.algo3.model.Player;
 import edu.fiuba.algo3.model.Question;
 import edu.fiuba.algo3.model.Score;
 
@@ -38,6 +39,11 @@ public class ScoreCalculator {
 		resultList.stream().forEach(result -> {
 			result.sumMatchScoreToPlayer();
 		});
+	}
+
+	public static void calculateAndAssignPoints(Player playerOne, Player playerTwo){
+		playerOne.getScore().update(playerTwo.getScore());
+		playerTwo.getScore().update(playerOne.getScore());
 	}
 	
 	private static void checkAugmenters(MatchResult playerResult, Score playerScore, Score opponentScore) {
