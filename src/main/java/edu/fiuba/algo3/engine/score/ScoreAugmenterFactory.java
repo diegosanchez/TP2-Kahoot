@@ -1,10 +1,7 @@
 package edu.fiuba.algo3.engine.score;
 
 import edu.fiuba.algo3.constants.StringConstants;
-import edu.fiuba.algo3.engine.score.augmenters.ExclusivityMultiplier;
-import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;
-import edu.fiuba.algo3.engine.score.augmenters.ThreeMultiplier;
-import edu.fiuba.algo3.engine.score.augmenters.TwoMultiplier;
+import edu.fiuba.algo3.engine.score.augmenters.*;
 import edu.fiuba.algo3.model.Question;
 
 public class ScoreAugmenterFactory {
@@ -29,7 +26,7 @@ public class ScoreAugmenterFactory {
     }
 
     public static ScoreAugmenter createScoreAugmenter(String text, Question question, int exclusivityUses){
-        ScoreAugmenter augmenter = null;
+        ScoreAugmenter augmenter = new NoMultiplier();
 
         switch(text){
             case StringConstants.TWO_MULTIPLIER:
