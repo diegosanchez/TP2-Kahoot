@@ -3,20 +3,15 @@ package edu.fiuba.algo3.controller;
 import edu.fiuba.algo3.engine.score.ScoreAugmenterFactory;
 import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;
-import edu.fiuba.algo3.constants.Views;
-import edu.fiuba.algo3.exceptions.ViewLoadingException;
-import edu.fiuba.algo3.loaders.SceneLoader;
-import edu.fiuba.algo3.model.Game;
 import edu.fiuba.algo3.model.GameOption;
 
-import edu.fiuba.algo3.model.Question;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
 import java.util.*;
 
@@ -32,93 +27,55 @@ public class GenericQuestionController {
     @FXML
     public Label questionText;
     @FXML
-    public Label questionType;
-    @FXML
-    public Button sumitButton;
-    @FXML
-    public Button abandonButton;
+    public Button submitButton;
 
-    private Game game;
+    private GameController gameController;
     private ArrayList<GameOption> selectedAnswers;
     private AugmenterType augmenterType;
 
-    public void play(Game game){
-        this.game = game;
-        game.start();
-        repaint();
-    }
 
-    private void setSceneQuestion(Question question) {
-        Iterator<GameOption> iteratorOptions = question.getOptions().iterator();
-        GameOption gameOption = iteratorOptions.next();
+    public void setUpView(GameController controller){
+        this.gameController = controller;
+        playerName.setText(gameController.getCurrentPlayer().getName());
+        playerScore.setText((Integer.toString(gameController.getCurrentPlayer().getScore().getValue())));
+        questionText.setText(gameController.getCurrentQuestion().getText());
 
-        //questionType.setText(String.valueOf(question.getType()));
-        questionText.setText(question.getText());
-        List<Button> buttonList = (List) gridPane.getChildren();
+        List<CheckBox> buttonList = (List) gridPane.getChildren();
 
-        for (Button button : buttonList) {
-            button.setVisible(false);
-        }
         int i = 0;
-        for (GameOption option : (question.getOptions())) {
-            Button button = buttonList.get(i);
-            button.setVisible(true);
+        for (GameOption option : (gameController.getCurrentQuestion().getOptions())) {
+            CheckBox button = buttonList.get(i);
             button.setText(option.getText());
-            button.setOnAction((event)-> addAnswer(event));
+            button.setOnAction(this::addAnswer);
             i++;
         }
     }
 
-    public void doAbandon(ActionEvent event) {
-        game.getCurrentPlayer().getScore().setValue(-1);//cuando anden los puntajes settear a 0 o mandar al ResultsControler el otro player
-        endGame();
-    }
-
     public void addAnswer(ActionEvent event){
-        Button source = (Button) event.getSource();
+        CheckBox source = (CheckBox) event.getSource();
         GameOption option = new GameOption(source.getText());
 
         selectedAnswers.add(option);
-        source.setVisible(false);
-        sumitButton.setVisible(true);
+        source.setOnAction((e)-> undoAnswer(event));
+        submitButton.setVisible(true);
     }
+     public void undoAnswer(ActionEvent event){
+         CheckBox source = (CheckBox) event.getSource();
+         GameOption option = new GameOption(source.getText());
+         selectedAnswers.remove(option);
+         source.setOnAction((e)-> addAnswer(event));
+
+     }
 
     public void addAugmenter(MouseEvent event){
         Label source = (Label) event.getSource();
-        ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(source.getText(), game.getCurrentQuestion());
+        ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(source.getText(), gameController.getCurrentQuestion());
 
         if(augmenter != null) augmenterType = augmenter.getAugmenterType();
     }
 
-    private void repaint(){
-        //sumitButton.setVisible(false);
-        playerName.setText(game.getCurrentPlayer().getName());
-        playerScore.setText((Integer.toString(game.getCurrentPlayer().getScore().getValue())));
-        questionText.setText(game.getCurrentQuestion().getText());
-        setSceneQuestion(game.getCurrentQuestion());
-    }
-
     public void doNext(){
-        if(!game.isOver()){
-            game.nextTurn(selectedAnswers, augmenterType);
-            repaint();
-
-            selectedAnswers = new ArrayList<>();
-            augmenterType = null;
-        }
-        else endGame();
-    }
-
-    private void endGame(){
-        Stage stage = (Stage) sumitButton.getScene().getWindow();
-        try{
-            SceneLoader.loadScene(stage, Views.RESULTS_VIEW);
-        } catch (ViewLoadingException e) {
-            e.printStackTrace();
-        }
-
-        ResultsViewController controller = SceneLoader.getSceneController();
-        controller.initialize(game);
+        gameController.doNext(selectedAnswers, augmenterType);
     }
 
     public void initialize(){

@@ -7,6 +7,8 @@ import edu.fiuba.algo3.model.GameOption;
 import edu.fiuba.algo3.model.OptionGroup;
 import edu.fiuba.algo3.model.Question;
 
+import static edu.fiuba.algo3.constants.Views.GROUP_CHOICE_QUESTION_VIEW;
+
 public class GroupChoiceQuestion extends Question {	
 	
 	public GroupChoiceQuestion(String text) {
@@ -34,5 +36,10 @@ public class GroupChoiceQuestion extends Question {
 	@Override
 	public boolean hasPenalty() {
 		return false;
+	}
+
+	@Override
+	public String getView() {
+		return GROUP_CHOICE_QUESTION_VIEW;
 	}
 }
