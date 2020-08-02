@@ -1,21 +1,25 @@
 package edu.fiuba.algo3.model;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import edu.fiuba.algo3.constants.AugmenterType;
+import edu.fiuba.algo3.engine.score.augmenters.NoMultiplier;
+import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;
 
 public class Player {
 	
 	private String name;
-	private Score score = new Score(0);
+	private Score score;
 	private Map<AugmenterType, Integer> augmentersUsesAvailable;
 	private int exclusivityUses;
 
 	public Player(String name){
 		this.name = name;
 		exclusivityUses = 2;
+		score = new Score(0);
 	}
 
 	public String getName() {
@@ -54,29 +58,24 @@ public class Player {
 		augmentersUsesAvailable.put(scoreAugmenter, currentUses - 1);
 	}
 
-	public MatchResult answerQuestion(GameOption selectedOption) {
-		return new MatchResult(this, selectedOption);
+	public void answerQuestion(Question question, List<GameOption> selectedOption) {
+		score.setAugmenter(new NoMultiplier());
+		score.setQuestionScore(question.calculatePoints(selectedOption));
 	}
 
-	public MatchResult answerQuestion(List<GameOption> selectedOption) {
-		return new MatchResult(this, selectedOption);
+	public void answerQuestion(Question question, GameOption selectedOption) {
+		answerQuestion(question, Arrays.asList(selectedOption));
 	}
 
-	public MatchResult answerQuestionWithAugmenter(List<GameOption> selectedOption, AugmenterType augmenter) {
-		//REFACTOR HERE (MAYBE)
-		if (this.getAugmentersUsesAvailable().get(augmenter) <= 0)
-			return this.answerQuestion(selectedOption);
-		else
-			this.substractUseOfAugmenter(augmenter);
-			return new MatchResult(this, selectedOption, augmenter);
+	public void answerQuestionWithAugmenter(Question question, List<GameOption> selectedOption, ScoreAugmenter augmenter) {
+		score.setAugmenter(augmenter);
+		score.setQuestionScore(question.calculatePoints(selectedOption));
+
+		if(!question.hasPenalty() && !augmenter.isNil())
+			exclusivityUses = exclusivityUses >= 1 ? (exclusivityUses-1) : 0;
 	}
 
-
-	public void substractExclusivityUse() {
-		exclusivityUses -= 1;
-	}
-
-	public int getExclusivityUses() {
+	public int getExclusivityUsesAvailable() {
 		return exclusivityUses;
 	}
 }

@@ -5,13 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.fiuba.algo3.engine.score.augmenters.ExclusivityMultiplier;
+import edu.fiuba.algo3.engine.score.augmenters.ThreeMultiplier;
 import edu.fiuba.algo3.model.Score;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.engine.questions.TrueFalseQuestion;
 import edu.fiuba.algo3.model.GameOption;
-import edu.fiuba.algo3.model.MatchResult;
 import edu.fiuba.algo3.model.Player;
 
 public class ScoreCalculatorTest {
@@ -33,9 +34,9 @@ public class ScoreCalculatorTest {
 		List<GameOption> opcionJugadorDos = new ArrayList<GameOption>();
 		opcionJugadorDos.add(opcionFalse);
 
-		MatchResult resultJugadorUno = jugadorUno.answerQuestion(opcionJugadorUno);
-		MatchResult resultJugadorDos = jugadorDos.answerQuestion(opcionJugadorDos);
-		ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
+		jugadorUno.answerQuestion(question, opcionJugadorUno);
+		jugadorDos.answerQuestion(question, opcionJugadorDos);
+		ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
 		assertEquals(new Score(0), jugadorUno.getScore());
 		assertEquals(new Score(1), jugadorDos.getScore());
@@ -59,20 +60,18 @@ public class ScoreCalculatorTest {
 		List<GameOption> opcionJugadorDos = new ArrayList<GameOption>();
 		opcionJugadorDos.add(opcionFalse);
 
-		MatchResult resultJugadorUno = jugadorUno.answerQuestion(opcionJugadorUno);
-		MatchResult resultJugadorDos = jugadorDos.answerQuestionWithAugmenter(opcionJugadorDos, AugmenterType.MULTIPLY_PER_THREE);
-		ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
+		jugadorUno.answerQuestion(question, opcionJugadorUno);
+		jugadorDos.answerQuestionWithAugmenter(question, opcionJugadorDos, new ThreeMultiplier());
+		ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
 		assertEquals(new Score(0), jugadorUno.getScore());
 		assertEquals(new Score(3), jugadorDos.getScore());
-		assertEquals(1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_THREE));
 	}
 	
 	@Test
 	public void calculoDePreguntaTrueFalseAsignaPuntosALosJugadoresConExclusividadYTieneUnUsoMenosTest() {		
 		Player jugadorUno = new Player("JugadorUno");
 		Player jugadorDos = new Player("JugadorDos");
-		jugadorDos.setNewAugmenter(AugmenterType.EXCLUSIVITY, 2);
 		
 		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?");
 		
@@ -86,13 +85,16 @@ public class ScoreCalculatorTest {
 		List<GameOption> opcionJugadorDos = new ArrayList<GameOption>();
 		opcionJugadorDos.add(opcionFalse);
 
-		MatchResult resultJugadorUno = jugadorUno.answerQuestion(opcionJugadorUno);
-		MatchResult resultJugadorDos = jugadorDos.answerQuestionWithAugmenter(opcionJugadorDos, AugmenterType.EXCLUSIVITY);
-		ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
+		jugadorUno.answerQuestion(question, opcionJugadorUno);
+		jugadorDos.answerQuestionWithAugmenter(question, opcionJugadorDos, new ExclusivityMultiplier());
+		ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+
+		System.out.println(jugadorUno.getScore().getValue());
+		System.out.println(jugadorUno.getScore().getValue());
 
 		assertEquals(new Score(0), jugadorUno.getScore());
 		assertEquals(new Score(2), jugadorDos.getScore());
-		assertEquals(1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
+		assertEquals(1, jugadorDos.getExclusivityUsesAvailable());
 	}
 	
 	@Test
@@ -114,14 +116,14 @@ public class ScoreCalculatorTest {
 		List<GameOption> opcionJugadorDos = new ArrayList<GameOption>();
 		opcionJugadorDos.add(opcionFalse);
 
-		MatchResult resultJugadorUno = jugadorUno.answerQuestionWithAugmenter(opcionJugadorUno, AugmenterType.EXCLUSIVITY);
-		MatchResult resultJugadorDos = jugadorDos.answerQuestionWithAugmenter(opcionJugadorDos, AugmenterType.EXCLUSIVITY);
-		ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
+		jugadorUno.answerQuestionWithAugmenter(question, opcionJugadorUno, new ExclusivityMultiplier());
+		jugadorDos.answerQuestionWithAugmenter(question, opcionJugadorDos, new ExclusivityMultiplier());
+		ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
 		assertEquals(new Score(0), jugadorUno.getScore());
 		assertEquals(new Score(0), jugadorDos.getScore());
-		assertEquals(1, jugadorUno.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
-		assertEquals(1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
+		assertEquals(1, jugadorUno.getExclusivityUsesAvailable());
+		assertEquals(1, jugadorDos.getExclusivityUsesAvailable());
 	}
 	
 	@Test
@@ -143,14 +145,14 @@ public class ScoreCalculatorTest {
 		List<GameOption> opcionJugadorDos = new ArrayList<GameOption>();
 		opcionJugadorDos.add(opcionFalse);
 		
-		MatchResult resultJugadorUno = jugadorUno.answerQuestionWithAugmenter(opcionJugadorUno, AugmenterType.EXCLUSIVITY);
-		MatchResult resultJugadorDos = jugadorDos.answerQuestionWithAugmenter(opcionJugadorDos, AugmenterType.EXCLUSIVITY);
-		ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
+		jugadorUno.answerQuestionWithAugmenter(question, opcionJugadorUno, new ExclusivityMultiplier());
+		jugadorDos.answerQuestionWithAugmenter(question, opcionJugadorDos, new ExclusivityMultiplier());
+		ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
 		assertEquals(new Score(0), jugadorUno.getScore());
 		assertEquals(new Score(4), jugadorDos.getScore());
-		assertEquals(1, jugadorUno.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
-		assertEquals(1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
+		assertEquals(1, jugadorUno.getExclusivityUsesAvailable());
+		assertEquals(1, jugadorDos.getExclusivityUsesAvailable());
 	}
 
 }

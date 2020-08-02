@@ -7,13 +7,13 @@ public class ExclusivityMultiplier extends ScoreAugmenter {
 
 	@Override
 	public void applyScoreAugmenter(Score questionScore, Score opponentQuestionScore) {		
-		if(questionScore.getValue() == opponentQuestionScore.getValue()){
-			questionScore.setValue(0);
-			opponentQuestionScore.setValue(0);
-		}else if(questionScore.getValue() > 0) {
-			questionScore.setValue(questionScore.getValue() * 2);			
+		if(questionScore.getQuestionScore() == opponentQuestionScore.getQuestionScore()){
+			questionScore.setQuestionScore(0);
+			opponentQuestionScore.setQuestionScore(0);
+		}else if(questionScore.getQuestionScore() > 0) {
+			questionScore.setQuestionScore(questionScore.getQuestionScore() * 2);
 		}else {
-			opponentQuestionScore.setValue(opponentQuestionScore.getValue() * 2);
+			opponentQuestionScore.setQuestionScore(opponentQuestionScore.getQuestionScore() * 2);
 		}
 	}
 
