@@ -12,6 +12,7 @@ abstract Question{
 class GameOption{
     + id : long
 	+ text : String
+    + equals(Object obj) : Boolean
 }
 
 class OptionGroup{
@@ -27,12 +28,17 @@ class Game{
     + players : List<Player>
 	+ question : List<Question>
 	+ currentPlayer : Player
+    + start()
+    + nextTurn(selectedOptions, selectedAugmenter)
+    + getWinner()
 }
 
 class MatchResult{
     + player : Player
 	+ selectedOptions : List<GameOption> 
 	+ selectedAugmenter : AugmenterType 
+    + sumMatchScoreToPlayer()
+    + calculateForScoreAugmenter()
 }
 
 class ScoreCalculator{
@@ -44,12 +50,15 @@ class Player{
     + name : String
 	+ score : int
 	+ augmentersUsesAvailable : Map<AugmenterType, Int>
+    + answerQuestion(GameOption selectedOption) : MatchResult
+    + answerQuestion(List<GameOption> selectedOption) : MatchResult
+    + answerQuestionWithAugmenter(selectedOption, augmenter) : MatchResult
 }
 
 abstract ScoreAugmenter{
     + applyScoreAugmenter(currentPlayer, opponent, score, opponentScore)
     + substractUseOfAugmenter(player)
-    - {abstract}applyNewScore(Player currentPlayer, Player opponent, int score, int opponentScore)
+    - {abstract}applyScoreAugmenter(Score questionScore, Score opponentQuestionScore)
 }
 
 
@@ -61,11 +70,12 @@ OptionGroup --|> GameOption
 ScoreCalculator --right> MatchResult
 ScoreCalculator --> Question
 
-MatchResult "1"*--up"1" Player
+MatchResult "1..1"*--up Player
 MatchResult o-- ScoreAugmenter
+MatchResult --> ScoreAugmenter
 
-Player "1"*--"1" Score
+Player "1..1"*-- Score
 
-Question "1"*--up"*" GameOption
+Question "1..*"*--up GameOption
 
 @enduml
