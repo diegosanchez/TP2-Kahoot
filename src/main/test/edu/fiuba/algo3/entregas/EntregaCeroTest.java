@@ -44,9 +44,9 @@ public class EntregaCeroTest {
 		
 		question.setCorrectOption(opcionFalse);
 
-		MatchResult resultJugadorUno = jugadorUno.answerQuestion(opcionTrue);
-		MatchResult resultJugadorDos = jugadorDos.answerQuestion(opcionFalse);
-		ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
+		jugadorUno.answerQuestion(question, opcionTrue);
+		jugadorDos.answerQuestion(question, opcionFalse);
+		ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
 		assertEquals(new Score(0), jugadorUno.getScore());
 		assertEquals(new Score(1), jugadorDos.getScore());

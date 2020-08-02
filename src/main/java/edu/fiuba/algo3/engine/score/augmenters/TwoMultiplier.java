@@ -7,7 +7,7 @@ public class TwoMultiplier extends ScoreAugmenter {
 
 	@Override
 	public void applyScoreAugmenter(Score questionScore, Score opponentQuestionScore) {			
-		questionScore.setValue(questionScore.getValue() * 2);
+		questionScore.setQuestionScore(questionScore.getQuestionScore() * 2);
 	}
 
 	@Override

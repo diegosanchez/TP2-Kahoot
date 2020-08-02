@@ -46,7 +46,6 @@ public class ScoreCalculatorTest {
 	public void calculoDePreguntaTrueFalseAsignaPuntosALosJugadoresConMultiplicadorYTieneUnUsoMenosTest() {		
 		Player jugadorUno = new Player("JugadorUno");
 		Player jugadorDos = new Player("JugadorDos");
-		jugadorDos.setNewAugmenter(AugmenterType.MULTIPLY_PER_THREE, 2);
 		
 		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?");
 		
@@ -101,8 +100,6 @@ public class ScoreCalculatorTest {
 	public void calculoDePreguntaTrueFalseAsignaPuntosALosJugadoresConExclusividadYAmbosContestanBienTest() {		
 		Player jugadorUno = new Player("JugadorUno");
 		Player jugadorDos = new Player("JugadorDos");
-		jugadorUno.setNewAugmenter(AugmenterType.EXCLUSIVITY, 2);
-		jugadorDos.setNewAugmenter(AugmenterType.EXCLUSIVITY, 2);
 		
 		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?");
 		
@@ -130,8 +127,6 @@ public class ScoreCalculatorTest {
 	public void calculoDePreguntaTrueFalseAsignaPuntosALosJugadoresConExclusividadYCuadriplicaElPuntajeTest() {		
 		Player jugadorUno = new Player("JugadorUno");
 		Player jugadorDos = new Player("JugadorDos");
-		jugadorUno.setNewAugmenter(AugmenterType.EXCLUSIVITY, 2);
-		jugadorDos.setNewAugmenter(AugmenterType.EXCLUSIVITY, 2);
 		
 		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?");
 		

@@ -1,11 +1,8 @@
 package edu.fiuba.algo3.model;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.engine.score.augmenters.NoMultiplier;
 import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;
 
@@ -13,7 +10,6 @@ public class Player {
 	
 	private String name;
 	private Score score;
-	private Map<AugmenterType, Integer> augmentersUsesAvailable;
 	private int exclusivityUses;
 
 	public Player(String name){
@@ -32,30 +28,6 @@ public class Player {
 
 	public void setScore(Score score) {
 		this.score = score;
-	}
-
-	public Map<AugmenterType, Integer> getAugmentersUsesAvailable() {
-		return augmentersUsesAvailable;
-	}
-	
-	public void setNewAugmenter(AugmenterType augmenterType, Integer uses) {
-		if(augmentersUsesAvailable == null) {
-			augmentersUsesAvailable = new HashMap<>();
-		}
-		if(!augmentersUsesAvailable.containsKey(augmenterType))
-			augmentersUsesAvailable.put(augmenterType, uses);
-	}
-	
-	public Integer getAugmentersUsesAvailable(AugmenterType augmenterType)  {
-		if(augmentersUsesAvailable != null && augmentersUsesAvailable.containsKey(augmenterType)) {
-			return augmentersUsesAvailable.get(augmenterType);
-		}
-		return 0;
-	}
-	
-	public void substractUseOfAugmenter(AugmenterType scoreAugmenter) {
-		Integer currentUses = augmentersUsesAvailable.get(scoreAugmenter);
-		augmentersUsesAvailable.put(scoreAugmenter, currentUses - 1);
 	}
 
 	public void answerQuestion(Question question, List<GameOption> selectedOption) {
