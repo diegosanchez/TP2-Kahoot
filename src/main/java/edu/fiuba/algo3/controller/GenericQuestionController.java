@@ -16,7 +16,7 @@ import javafx.scene.layout.GridPane;
 import java.util.*;
 
 
-public class GenericQuestionController {
+public abstract class GenericQuestionController {
 
 
     public Label playerName;
@@ -34,22 +34,7 @@ public class GenericQuestionController {
     private AugmenterType augmenterType;
 
 
-    public void setUpView(GameController controller){
-        this.gameController = controller;
-        playerName.setText(gameController.getCurrentPlayer().getName());
-        playerScore.setText((Integer.toString(gameController.getCurrentPlayer().getScore().getValue())));
-        questionText.setText(gameController.getCurrentQuestion().getText());
-
-        List<CheckBox> buttonList = (List) gridPane.getChildren();
-
-        int i = 0;
-        for (GameOption option : (gameController.getCurrentQuestion().getOptions())) {
-            CheckBox button = buttonList.get(i);
-            button.setText(option.getText());
-            button.setOnAction(this::addAnswer);
-            i++;
-        }
-    }
+    public abstract void setUpView();
 
     public void addAnswer(ActionEvent event){
         CheckBox source = (CheckBox) event.getSource();
@@ -78,9 +63,20 @@ public class GenericQuestionController {
         gameController.doNext(selectedAnswers, augmenterType);
     }
 
-    public void initialize(){
+    public GameController getGameController(){
+        return this.gameController;
+    }
+
+    public void initialize(GameController controller){
         System.out.println("GenericQuestionController load.");
         selectedAnswers = new ArrayList<>();
         augmenterType = null;
+
+        this.gameController = controller;
+        playerName.setText(gameController.getCurrentPlayer().getName());
+        playerScore.setText((Integer.toString(gameController.getCurrentPlayer().getScore().getValue())));
+        questionText.setText(gameController.getCurrentQuestion().getText());
+
+        setUpView();
     }
 }

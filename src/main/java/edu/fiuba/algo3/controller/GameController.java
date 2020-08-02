@@ -32,8 +32,8 @@ public class GameController {
 
     private void setQuestionSceneView(){
         try{
-            //SceneLoader.loadScene(stage, getCurrentQuestion().getView());
-            SceneLoader.loadScene(stage, Views.GENERIC_QUESTION_VIEW);
+            SceneLoader.loadScene(stage, getCurrentQuestion().getView());
+            //SceneLoader.loadScene(stage, Views.GENERIC_QUESTION_VIEW);
         } catch (ViewLoadingException e) {
             e.printStackTrace();
             SceneLoader.loadErrorPage();
@@ -48,7 +48,7 @@ public class GameController {
         }
 
         GenericQuestionController controller = SceneLoader.getSceneController();
-        controller.setUpView(this);
+        controller.initialize(this);
     }
     public Player getCurrentPlayer(){
         return this.game.getCurrentPlayer();

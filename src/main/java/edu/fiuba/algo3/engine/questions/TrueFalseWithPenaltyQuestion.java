@@ -6,7 +6,7 @@ import java.util.List;
 import edu.fiuba.algo3.model.GameOption;
 import edu.fiuba.algo3.model.Question;
 
-import static edu.fiuba.algo3.constants.Views.TRUE_FALSE_WITH_PENALTY_QUESTION_VIEW;
+import static edu.fiuba.algo3.constants.Views.TRUE_FALSE_QUESTION_VIEW;
 
 public class TrueFalseWithPenaltyQuestion extends Question {	
 	
@@ -40,6 +40,6 @@ public class TrueFalseWithPenaltyQuestion extends Question {
 
 	@Override
 	public String getView() {
-		return TRUE_FALSE_WITH_PENALTY_QUESTION_VIEW;
+		return TRUE_FALSE_QUESTION_VIEW;
 	}
 }
