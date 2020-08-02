@@ -36,7 +36,7 @@ public class OrderedChoiceTest {
 	}
 	
 	@Test
-	public void opcionesEnOrdenCorrectoDevuelveCero() {
+	public void opcionesEnOrdenIncorrectoDevuelveCero() {
 		OrderedChoiceQuestion question = new OrderedChoiceQuestion("Ordenar los numeros de menor a mayor");
 		
 		GameOption opcionUno = new GameOption("1");

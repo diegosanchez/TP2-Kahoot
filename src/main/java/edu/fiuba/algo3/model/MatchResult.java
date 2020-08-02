@@ -67,10 +67,6 @@ public class MatchResult {
 		return selectedAugmenter;
 	}
 
-	public void setSelectedAugmenter(AugmenterType selectedAugmenter) {
-		this.selectedAugmenter = selectedAugmenter;
-	}
-
 	public Score getMatchScore() {
 		return matchScore;
 	}
@@ -82,5 +78,8 @@ public class MatchResult {
 	public void sumMatchScoreToPlayer() {
 		player.getScore().sumScore(matchScore);
 	}
-	
+
+	public void calculateForScoreAugmenter(Score playerScore,Score opponentScore) {
+		selectedAugmenter.calculateForInstance(playerScore, opponentScore);
+	}
 }
