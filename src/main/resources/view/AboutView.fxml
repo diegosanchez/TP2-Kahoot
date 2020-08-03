@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<DialogPane minHeight="291.0" minWidth="453.0" prefHeight="291.0" prefWidth="552.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.AboutViewController">
-   <header>
-      <VBox alignment="TOP_CENTER" prefHeight="64.0" prefWidth="552.0">
+
+<BorderPane minHeight="350.0" minWidth="453.0" prefHeight="291.0" prefWidth="552.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.AboutViewController">
+   <top>
+      <VBox alignment="TOP_CENTER" prefHeight="64.0" prefWidth="552.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="title" text="TITLE">
                <font>
@@ -18,22 +19,26 @@
             <Label fx:id="course" text="course">
                <font>
                   <Font size="16.0" />
-               </font></Label>
+               </font>
+            </Label>
          </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
          <padding>
             <Insets top="20.0" />
          </padding>
       </VBox>
-   </header>
-   <content>
-      <VBox alignment="CENTER" prefHeight="150.0" prefWidth="552.0">
+   </top>
+   <center>
+      <VBox alignment="CENTER" prefHeight="150.0" prefWidth="552.0" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" contentDisplay="TOP" text="Integrantes" textAlignment="CENTER" underline="true">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="list" layoutX="92.0" layoutY="123.0" text="lista de pibes">
+            <Label fx:id="list" text="lista de pibes">
                <font>
                   <Font size="16.0" />
                </font>
@@ -51,5 +56,5 @@
             </Label>
          </children>
       </VBox>
-   </content>
-</DialogPane>
+   </center>
+</BorderPane>
