@@ -68,8 +68,11 @@ public class GameTest {
 		 game.setPlayers(lista);
 		 List<Question> questions = new ArrayList<>();
 		 questions.add(new TrueFalseQuestion("¿1 es mayor a 2?"));
+		 questions.add(new TrueFalseQuestion("¿1 es mayor a 2?"));
 		 game.setQuestions(questions);
 		 game.start();
+		 game.nextTurn(new ArrayList<GameOption>(), StringConstants.TWO_MULTIPLIER);
+		 game.nextTurn(new ArrayList<GameOption>(), StringConstants.TWO_MULTIPLIER);
 		 game.nextTurn(new ArrayList<GameOption>(), StringConstants.TWO_MULTIPLIER);
 		 game.nextTurn(new ArrayList<GameOption>(), StringConstants.TWO_MULTIPLIER);
 		 assertTrue(game.isOver());

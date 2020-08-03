@@ -28,7 +28,7 @@ public enum AugmenterType {
 		}
 	}
 	
-	public ScoreAugmenter getInstance() {
+	public ScoreAugmenter getScoreAugmenter() {
 		return this.scoreAugmenter;
 	}
 
