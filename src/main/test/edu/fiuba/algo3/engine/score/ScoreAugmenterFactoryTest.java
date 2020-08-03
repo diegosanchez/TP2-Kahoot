@@ -7,6 +7,7 @@ import edu.fiuba.algo3.engine.score.augmenters.ExclusivityMultiplier;
 import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;
 import edu.fiuba.algo3.engine.score.augmenters.ThreeMultiplier;
 import edu.fiuba.algo3.engine.score.augmenters.TwoMultiplier;
+import edu.fiuba.algo3.model.Player;
 import edu.fiuba.algo3.model.Question;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -65,5 +66,18 @@ public class ScoreAugmenterFactoryTest {
 
         Assertions.assertEquals(multiplier.getAugmenterType(), augmenter.getAugmenterType());
     }
+    
+    @Test
+    public void aumentadorDobleConJugadorParaPreguntaConPenalidadSeInicializaCorrectamenteTest(){
+        Question question = new TrueFalseWithPenaltyQuestion("Cuanto es dos mas dos?");
+        Player player = new Player("Jugador");
+        TwoMultiplier multiplier = new TwoMultiplier();
+
+        ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(StringConstants.TWO_MULTIPLIER, question, player);
+
+        Assertions.assertEquals(multiplier.getAugmenterType(), augmenter.getAugmenterType());
+    }
+    
+    
 
 }
