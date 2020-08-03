@@ -50,4 +50,8 @@ public class Player {
 	public int getExclusivityUsesAvailable() {
 		return exclusivityUses;
 	}
+
+	public void updateScore(Score opponentScore) {
+		this.score.update(opponentScore);
+	}
 }

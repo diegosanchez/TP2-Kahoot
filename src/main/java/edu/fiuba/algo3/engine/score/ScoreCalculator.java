@@ -16,7 +16,7 @@ public class ScoreCalculator {
 		players.stream().forEach(playerOne -> {
 			players.stream().forEach(playerTwo -> {
 				if(!playerOne.equals(playerTwo)) {
-					playerOne.getScore().update(playerTwo.getScore());
+					playerOne.updateScore(playerTwo.getScore());
 				}
 			});
 		});
