@@ -10,6 +10,12 @@ public class Score {
 
 	public Score(int value){
 		this.value = value;
+		questionScore = 0;
+	}
+
+	public Score(int value, int questionScore){
+		this.value = value;
+		this.questionScore = questionScore;
 	}
 
 	public void update(Score oponentScore){
