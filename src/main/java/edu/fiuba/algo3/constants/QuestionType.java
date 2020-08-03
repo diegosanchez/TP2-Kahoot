@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.constants;
 
 import edu.fiuba.algo3.engine.questions.*;
+import edu.fiuba.algo3.model.Question;
 
 public enum QuestionType {
 	MULTIPLE_CHOICE(MultipleChoiceQuestion.class), 
@@ -11,21 +12,15 @@ public enum QuestionType {
 	ORDERED_QUESTION(OrderedChoiceQuestion.class), 
 	GROUP_CHOICE(GroupChoiceQuestion.class);
 	
-	private Class questionClass;
+	private Class<? extends Question> questionClass;
 	
-	QuestionType(Class questionClass) {
-		this.setQuestionClass(questionClass);
-	}
-
-	public Class getQuestionClass() {
-		return questionClass;
-	}
-
-	public void setQuestionClass(Class questionClass) {
+	QuestionType(Class<? extends Question> questionClass) {
 		this.questionClass = questionClass;
 	}
-	
-	
+
+	public Class<? extends Question> getQuestionClass() {
+		return questionClass;
+	}
 	
 	
 }

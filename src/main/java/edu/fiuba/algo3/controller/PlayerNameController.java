@@ -55,7 +55,6 @@ public class PlayerNameController{
     }
 
     public void initialize(){
-        System.out.println("PlayerNameController load.");
         players = new ArrayList<>();
     }
 }

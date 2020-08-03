@@ -66,7 +66,6 @@ public abstract class GenericQuestionController {
     }
 
     public void initialize(GameController controller){
-        System.out.println("GenericQuestionController load.");
         selectedAnswers = new ArrayList<>();
         augmenterString = "";
 

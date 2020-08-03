@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.controller;
 
-import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.constants.Stylesheets;
 import edu.fiuba.algo3.constants.Views;
 import edu.fiuba.algo3.exceptions.StylesheetLoadingException;
@@ -15,13 +14,18 @@ import edu.fiuba.algo3.model.Question;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class GameController {
 
     private Game game;
     private Stage stage;
-
+    
+    private static final Logger logger = LoggerFactory.getLogger(GameController.class);
+    
     public void play(Game game, Stage stage){
         this.game = game;
         this.stage = stage;
@@ -33,9 +37,8 @@ public class GameController {
     private void setQuestionSceneView(){
         try{
             SceneLoader.loadScene(stage, getCurrentQuestion().getView());
-            //SceneLoader.loadScene(stage, Views.GENERIC_QUESTION_VIEW);
         } catch (ViewLoadingException e) {
-            e.printStackTrace();
+        	logger.error("View not loaded", e);
             SceneLoader.loadErrorPage();
         }
 
@@ -44,7 +47,7 @@ public class GameController {
         try {
             StylesheetLoader.loadStylesheet(scene, Stylesheets.QUESTIONS_CSS);
         } catch (StylesheetLoadingException e1) {
-            e1.printStackTrace();
+        	logger.error("Stylesheet not loaded", e1);
         }
 
         GenericQuestionController controller = SceneLoader.getSceneController();
@@ -58,7 +61,7 @@ public class GameController {
         return this.game.getCurrentQuestion();
     }
 
-    public void doNext(ArrayList<GameOption> selectedAnswers, String augmenterString){
+    public void doNext(List<GameOption> selectedAnswers, String augmenterString){
         if(!game.isOver()){
             game.nextTurn(selectedAnswers, augmenterString);
             setQuestionSceneView();
@@ -71,14 +74,12 @@ public class GameController {
         try{
             SceneLoader.loadScene(stage, Views.RESULTS_VIEW);
         } catch (ViewLoadingException e) {
-            e.printStackTrace();
+        	logger.error("View not loaded", e);
+        	SceneLoader.loadErrorPage();
         }
 
         ResultsViewController controller = SceneLoader.getSceneController();
         controller.initialize(game);
     }
 
-    public void initialize(){
-        System.out.println("GameController load.");
-    }
 }
