@@ -31,7 +31,7 @@ public abstract class GenericQuestionController {
 
     private GameController gameController;
     private ArrayList<GameOption> selectedAnswers;
-    private AugmenterType augmenterType;
+    private String augmenterString;
 
 
     public abstract void setUpView();
@@ -54,13 +54,11 @@ public abstract class GenericQuestionController {
 
     public void addAugmenter(MouseEvent event){
         Label source = (Label) event.getSource();
-        ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(source.getText(), gameController.getCurrentQuestion());
-
-        if(augmenter != null) augmenterType = augmenter.getAugmenterType();
+        augmenterString = source.getText();
     }
 
     public void doNext(){
-        gameController.doNext(selectedAnswers, augmenterType);
+        gameController.doNext(selectedAnswers, augmenterString);
     }
 
     public GameController getGameController(){
@@ -70,7 +68,7 @@ public abstract class GenericQuestionController {
     public void initialize(GameController controller){
         System.out.println("GenericQuestionController load.");
         selectedAnswers = new ArrayList<>();
-        augmenterType = null;
+        augmenterString = "";
 
         this.gameController = controller;
         playerName.setText(gameController.getCurrentPlayer().getName());

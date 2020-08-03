@@ -3,6 +3,8 @@ package edu.fiuba.algo3.entregas;
 import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.engine.questions.*;
 import edu.fiuba.algo3.engine.score.ScoreCalculator;
+import edu.fiuba.algo3.engine.score.augmenters.ThreeMultiplier;
+import edu.fiuba.algo3.engine.score.augmenters.TwoMultiplier;
 import edu.fiuba.algo3.model.*;
 import org.junit.jupiter.api.Test;
 
@@ -140,9 +142,9 @@ public class EntregaDosTest {
         opcionesJugadorDos.add(opcionUno);
         opcionesJugadorDos.add(opcionDos);
 
-        MatchResult resultJugadorUno = jugadorUno.answerQuestion(opcionesJugadorUno);
-        MatchResult resultJugadorDos = jugadorDos.answerQuestion(opcionesJugadorDos);
-        ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
+        jugadorUno.answerQuestion(question, opcionesJugadorUno);
+        jugadorDos.answerQuestion(question, opcionesJugadorDos);
+        ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
         assertEquals(new Score(1), jugadorUno.getScore());
         assertEquals(new Score(0), jugadorDos.getScore());
@@ -215,9 +217,9 @@ public class EntregaDosTest {
         opcionesJugadorDos.add(opcionElegidaJ2Tres);
         opcionesJugadorDos.add(opcionElegidaJ2Cuatro);
 
-        MatchResult resultJugadorUno = jugadorUno.answerQuestion(opcionesJugadorUno);
-        MatchResult resultJugadorDos = jugadorDos.answerQuestion(opcionesJugadorDos);
-        ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
+        jugadorUno.answerQuestion(question, opcionesJugadorUno);
+        jugadorDos.answerQuestion(question, opcionesJugadorDos);
+        ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
         assertEquals(new Score(1), jugadorUno.getScore());
         assertEquals(new Score(0), jugadorDos.getScore());
@@ -255,9 +257,9 @@ public class EntregaDosTest {
         opcionesJugadorDos.add(opcionTres);
         opcionesJugadorDos.add(opcionDos);
 
-        MatchResult resultJugadorUno = jugadorUno.answerQuestion(opcionesJugadorUno);
-        MatchResult resultJugadorDos = jugadorDos.answerQuestion(opcionesJugadorDos);
-        ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
+        jugadorUno.answerQuestion(question, opcionesJugadorUno);
+        jugadorDos.answerQuestion(question, opcionesJugadorDos);
+        ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
         assertEquals(new Score(1), jugadorUno.getScore());
         assertEquals(new Score(0), jugadorDos.getScore());
@@ -272,7 +274,6 @@ public class EntregaDosTest {
     public void calculoDePreguntaTrueFalseAsignaPuntosAlJugadorConMultiplicadorx2YTieneUnUsoMenosTest() {
         Player jugadorUno = new Player("JugadorUno");
         Player jugadorDos = new Player("JugadorDos");
-        jugadorDos.setNewAugmenter(AugmenterType.MULTIPLY_PER_TWO, 2);
 
         TrueFalseWithPenaltyQuestion question = new TrueFalseWithPenaltyQuestion("¿1 es mayor que 2?");
 
@@ -286,9 +287,9 @@ public class EntregaDosTest {
         List<GameOption> opcionJugadorDos = new ArrayList<GameOption>();
         opcionJugadorDos.add(opcionFalse);
 
-        MatchResult resultJugadorUno = jugadorUno.answerQuestion(opcionJugadorUno);
-        MatchResult resultJugadorDos = jugadorDos.answerQuestionWithAugmenter(opcionJugadorDos, AugmenterType.MULTIPLY_PER_TWO);
-        ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
+        jugadorUno.answerQuestion(question, opcionJugadorUno);
+        jugadorDos.answerQuestionWithAugmenter(question, opcionJugadorDos, new TwoMultiplier());
+        ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
         assertEquals(new Score(-1), jugadorUno.getScore());
         assertEquals(new Score(2), jugadorDos.getScore());
@@ -304,7 +305,6 @@ public class EntregaDosTest {
     public void calculoDePreguntaTrueFalseAsignaPuntosAlJugadorConMultiplicadorx3YTieneUnUsoMenosTest() {
         Player jugadorUno = new Player("JugadorUno");
         Player jugadorDos = new Player("JugadorDos");
-        jugadorDos.setNewAugmenter(AugmenterType.MULTIPLY_PER_THREE, 2);
 
         TrueFalseWithPenaltyQuestion question = new TrueFalseWithPenaltyQuestion("¿1 es mayor que 2?");
 
@@ -318,9 +318,9 @@ public class EntregaDosTest {
         List<GameOption> opcionJugadorDos = new ArrayList<GameOption>();
         opcionJugadorDos.add(opcionFalse);
 
-        MatchResult resultJugadorUno = jugadorUno.answerQuestion(opcionJugadorUno);
-        MatchResult resultJugadorDos = jugadorDos.answerQuestionWithAugmenter(opcionJugadorDos, AugmenterType.MULTIPLY_PER_THREE);
-        ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
+        jugadorUno.answerQuestion(question, opcionJugadorUno);
+        jugadorDos.answerQuestionWithAugmenter(question, opcionJugadorDos, new ThreeMultiplier());
+        ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
         assertEquals(new Score(-1), jugadorUno.getScore());
         assertEquals(new Score(3), jugadorDos.getScore());
@@ -336,7 +336,6 @@ public class EntregaDosTest {
     public void calculoDePreguntaTrueFalseRestaPuntosAlJugadorConMultiplicadorx2YTieneUnUsoMenosTest() {
         Player jugadorUno = new Player("JugadorUno");
         Player jugadorDos = new Player("JugadorDos");
-        jugadorDos.setNewAugmenter(AugmenterType.MULTIPLY_PER_TWO, 2);
 
         TrueFalseWithPenaltyQuestion question = new TrueFalseWithPenaltyQuestion("¿1 es mayor que 2?");
 
@@ -350,9 +349,9 @@ public class EntregaDosTest {
         List<GameOption> opcionJugadorDos = new ArrayList<GameOption>();
         opcionJugadorDos.add(opcionTrue);
 
-        MatchResult resultJugadorUno = jugadorUno.answerQuestion(opcionJugadorUno);
-        MatchResult resultJugadorDos = jugadorDos.answerQuestionWithAugmenter(opcionJugadorDos, AugmenterType.MULTIPLY_PER_TWO);
-        ScoreCalculator.calculateAndAssignPoints(question, resultJugadorUno, resultJugadorDos);
+        jugadorUno.answerQuestion(question, opcionJugadorUno);
+        jugadorDos.answerQuestionWithAugmenter(question, opcionJugadorDos, new TwoMultiplier());
+        ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
         assertEquals(new Score(1), jugadorUno.getScore());
         assertEquals(new Score(-2), jugadorDos.getScore());

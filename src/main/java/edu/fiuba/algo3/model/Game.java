@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.model;
 
-import edu.fiuba.algo3.constants.AugmenterType;
+import edu.fiuba.algo3.engine.score.ScoreAugmenterFactory;
 import edu.fiuba.algo3.engine.score.ScoreCalculator;
+import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class Game {
 	private Question currentQuestion;
 	private Iterator<Player> playersIterator;
 	private Iterator<Question> questionIterator;
-	private HashMap<Player, MatchResult> playerResults;
+	private boolean isOver;
 
 	public List<Player> getPlayers() {
 		return players;
@@ -38,7 +38,7 @@ public class Game {
 	}
 
 	public boolean isOver(){
-		return (!playersIterator.hasNext() && !questionIterator.hasNext());
+		return !questionIterator.hasNext();
 	}
 
 	public Question getCurrentQuestion(){
@@ -54,25 +54,26 @@ public class Game {
 		initPlayers();
 		questionIterator = questions.iterator();
 		currentQuestion = questionIterator.next();
-		playerResults = new HashMap<Player, MatchResult>();
+		isOver = false;
 	}
 
-	public void nextTurn(List<GameOption> selectedOptions, AugmenterType selectedAugmenter){
-		if(selectedAugmenter != null) currentPlayer.setNewAugmenter(selectedAugmenter, 2);
+	public void nextTurn(List<GameOption> selectedOptions, String augmenterString){
+		ScoreAugmenter selectedAugmenter = ScoreAugmenterFactory.
+				createScoreAugmenter(augmenterString, currentQuestion, currentPlayer.getAugmentersUsesAvailable());
 
-		MatchResult result = new MatchResult(currentPlayer, selectedOptions, selectedAugmenter);
-		playerResults.put(currentPlayer, result);
+		currentPlayer.answerQuestionWithAugmenter(currentQuestion, selectedOptions, selectedAugmenter);
 
-		if(playersIterator.hasNext()) {
+		if(playersIterator.hasNext()){
 			currentPlayer = playersIterator.next();
-		}else if(questionIterator.hasNext()){
-			MatchResult resultPlayerOne = playerResults.get(players.get(0));
-			MatchResult resultPlayerTwo = playerResults.get(players.get(1));
+		}
+		else if(!isOver){
+			ScoreCalculator.calculateAndAssignPoints(players.get(0), currentPlayer);
 
-			ScoreCalculator.calculateAndAssignPoints(currentQuestion, resultPlayerOne, resultPlayerTwo);
-
-			currentQuestion = questionIterator.next();
-			initPlayers();
+			if(questionIterator.hasNext()){
+				currentQuestion = questionIterator.next();
+				initPlayers();
+			}
+			else isOver = true;
 		}
 	}
 
@@ -81,5 +82,9 @@ public class Game {
 			return players.get(0);
 		}
 		return players.get(1);
+	}
+
+	public int getTurnCount(){
+		return players.size() * questions.size();
 	}
 }

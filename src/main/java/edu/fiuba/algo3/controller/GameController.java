@@ -58,9 +58,9 @@ public class GameController {
         return this.game.getCurrentQuestion();
     }
 
-    public void doNext(ArrayList<GameOption> selectedAnswers, AugmenterType augmenterType){
+    public void doNext(ArrayList<GameOption> selectedAnswers, String augmenterString){
         if(!game.isOver()){
-            game.nextTurn(selectedAnswers, augmenterType);
+            game.nextTurn(selectedAnswers, augmenterString);
             setQuestionSceneView();
         }
         else endGame();

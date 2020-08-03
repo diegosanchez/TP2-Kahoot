@@ -7,12 +7,17 @@ public class ThreeMultiplier extends ScoreAugmenter{
 	
 	@Override
 	public void applyScoreAugmenter(Score questionScore, Score opponentQuestionScore) {			
-		questionScore.setValue(questionScore.getValue() * 3);
+		questionScore.setQuestionScore(questionScore.getQuestionScore() * 3);
 	}
 
 	@Override
 	public AugmenterType getAugmenterType() {
 		return AugmenterType.MULTIPLY_PER_THREE;
+	}
+
+	@Override
+	public boolean isNil() {
+		return false;
 	}
 
 }

@@ -6,8 +6,10 @@ import edu.fiuba.algo3.model.Score;
 public enum AugmenterType {
 	MULTIPLY_PER_TWO(TwoMultiplier.class, true),
 	MULTIPLY_PER_THREE(ThreeMultiplier.class, true),
-	EXCLUSIVITY(ExclusivityMultiplier.class, false);
-		
+	EXCLUSIVITY(ExclusivityMultiplier.class, false),
+	NO_MULTIPLIER(NoMultiplier.class, true);
+
+
 	private ScoreAugmenter scoreAugmenter;
 	private boolean forPenaltyQuestions;
 	
