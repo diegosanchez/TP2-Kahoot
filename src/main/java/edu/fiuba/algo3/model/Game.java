@@ -59,7 +59,7 @@ public class Game {
 
 	public void nextTurn(List<GameOption> selectedOptions, String augmenterString){
 		ScoreAugmenter selectedAugmenter = ScoreAugmenterFactory.
-				createScoreAugmenter(augmenterString, currentQuestion, currentPlayer.getAugmentersUsesAvailable());
+				createScoreAugmenter(augmenterString, currentQuestion, currentPlayer);
 
 		currentPlayer.answerQuestionWithAugmenter(currentQuestion, selectedOptions, selectedAugmenter);
 
