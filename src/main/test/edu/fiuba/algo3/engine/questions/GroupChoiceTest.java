@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.engine.questions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +59,36 @@ public class GroupChoiceTest {
 		assertEquals(1, question.calculatePoints(listaOpcionesElegidas));
 	}
 
+	@Test
+	public void gruposDevueltosPorLaPreguntaSonIgualesALosCreados() {
+		GroupChoiceQuestion question = new GroupChoiceQuestion("Agrupar las opciones según corresponda.");
+		List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
+		
+		OptionGroup grupoPares = new OptionGroup("Pares");
+		OptionGroup grupoImpares = new OptionGroup("Impares");
+		
+		GameOption opcionUno = new GameOption("1");
+		GameOption opcionDos = new GameOption("2");
+		GameOption opcionTres = new GameOption("3");
+		GameOption opcionCuatro = new GameOption("4");
+
+		opcionDos.setOptionGroup(grupoPares);
+		opcionCuatro.setOptionGroup(grupoPares);
+		
+		opcionUno.setOptionGroup(grupoImpares);
+		opcionTres.setOptionGroup(grupoImpares);		
+		
+		listaOpcionesCorrectas.add(opcionUno);
+		listaOpcionesCorrectas.add(opcionDos);
+		listaOpcionesCorrectas.add(opcionTres);
+		listaOpcionesCorrectas.add(opcionCuatro);
+		
+		question.setCorrectOptions(listaOpcionesCorrectas);
+		
+		assertTrue(question.getOptionGroupList().contains(grupoPares));
+		assertTrue(question.getOptionGroupList().contains(grupoImpares));		
+	}
+	
 	@Test
 	public void opcionesIncorrectasDevuelveCero() {
 		GroupChoiceQuestion question = new GroupChoiceQuestion("Agrupar las opciones según corresponda.");

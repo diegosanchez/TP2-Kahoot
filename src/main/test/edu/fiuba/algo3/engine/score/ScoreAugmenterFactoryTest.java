@@ -78,6 +78,28 @@ public class ScoreAugmenterFactoryTest {
         Assertions.assertEquals(multiplier.getAugmenterType(), augmenter.getAugmenterType());
     }
     
+    @Test
+    public void aumentadorTripleConJugadorParaPreguntaConPenalidadSeInicializaCorrectamenteTest(){
+        Question question = new TrueFalseWithPenaltyQuestion("Cuanto es dos mas dos?");
+        Player player = new Player("Jugador");
+        ThreeMultiplier multiplier = new ThreeMultiplier();
+
+        ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(StringConstants.THREE_MULTIPLIER, question, player);
+
+        Assertions.assertEquals(multiplier.getAugmenterType(), augmenter.getAugmenterType());
+    }
+    
+    @Test
+    public void aumentadorExclusividadConJugadorParaPreguntaSinPenalidadSeInicializaCorrectamenteTest(){
+    	Question question = new TrueFalseQuestion("Cuanto es dos mas dos?");
+        Player player = new Player("Jugador");
+        ExclusivityMultiplier multiplier = new ExclusivityMultiplier();
+
+        ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(StringConstants.EXCLUSIVITY_MULTIPLIER, question, player);
+
+        Assertions.assertEquals(multiplier.getAugmenterType(), augmenter.getAugmenterType());
+    }
+    
     
 
 }
