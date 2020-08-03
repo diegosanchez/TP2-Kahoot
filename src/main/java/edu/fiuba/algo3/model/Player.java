@@ -12,15 +12,12 @@ public class Player {
 	
 	private String name;
 	private Score score;
-	private int exclusivityUses;
 	private HashMap<AugmenterType, Integer> augmentersUsesAvailable;
 	private final Integer augmenterUses = 2;
 
 	public Player(String name){
 		this.name = name;
-		exclusivityUses = 2;
 		score = new Score(0);
-
 		augmentersUsesAvailable = new HashMap<>();
 	}
 
