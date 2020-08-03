@@ -18,4 +18,5 @@ jobs:
       - "src/main/java/edu/fiuba/algo3/controller"
       - "src/main/java/edu/fiuba/algo3/App.java"
       - "src/main/java/edu/fiuba/algo3/SystemInfo.java"
+      - "src/main/java/edu/fiuba/algo3/loaders/SceneLoader.java"
 
