@@ -38,7 +38,7 @@ public class Game {
 	}
 
 	public boolean isOver(){
-		return !questionIterator.hasNext();
+		return isOver;
 	}
 
 	public Question getCurrentQuestion(){
