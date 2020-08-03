@@ -93,7 +93,7 @@ public class ScoreCalculatorTest {
 
 		assertEquals(new Score(0), jugadorUno.getScore());
 		assertEquals(new Score(2), jugadorDos.getScore());
-		assertEquals(1, jugadorDos.getExclusivityUsesAvailable());
+		assertEquals(1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
 	}
 	
 	@Test
@@ -119,8 +119,8 @@ public class ScoreCalculatorTest {
 
 		assertEquals(new Score(0), jugadorUno.getScore());
 		assertEquals(new Score(0), jugadorDos.getScore());
-		assertEquals(1, jugadorUno.getExclusivityUsesAvailable());
-		assertEquals(1, jugadorDos.getExclusivityUsesAvailable());
+		assertEquals(1, jugadorUno.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
+		assertEquals(1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
 	}
 	
 	@Test
@@ -146,8 +146,8 @@ public class ScoreCalculatorTest {
 
 		assertEquals(new Score(0), jugadorUno.getScore());
 		assertEquals(new Score(4), jugadorDos.getScore());
-		assertEquals(1, jugadorUno.getExclusivityUsesAvailable());
-		assertEquals(1, jugadorDos.getExclusivityUsesAvailable());
+		assertEquals(1, jugadorUno.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
+		assertEquals(1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));
 	}
 
 }

@@ -1,8 +1,11 @@
 package edu.fiuba.algo3.engine.score;
 
+import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.constants.StringConstants;
 import edu.fiuba.algo3.engine.score.augmenters.*;
 import edu.fiuba.algo3.model.Question;
+
+import java.util.HashMap;
 
 public class ScoreAugmenterFactory {
 
@@ -25,20 +28,25 @@ public class ScoreAugmenterFactory {
         return augmenter;
     }
 
-    public static ScoreAugmenter createScoreAugmenter(String text, Question question, int exclusivityUses){
+    public static ScoreAugmenter createScoreAugmenter(String text, Question question,
+                       HashMap<AugmenterType, Integer> augmentersUses){
+
         ScoreAugmenter augmenter = new NoMultiplier();
 
         switch(text){
             case StringConstants.TWO_MULTIPLIER:
-                if(question.hasPenalty()) augmenter = new TwoMultiplier();
+                if(question.hasPenalty() && augmentersUses.get(AugmenterType.MULTIPLY_PER_TWO) > 0)
+                    augmenter = new TwoMultiplier();
                 break;
 
             case StringConstants.THREE_MULTIPLIER:
-                if(question.hasPenalty()) augmenter = new ThreeMultiplier();
+                if(question.hasPenalty() && augmentersUses.get(AugmenterType.MULTIPLY_PER_THREE) > 0)
+                    augmenter = new ThreeMultiplier();
                 break;
 
             case StringConstants.EXCLUSIVITY_MULTIPLIER:
-                if(!question.hasPenalty() && exclusivityUses > 0) augmenter = new ExclusivityMultiplier();
+                if(!question.hasPenalty() && augmentersUses.get(AugmenterType.EXCLUSIVITY) > 0)
+                    augmenter = new ExclusivityMultiplier();
         }
 
         return augmenter;

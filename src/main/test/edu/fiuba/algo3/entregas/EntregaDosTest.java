@@ -271,7 +271,7 @@ public class EntregaDosTest {
      */
 
     @Test
-    public void calculoDePreguntaTrueFalseAsignaPuntosAlJugadorConMultiplicadorx2Test() {
+    public void calculoDePreguntaTrueFalseAsignaPuntosAlJugadorConMultiplicadorx2YTieneUnUsoMenosTest() {
         Player jugadorUno = new Player("JugadorUno");
         Player jugadorDos = new Player("JugadorDos");
 
@@ -293,6 +293,7 @@ public class EntregaDosTest {
 
         assertEquals(new Score(-1), jugadorUno.getScore());
         assertEquals(new Score(2), jugadorDos.getScore());
+        assertEquals(1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_TWO));
     }
 
     /***
@@ -301,7 +302,7 @@ public class EntregaDosTest {
      */
 
     @Test
-    public void calculoDePreguntaTrueFalseAsignaPuntosAlJugadorConMultiplicadorx3Test() {
+    public void calculoDePreguntaTrueFalseAsignaPuntosAlJugadorConMultiplicadorx3YTieneUnUsoMenosTest() {
         Player jugadorUno = new Player("JugadorUno");
         Player jugadorDos = new Player("JugadorDos");
 
@@ -323,6 +324,7 @@ public class EntregaDosTest {
 
         assertEquals(new Score(-1), jugadorUno.getScore());
         assertEquals(new Score(3), jugadorDos.getScore());
+        assertEquals(1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_THREE));
     }
 
     /***
@@ -331,7 +333,7 @@ public class EntregaDosTest {
      */
 
     @Test
-    public void calculoDePreguntaTrueFalseRestaPuntosAlJugadorConMultiplicadorx2Test() {
+    public void calculoDePreguntaTrueFalseRestaPuntosAlJugadorConMultiplicadorx2YTieneUnUsoMenosTest() {
         Player jugadorUno = new Player("JugadorUno");
         Player jugadorDos = new Player("JugadorDos");
 
@@ -353,5 +355,6 @@ public class EntregaDosTest {
 
         assertEquals(new Score(1), jugadorUno.getScore());
         assertEquals(new Score(-2), jugadorDos.getScore());
+        assertEquals(1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_TWO));
     }
 }

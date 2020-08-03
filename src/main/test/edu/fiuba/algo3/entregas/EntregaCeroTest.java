@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import edu.fiuba.algo3.engine.questions.TrueFalseQuestion;
 import edu.fiuba.algo3.engine.score.ScoreCalculator;
 import edu.fiuba.algo3.model.GameOption;
-import edu.fiuba.algo3.model.MatchResult;
 import edu.fiuba.algo3.model.Player;
 
 public class EntregaCeroTest {

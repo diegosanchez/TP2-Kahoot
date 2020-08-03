@@ -13,7 +13,6 @@ import edu.fiuba.algo3.engine.questions.MultipleChoiceWithPenaltyQuestion;
 import edu.fiuba.algo3.engine.questions.TrueFalseWithPenaltyQuestion;
 import edu.fiuba.algo3.engine.score.ScoreCalculator;
 import edu.fiuba.algo3.model.GameOption;
-import edu.fiuba.algo3.model.MatchResult;
 import edu.fiuba.algo3.model.Player;
 import edu.fiuba.algo3.model.Score;
 
