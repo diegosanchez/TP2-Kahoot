@@ -3,6 +3,7 @@ package edu.fiuba.algo3.model;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.engine.score.augmenters.NoMultiplier;
@@ -12,13 +13,12 @@ public class Player {
 	
 	private String name;
 	private Score score;
-	private HashMap<AugmenterType, Integer> augmentersUsesAvailable;
-	private final Integer augmenterUses = 2;
+	private Map<AugmenterType, Integer> augmentersUsesAvailable;
 
 	public Player(String name){
 		this.name = name;
 		score = new Score(0);
-		augmentersUsesAvailable = new HashMap<>();
+		initializeAugmenterUses();
 	}
 
 	public String getName() {
@@ -33,16 +33,15 @@ public class Player {
 		this.score = score;
 	}
 
-	public HashMap<AugmenterType, Integer> getAugmentersUsesAvailable() {
-		return augmentersUsesAvailable;
-	}
-
-	public Integer getAugmentersUsesAvailable(AugmenterType augmenterType)  {
-		if(augmentersUsesAvailable.containsKey(augmenterType)) {
-			return augmentersUsesAvailable.get(augmenterType);
+	private void initializeAugmenterUses() {
+		augmentersUsesAvailable = new HashMap<>();
+		for(AugmenterType augmenterType : AugmenterType.values()) {
+			augmentersUsesAvailable.put(augmenterType, augmenterType.getUsesPerPlayer());
 		}
-		else augmentersUsesAvailable.put(augmenterType, augmenterUses);
-		return augmenterUses;
+	}
+	
+	public Integer getAugmentersUsesAvailable(AugmenterType augmenterType)  {
+		return augmentersUsesAvailable.get(augmenterType);
 	}
 
 	public void answerQuestion(Question question, List<GameOption> selectedOption) {

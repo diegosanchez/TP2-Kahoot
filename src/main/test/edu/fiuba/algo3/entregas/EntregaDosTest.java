@@ -293,7 +293,7 @@ public class EntregaDosTest {
 
         assertEquals(new Score(-1), jugadorUno.getScore());
         assertEquals(new Score(2), jugadorDos.getScore());
-        assertEquals(1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_TWO));
+        assertEquals(AugmenterType.MULTIPLY_PER_TWO.getUsesPerPlayer() - 1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_TWO));
     }
 
     /***
@@ -324,7 +324,7 @@ public class EntregaDosTest {
 
         assertEquals(new Score(-1), jugadorUno.getScore());
         assertEquals(new Score(3), jugadorDos.getScore());
-        assertEquals(1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_THREE));
+        assertEquals(AugmenterType.MULTIPLY_PER_THREE.getUsesPerPlayer() - 1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_THREE));
     }
 
     /***
@@ -355,6 +355,6 @@ public class EntregaDosTest {
 
         assertEquals(new Score(1), jugadorUno.getScore());
         assertEquals(new Score(-2), jugadorDos.getScore());
-        assertEquals(1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_TWO));
+        assertEquals(AugmenterType.MULTIPLY_PER_TWO.getUsesPerPlayer() - 1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_TWO));
     }
 }
