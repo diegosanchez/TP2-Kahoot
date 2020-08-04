@@ -6,7 +6,7 @@ abstract Question{
     + id : long
     + options : List<GameOption>
     # correctOptions : List<GameOption>
-    - calculatePoints(List<GameOptions>) : int
+    - {abstract}calculatePoints(List<GameOptions>) : int
 }
 
 class GameOption{
@@ -20,8 +20,13 @@ class OptionGroup{
 }
 
 class Score{
-    + value : int
-    - sumScore(Score score)
+    - value : int
+	- questionScore : int
+	- augmenter : ScoreAugmenter
+    + update(Score oponentScore)
+    + setQuestionScore()
+    + setAugmenter()
+    + equals(Object obj) : Boolean
 }
 
 class Game{
@@ -33,49 +38,38 @@ class Game{
     + getWinner()
 }
 
-class MatchResult{
-    + player : Player
-	+ selectedOptions : List<GameOption> 
-	+ selectedAugmenter : AugmenterType 
-    + sumMatchScoreToPlayer()
-    + calculateForScoreAugmenter()
-}
-
 class ScoreCalculator{
-    - {static} calculateAndAssignPoints(MatchResult p1Result,p2Result, question)
-	+ checkAugmenters(MatchResult playerResult, Score p1Score, Score p2Score)
+    - {static} calculateAndAssignPoints(Player ... players)
+	+ {static} calculate(List<Player> players)
 }
 
 class Player{
     + name : String
 	+ score : int
 	+ augmentersUsesAvailable : Map<AugmenterType, Int>
-    + answerQuestion(GameOption selectedOption) : MatchResult
-    + answerQuestion(List<GameOption> selectedOption) : MatchResult
-    + answerQuestionWithAugmenter(selectedOption, augmenter) : MatchResult
+    + answerQuestion(List<GameOption> selectedOption)
+    + answerQuestionWithAugmenter(selectedOption, augmenter)
+    + updateScore(Score score)
 }
 
 abstract ScoreAugmenter{
-    + applyScoreAugmenter(currentPlayer, opponent, score, opponentScore)
-    + substractUseOfAugmenter(player)
-    - {abstract}applyScoreAugmenter(Score questionScore, Score opponentQuestionScore)
+    - {abstract}applyScoreAugmenter(currentPlayer, opponent, score, opponentScore)
+    # {abstract}isNil() : Boolean
+    # {abstract}getAugmenterType() : AugmenterType
 }
 
 
-Game  --down>  Question
-Game --down>  Player
+Game  o--"1..*"  Question
+Game o--"1..*"  Player
 
-OptionGroup --|> GameOption
+Score "1..1"*--left ScoreAugmenter
+ScoreCalculator --> Player
 
-ScoreCalculator --right> MatchResult
-ScoreCalculator --> Question
-
-MatchResult "1..1"*--up Player
-MatchResult o-- ScoreAugmenter
-MatchResult --> ScoreAugmenter
+Player --left> Question
 
 Player "1..1"*-- Score
 
-Question "1..*"*--up GameOption
+Question "1..*"*--left GameOption
+OptionGroup --up|> GameOption
 
 @enduml
