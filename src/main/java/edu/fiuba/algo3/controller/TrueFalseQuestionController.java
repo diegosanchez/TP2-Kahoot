@@ -33,5 +33,10 @@ public class TrueFalseQuestionController extends GenericQuestionController{
             button.setOnAction(this::addAnswer);
             i++;
         }
+        while (i<6){
+            CheckBox unusedButton = buttonList.get(i);
+            unusedButton.setVisible(false);
+            i++;
+        }
     }
 }

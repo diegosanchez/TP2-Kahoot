@@ -20,7 +20,7 @@
                   <Insets top="40.0" />
                </VBox.margin>
             </Label>
-            <Label text="ha GANADO" textFill="WHITE">
+            <Label fx:id="announcer" text="ha GANADO" textFill="WHITE">
                <font>
                   <Font size="30.0" />
                </font>

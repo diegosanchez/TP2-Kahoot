@@ -1,5 +1,6 @@
 package edu.fiuba.algo3.controller;
 
+import edu.fiuba.algo3.model.Player;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,6 +21,9 @@ public class ResultsViewController {
 
     @FXML
     public Label playerWinner;
+
+    @FXML
+    public Label announcer;
 
     @FXML
     public Label player1Name;
@@ -56,10 +60,16 @@ public class ResultsViewController {
     }
 
     public void initialize(Game game) {
-        //Aqui deberia de haber una funcion que nos de el nombre del ganador
-        //de la partida
+        Player winner = game.getWinner();
 
-        playerWinner.setText(game.getWinner().getName());
+        if(winner == null){
+            playerWinner.setVisible(false);
+            announcer.setText("EMPATE");
+        }
+        else{
+            playerWinner.setText(winner.getName());
+        }
+
 
         player1Name.setText(game.getPlayers().get(0).getName());
         player2Name.setText((game.getPlayers().get(1).getName()));
