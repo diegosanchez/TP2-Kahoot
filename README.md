@@ -50,15 +50,15 @@ Se deberá ejecutar el siguiente comando dentro del directorio del proyecto:
 
 Diagrama de clases principal del proyecto:
 
-<img src="https://github.com/GEscandar/TP2-Kahoot/blob/actualizacion-diagramas/docs/out/diagramaClases-Principal-TP2/DiagramaUML-Clases-TP2.png?raw=true">
+<img src="https://github.com/GEscandar/TP2-Kahoot/blob/actualizacion-diagramas/docs/out/diagramaClases-Principal-TP2/DiagramaClases-Principal-TP2.png?raw=true">
 
 Para la clase abstracta ScoreAugmenter, se creó un diagrama de clases en detalle:
 
-<img src="https://github.com/GEscandar/TP2-Kahoot/blob/actualizacion-diagramas/docs/out/DiagramaClases-DetalleAugmentatio/DiagramaUML-DetalleAugmentation-TP2.png?raw=true">
+<img src="https://github.com/GEscandar/TP2-Kahoot/blob/actualizacion-diagramas/docs/out/DiagramaClases-DetalleAugmentation/DiagramaClases-DetalleAugmentation-TP2.png?raw=true">
 
 Lo mismo para el detalle de la clase abstracta Question:
 
-<img src="https://github.com/GEscandar/TP2-Kahoot/blob/actualizacion-diagramas/docs/out/DiagramaClases-DetallePreguntas-TP2/DiagramaUML-DetallePreguntas-TP2.png?raw=true">
+<img src="https://github.com/GEscandar/TP2-Kahoot/blob/actualizacion-diagramas/docs/out/DiagramaClases-DetallePreguntas-TP2/DiagramaClases-DetallePreguntas-TP2.png?raw=true">
 
 Diagrama de Secuencia para calculo de puntaje a un jugador:
 
