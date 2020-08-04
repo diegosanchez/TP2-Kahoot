@@ -88,9 +88,6 @@ public class ScoreCalculatorTest {
 		jugadorDos.answerQuestionWithAugmenter(question, opcionJugadorDos, new ExclusivityMultiplier());
 		ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
-		System.out.println(jugadorUno.getScore().getValue());
-		System.out.println(jugadorUno.getScore().getValue());
-
 		assertEquals(new Score(0), jugadorUno.getScore());
 		assertEquals(new Score(2), jugadorDos.getScore());
 		assertEquals(1, jugadorDos.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY));

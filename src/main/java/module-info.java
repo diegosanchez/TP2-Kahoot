@@ -5,6 +5,7 @@ module edu.fiuba.algo3 {
 	requires javafx.graphics;
 	requires java.sql;
 	requires com.google.gson;
+	requires org.slf4j;
 	
     exports edu.fiuba.algo3;
     exports edu.fiuba.algo3.controller;

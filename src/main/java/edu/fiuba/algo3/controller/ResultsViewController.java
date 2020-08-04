@@ -1,5 +1,8 @@
 package edu.fiuba.algo3.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import edu.fiuba.algo3.constants.Views;
 import edu.fiuba.algo3.exceptions.ViewLoadingException;
 import edu.fiuba.algo3.loaders.SceneLoader;
@@ -12,6 +15,8 @@ import javafx.stage.Stage;
 
 
 public class ResultsViewController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(ResultsViewController.class);
 
     @FXML
     public Label playerWinner;
@@ -40,7 +45,7 @@ public class ResultsViewController {
         try{
             SceneLoader.loadScene(stage, Views.PLAYER_NAME_VIEW);
         }catch (ViewLoadingException e){
-            e.printStackTrace();
+        	logger.error("View not loaded", e);
         }
     }
 
@@ -51,7 +56,6 @@ public class ResultsViewController {
     }
 
     public void initialize(Game game) {
-        System.out.println("ResultsViewController load.");
         //Aqui deberia de haber una funcion que nos de el nombre del ganador
         //de la partida
 

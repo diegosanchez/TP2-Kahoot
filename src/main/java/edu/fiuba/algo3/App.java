@@ -1,5 +1,8 @@
 package edu.fiuba.algo3;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import edu.fiuba.algo3.constants.Views;
 import edu.fiuba.algo3.exceptions.ViewLoadingException;
 import edu.fiuba.algo3.loaders.SceneLoader;
@@ -15,6 +18,8 @@ public class App extends Application {
 
 	private static Stage stage;
 	
+	private static final Logger logger = LoggerFactory.getLogger(App.class);
+	
     @Override
     public void start(Stage stage) {        
 		try {			
@@ -26,7 +31,9 @@ public class App extends Application {
 
 	        stage.show();
 		} catch (ViewLoadingException e) {
+			logger.error("View not found", e);
 			SceneLoader.loadErrorPage();
+			stage.show();
 		}
     }
 
