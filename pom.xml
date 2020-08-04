@@ -136,7 +136,9 @@
 				    </systemPropertyVariables>
 				    <excludes>
 				    	<exclude>edu/fiuba/algo3/App.class</exclude>
+				    	<exclude>edu/fiuba/algo3/SystemInfo.class</exclude>
 				        <exclude>edu/fiuba/algo3/controller/*.class</exclude>
+				        <exclude>edu/fiuba/algo3/loaders/SceneLoader.class</exclude>
 				    </excludes>
 				</configuration>
             </plugin>   
