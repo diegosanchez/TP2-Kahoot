@@ -28,7 +28,7 @@ public class GameTest {
 	private List<Question> questions;
 
 	/*
-	 * Ver preguntas en archivo 'preguntas.json'
+	 * Ver preguntas en archivo 'preguntas-test.json'
 	 * */
 
 	@BeforeEach
@@ -148,17 +148,62 @@ public class GameTest {
 				Arrays.asList() // suma cero
 		);
 
-		Iterator iterador1 = respuestasJugador1.iterator();
-		Iterator iterador2 = respuestasJugador2.iterator();
+		Iterator<List<GameOption>> iterador1 = respuestasJugador1.iterator();
+		Iterator<List<GameOption>> iterador2 = respuestasJugador2.iterator();
 
 		while(!game.isOver()){
 			if(game.getCurrentPlayer().equals(jugadorUno))
-				game.nextTurn((List<GameOption>) iterador1.next(), null);
+				game.nextTurn(iterador1.next(), null);
 			else
-				game.nextTurn((List<GameOption>) iterador2.next(), "");
+				game.nextTurn(iterador2.next(), "");
 		}
 
 		Assertions.assertEquals(new Score(1), jugadorUno.getScore());
 		Assertions.assertEquals(new Score(3), jugadorDos.getScore());
+	}
+
+	@Test
+	public void juegoCompletoConMultiplicadoresTest(){
+
+		List<List<GameOption>> respuestasJugador1 = Arrays.asList(
+				Arrays.asList(new GameOption("3"), new GameOption("4")), // suma cero
+				Arrays.asList(new GameOption("2"), new GameOption("3"), new GameOption("4")), // suma uno
+				Arrays.asList(new GameOption("1"), new GameOption("2")), // suma cero
+				Arrays.asList(), // suma cero
+				Arrays.asList(new GameOption("Verdadero")), // suma uno
+				Arrays.asList(new GameOption("Falso")), // resta uno
+				Arrays.asList() // suma cero
+		);
+
+		List<String> multiplicadoresJugador1 = Arrays.asList("", StringConstants.TWO_MULTIPLIER, "",
+				StringConstants.EXCLUSIVITY_MULTIPLIER, StringConstants.TWO_MULTIPLIER, StringConstants.THREE_MULTIPLIER, "");
+
+		List<List<GameOption>> respuestasJugador2 = Arrays.asList(
+				Arrays.asList(new GameOption("2"), new GameOption("4")), // suma uno
+				Arrays.asList(new GameOption("2"), new GameOption("3"), new GameOption("4")), // suma uno
+				Arrays.asList(new GameOption("1"), new GameOption("2")), // suma cero
+				Arrays.asList(new GameOption("1"), new GameOption("2"), new GameOption("3"), new GameOption("4")), // suma uno
+				Arrays.asList(new GameOption("Verdadero")), // suma uno
+				Arrays.asList(new GameOption("Falso")), // resta uno
+				Arrays.asList() // suma cero
+		);
+
+		List<String> multiplicadoresJugador2 = Arrays.asList(StringConstants.EXCLUSIVITY_MULTIPLIER, "", "",
+				StringConstants.EXCLUSIVITY_MULTIPLIER, StringConstants.THREE_MULTIPLIER, StringConstants.TWO_MULTIPLIER, "");
+
+		Iterator<List<GameOption>> iterador1 = respuestasJugador1.iterator();
+		Iterator<List<GameOption>> iterador2 = respuestasJugador2.iterator();
+		Iterator<String> multiplicadores1 = multiplicadoresJugador1.iterator();
+		Iterator<String> multiplicadores2 = multiplicadoresJugador2.iterator();
+
+		while(!game.isOver()){
+			if(game.getCurrentPlayer().equals(jugadorUno))
+				game.nextTurn(iterador1.next(), multiplicadores1.next());
+			else
+				game.nextTurn(iterador2.next(), multiplicadores2.next());
+		}
+
+		Assertions.assertEquals(new Score(0), jugadorUno.getScore());
+		Assertions.assertEquals(new Score(6), jugadorDos.getScore());
 	}
 }
