@@ -6,49 +6,34 @@ import edu.fiuba.algo3.engine.score.augmenters.*;
 import edu.fiuba.algo3.model.Player;
 import edu.fiuba.algo3.model.Question;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class ScoreAugmenterFactory {
 
     public static ScoreAugmenter createScoreAugmenter(String text, Question question){
-        ScoreAugmenter augmenter = null;
+        ScoreAugmenter augmenter = new NoMultiplier();
 
-        switch(text){
-            case StringConstants.TWO_MULTIPLIER:
-                if(question.hasPenalty()) augmenter = new TwoMultiplier();
+        for(AugmenterType type : AugmenterType.values()){
+            if(type.getLabelString().equals(text)){
+                if(question.hasPenalty() == type.isForPenaltyQuestions())
+                    augmenter = type.getScoreAugmenter();
                 break;
-
-            case StringConstants.THREE_MULTIPLIER:
-                if(question.hasPenalty()) augmenter = new ThreeMultiplier();
-                break;
-
-            case StringConstants.EXCLUSIVITY_MULTIPLIER:
-                if(!question.hasPenalty()) augmenter = new ExclusivityMultiplier();
+            }
         }
 
         return augmenter;
     }
 
-    public static ScoreAugmenter createScoreAugmenter(String text, Question question,
-                       Player player){
-
+    public static ScoreAugmenter createScoreAugmenter(Player player, Question question, String text){
         ScoreAugmenter augmenter = new NoMultiplier();
 
-        if(text != null){
-            switch(text){
-                case StringConstants.TWO_MULTIPLIER:
-                    if(question.hasPenalty() && player.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_TWO) > 0)
-                        augmenter = new TwoMultiplier();
+        for(AugmenterType type : AugmenterType.values()){
+            if(type.getLabelString().equals(text)){
+                if(question.hasPenalty() == type.isForPenaltyQuestions() && player.getAugmentersUsesAvailable(type) > 0)
+                    augmenter = type.getScoreAugmenter();
                     break;
-
-                case StringConstants.THREE_MULTIPLIER:
-                    if(question.hasPenalty() && player.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_THREE) > 0)
-                        augmenter = new ThreeMultiplier();
-                    break;
-
-                case StringConstants.EXCLUSIVITY_MULTIPLIER:
-                    if(!question.hasPenalty() && player.getAugmentersUsesAvailable(AugmenterType.EXCLUSIVITY) > 0)
-                        augmenter = new ExclusivityMultiplier();
             }
         }
 

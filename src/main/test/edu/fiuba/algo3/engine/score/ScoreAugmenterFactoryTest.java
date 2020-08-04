@@ -18,7 +18,7 @@ public class ScoreAugmenterFactoryTest {
         Question question = new TrueFalseQuestion("Cuanto es dos mas dos?");
         ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(StringConstants.TWO_MULTIPLIER, question);
 
-        Assertions.assertNull(augmenter);
+        Assertions.assertEquals(true, augmenter.isNil());
     }
 
     @Test
@@ -36,7 +36,7 @@ public class ScoreAugmenterFactoryTest {
         Question question = new TrueFalseQuestion("Cuanto es dos mas dos?");
         ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(StringConstants.THREE_MULTIPLIER, question);
 
-        Assertions.assertNull(augmenter);
+        Assertions.assertEquals(true, augmenter.isNil());
     }
 
     @Test
@@ -54,7 +54,7 @@ public class ScoreAugmenterFactoryTest {
         Question question = new TrueFalseWithPenaltyQuestion("Cuanto es dos mas dos?");
         ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(StringConstants.EXCLUSIVITY_MULTIPLIER, question);
 
-        Assertions.assertNull(augmenter);
+        Assertions.assertEquals(true, augmenter.isNil());
     }
 
     @Test
@@ -73,7 +73,7 @@ public class ScoreAugmenterFactoryTest {
         Player player = new Player("Jugador");
         TwoMultiplier multiplier = new TwoMultiplier();
 
-        ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(StringConstants.TWO_MULTIPLIER, question, player);
+        ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(player, question, StringConstants.TWO_MULTIPLIER);
 
         Assertions.assertEquals(multiplier.getAugmenterType(), augmenter.getAugmenterType());
     }
@@ -84,7 +84,7 @@ public class ScoreAugmenterFactoryTest {
         Player player = new Player("Jugador");
         ThreeMultiplier multiplier = new ThreeMultiplier();
 
-        ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(StringConstants.THREE_MULTIPLIER, question, player);
+        ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(player, question, StringConstants.THREE_MULTIPLIER);
 
         Assertions.assertEquals(multiplier.getAugmenterType(), augmenter.getAugmenterType());
     }
@@ -95,7 +95,7 @@ public class ScoreAugmenterFactoryTest {
         Player player = new Player("Jugador");
         ExclusivityMultiplier multiplier = new ExclusivityMultiplier();
 
-        ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(StringConstants.EXCLUSIVITY_MULTIPLIER, question, player);
+        ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(player, question, StringConstants.EXCLUSIVITY_MULTIPLIER);
 
         Assertions.assertEquals(multiplier.getAugmenterType(), augmenter.getAugmenterType());
     }

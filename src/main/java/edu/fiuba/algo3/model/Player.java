@@ -29,10 +29,6 @@ public class Player {
 		return score;
 	}
 
-	public void setScore(Score score) {
-		this.score = score;
-	}
-
 	private void initializeAugmenterUses() {
 		augmentersUsesAvailable = new HashMap<>();
 		for(AugmenterType augmenterType : AugmenterType.values()) {
@@ -59,7 +55,7 @@ public class Player {
 
 		if(!augmenter.isNil()){
 			Integer uses = getAugmentersUsesAvailable(augmenter.getAugmenterType());
-			augmentersUsesAvailable.put(augmenter.getAugmenterType(), uses  >= 1 ? (uses - 1) : 0);
+			augmentersUsesAvailable.put(augmenter.getAugmenterType(), uses  > 1 ? (uses - 1) : 0);
 		}
 	}
 

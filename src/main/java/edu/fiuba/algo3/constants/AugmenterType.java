@@ -7,22 +7,25 @@ import edu.fiuba.algo3.engine.score.augmenters.*;
 import edu.fiuba.algo3.model.Score;
 
 public enum AugmenterType {
-	MULTIPLY_PER_TWO(TwoMultiplier.class, true, AugmenterUses.MULTIPLY_PER_TWO_USES),
-	MULTIPLY_PER_THREE(ThreeMultiplier.class, true, AugmenterUses.MULTIPLY_PER_THREE_USES),
-	EXCLUSIVITY(ExclusivityMultiplier.class, false, AugmenterUses.EXCLUSIVITY_USES),
-	NO_MULTIPLIER(NoMultiplier.class, true, 1);
+	MULTIPLY_PER_TWO(TwoMultiplier.class, true, AugmenterUses.MULTIPLY_PER_TWO_USES, StringConstants.TWO_MULTIPLIER),
+	MULTIPLY_PER_THREE(ThreeMultiplier.class, true, AugmenterUses.MULTIPLY_PER_THREE_USES, StringConstants.THREE_MULTIPLIER),
+	EXCLUSIVITY(ExclusivityMultiplier.class, false, AugmenterUses.EXCLUSIVITY_USES, StringConstants.EXCLUSIVITY_MULTIPLIER),
+	NO_MULTIPLIER(NoMultiplier.class, true, 1, "");
 
 	private ScoreAugmenter scoreAugmenter;
 	private boolean forPenaltyQuestions;
 	private int usesPerPlayer;
+	private String labelString;
 	
 	private Logger logger = LoggerFactory.getLogger(AugmenterType.class);
 	
-	AugmenterType(Class<? extends ScoreAugmenter> scoreAugmenterClass, boolean forPenaltyQuestions, int usesPerPlayer){
+	AugmenterType(Class<? extends ScoreAugmenter> scoreAugmenterClass, boolean forPenaltyQuestions,
+				  int usesPerPlayer, String labelString){
 		try {
 			this.scoreAugmenter = scoreAugmenterClass.getDeclaredConstructor().newInstance();
 			this.forPenaltyQuestions = forPenaltyQuestions;
 			this.usesPerPlayer = usesPerPlayer;
+			this.labelString = labelString;
 		} catch (Exception ex) {
 			logger.error(ex.getMessage(), ex);
 		}
@@ -35,12 +38,13 @@ public enum AugmenterType {
 	public boolean isForPenaltyQuestions() {
 		return forPenaltyQuestions;
 	}
+
+	public String getLabelString(){
+		return labelString;
+	}
 	
 	public int getUsesPerPlayer() {
 		return this.usesPerPlayer;
 	}
 
-	public void calculateForInstance(Score playerScore, Score opponentScore) {
-		scoreAugmenter.applyScoreAugmenter(playerScore, opponentScore);
-	}	
 }
