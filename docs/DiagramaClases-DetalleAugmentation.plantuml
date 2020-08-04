@@ -1,0 +1,42 @@
+@startuml DiagramaUML-DetalleAugmentation-TP2
+
+skinparam classAttributeIconSize 0
+
+abstract ScoreAugmenter{
+    - {abstract}applyScoreAugmenter(Score score, Score opponentScore)
+    # {abstract}isNil() : Boolean
+    # {abstract}getAugmenterType() : AugmenterType
+}
+
+class ThreeMultiplyer{
+    # applyNewScore(Score score, Score opponentScore)
+    # getAugmenterType() : AugmenterType
+    # isNil() : Boolean
+}
+
+class TwoMultiplyer{
+    # applyNewScore(Score score, Score opponentScore)
+    # getAugmenterType() : AugmenterType
+    # isNil() : Boolean
+}
+
+class ExclusivityMultiplier{
+    # applyNewScore(Score score, Score opponentScore)
+    # getAugmenterType() : AugmenterType
+    # isNil() : Boolean
+}
+
+class NoMultiplier{
+    # applyNewScore(Score score, Score opponentScore)
+    # getAugmenterType() : AugmenterType
+    # isNil() : Boolean
+}
+
+
+ThreeMultiplyer --left|> ScoreAugmenter
+TwoMultiplyer --right|> ScoreAugmenter
+NoMultiplier --down|> ScoreAugmenter
+
+ExclusivityMultiplier --up|> ScoreAugmenter
+
+@enduml

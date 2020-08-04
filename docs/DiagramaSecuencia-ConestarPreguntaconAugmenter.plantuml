@@ -1,51 +1,47 @@
-
 @startuml
 
 actor User
 title Diagrama Secuencia TP2 - Jugador contesta una pregunta con augmenter
 hide footbox
 
-participant "augmenter : ScoreAugmenter" as augmenter
 participant "player : Player" as player
+participant "score : Score" as score
+participant "multiplierX2 : TwoMultiplier" as multiplierx2
 
-User -> augmenter ** : new ScoreAugmenter\n("multiplicarX2")
 User -> player ** : new Player("Jugador1")
+User -> multiplierx2 ** : new 
+User -> player : answerQuestionWithAugmenter\n(question, selectedOptions, multiplerx2)
+activate player
 
-participant "match : MatchR" as match
+player -> score : setAugmenter(multiplierx2) 
 
-User -> player : answerQuestionwithAugmenter\n(selectedOptionsPlayerN, augmenter)
-player -> match **: new MatchResult(jugadorN, \nselectedOptionsPlayerN)
-player -> User : matchRN
+player -> Question : calculatePoints(selectedOption)
 
-User -> ScoreCalculator : calculateAndAssignPoints(match, match2, question)
-activate ScoreCalculator
-
-
-participant "newScore : Score" as puntaje
-ScoreCalculator -> Question : calculatePoints
 activate Question
-Question --> ScoreCalculator : newScore
+Question --> player : points
 deactivate Question
 
-ScoreCalculator -> puntaje **: new Score(newScore)
-
-ScoreCalculator -> ScoreCalculator : checkAugmenters(match, \nscorePlayer1, scorePlayer2)
-activate ScoreCalculator
-ScoreCalculator -> match : calculateForScoreAugmenter\n(scorePlayer1, scorePlayer2)
-activate match
-match -> augmenter : applyScoreAugmenter\n(playerScore, opponentScore)
-deactivate match
-deactivate ScoreCalculator
-
-ScoreCalculator -> match : getPlayer()
-activate match
-match -> player : getScore()
-activate player
-player -> player : sumScore(newScore)
+player -> score : setQuestionScore(points)
 deactivate player
-deactivate match
 
+User -> ScoreCalculator : calculateAndAssignPoints(player ... playerN)
+activate ScoreCalculator
 
+ScoreCalculator -> ScoreCalculator : calculate(playerList)
+activate ScoreCalculator
+loop N players
+loop N players
+ScoreCalculator -> player : updateScore(opponentScore)
+activate player
+player -> score : update(opponentScore)
+deactivate player
+activate score
+score -> multiplierX2 : applyScoreAugmenter(this, opponentScore)
+deactivate score
+
+deactivate ScoreCalculator
+end loop
+end loop
 deactivate ScoreCalculator
 
 @enduml

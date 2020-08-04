@@ -62,11 +62,10 @@ public class GameController {
     }
 
     public void doNext(List<GameOption> selectedAnswers, String augmenterString){
-        if(!game.isOver()){
-            game.nextTurn(selectedAnswers, augmenterString);
-            setQuestionSceneView();
-        }
-        else endGame();
+        game.nextTurn(selectedAnswers, augmenterString);
+        setQuestionSceneView();
+
+        if(game.isOver()) endGame();
     }
 
     private void endGame(){

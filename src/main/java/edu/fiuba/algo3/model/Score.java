@@ -43,14 +43,6 @@ public class Score {
 		return augmenter;
 	}
 
-	public void setValue(int value) {
-		this.value = value;
-	}
-	
-	public void sumScore(Score score) {
-		this.value = this.value + score.getValue();
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -1,0 +1,19 @@
+@startuml
+
+actor User
+title Diagrama Secuencia TP2 - Construcción de preguntas
+hide footbox
+
+User -> question ** : new TrueFalseWithPenaltyQuestion(¿1 es mayor que 2?")
+
+User -> opcionTrue ** : new GameOption("True")
+User -> opcionTrue ** : new GameOption("False")
+
+User -> question : setCorrectOption(opcionFalse)
+
+User ->question : calculatePoints(optcionFalse)
+activate question
+question --> User : 2
+deactivate question
+
+@enduml

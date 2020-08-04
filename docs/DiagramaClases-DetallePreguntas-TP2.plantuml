@@ -7,31 +7,38 @@ abstract Question{
     + text : String
     + options : List<GameOption>
     # correctOptions : List<GameOption>
-    - calculatePoints() : int
+    - {abstract}calculatePoints() : int
+    - {abstract}hasPenalty() : Boolean
 }
 
 class TrueFalseQuestion{
     - calculatePoints(List<GameOption> selectedOptions) : int
+    - hasPenalty() : Boolean
 }
 
 class TrueFalseWithPenaltyQuestion{
     - calculatePoints(List<GameOption> selectedOptions) : int
+    - hasPenalty() : Boolean
 }
 
 class OrderedChoiceQuestion{
     - calculatePoints(List<GameOption> selectedOptions) : int
+    - hasPenalty() : Boolean
 }
 
 class MultipleChoiceQuestion{
     - calculatePoints(List<GameOption> selectedOptions) : int
+    - hasPenalty() : Boolean
 }
 
 class MultipleChoiceWithPenaltyQuestion{
     - calculatePoints(List<GameOption> selectedOptions) : int
+    - hasPenalty() : Boolean
 }
 
 class GroupChoiceQuestion{
     - calculatePoints(List<GameOption> selectedOptions) : int
+    - hasPenalty() : Boolean
 }
 
 
