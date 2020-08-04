@@ -9,7 +9,7 @@ participant "score : Score" as score
 participant "multiplierX2 : TwoMultiplier" as multiplierx2
 
 User -> player ** : new Player("Jugador1")
-User -> multiplierX2** : new 
+User -> multiplierx2 ** : new 
 User -> player : answerQuestionWithAugmenter\n(question, selectedOptions, multiplerx2)
 activate player
 
