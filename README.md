@@ -50,19 +50,23 @@ Se deberá ejecutar el siguiente comando dentro del directorio del proyecto:
 
 Diagrama de clases principal del proyecto:
 
-<img src="https://github.com/GEscandar/TP2-Kahoot/blob/develop/docs/out/diagramaClases-Principal-TP2/DiagramaUML-Clases-TP2.png?raw=true">
+<img src="https://github.com/GEscandar/TP2-Kahoot/blob/actualizacion-diagramas/docs/out/diagramaClases-Principal-TP2/DiagramaUML-Clases-TP2.png?raw=true">
 
 Para la clase abstracta ScoreAugmenter, se creó un diagrama de clases en detalle:
 
-<img src="https://github.com/GEscandar/TP2-Kahoot/blob/master/docs/out/DiagramaUML-DetalleAugmentatio/DiagramaUML-DetalleAugmentation-TP2.png?raw=true">
+<img src="https://github.com/GEscandar/TP2-Kahoot/blob/actualizacion-diagramas/docs/out/DiagramaClases-DetalleAugmentatio/DiagramaUML-DetalleAugmentation-TP2.png?raw=true">
 
 Lo mismo para el detalle de la clase abstracta Question:
 
-<img src="https://github.com/GEscandar/TP2-Kahoot/blob/master/docs/out/DiagramaClases-DetallePreguntas-TP2/DiagramaUML-DetallePreguntas-TP2.png?raw=true">
+<img src="https://github.com/GEscandar/TP2-Kahoot/blob/actualizacion-diagramas/docs/out/DiagramaClases-DetallePreguntas-TP2/DiagramaUML-DetallePreguntas-TP2.png?raw=true">
 
 Diagrama de Secuencia para calculo de puntaje a un jugador:
 
-<img src="https://github.com/GEscandar/TP2-Kahoot/blob/master/docs/out/DiagramaSecuencia-PreguntaT-F/Diagrama%20Secuencia%20TP2%20-%20Prueba%20para%20pregunta%20True%20False%20asignando%20puntaje%20a%20Jugador%20-%20Entrega%200.png?raw=true">
+<img src="https://github.com/GEscandar/TP2-Kahoot/blob/actualizacion-diagramas/docs/out/DiagramaSecuencia-ConestarPregunta/Diagrama%20Secuencia%20TP2%20-%20Jugador%20contesta%20una%20pregunta.png?raw=true">
+
+Ya para el caso del jugador que aplica un multiplicador o exclusividad: 
+
+<img src="https://github.com/GEscandar/TP2-Kahoot/blob/actualizacion-diagramas/docs/out/DiagramaSecuencia-ConestarPreguntaconAugmenter/Diagrama%20Secuencia%20TP2%20-%20Jugador%20contesta%20una%20pregunta%20con%20augmenter.png?raw=true">
 
 ## Licencia
 
