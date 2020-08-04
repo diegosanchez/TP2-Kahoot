@@ -5,8 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -18,21 +22,34 @@ import edu.fiuba.algo3.loaders.QuestionLoader;
 
 public class GameTest {
 
+	private Game game;
+	private Player jugadorUno;
+	private Player jugadorDos;
+	private List<Question> questions;
+
+	/*
+	 * Ver preguntas en archivo 'preguntas.json'
+	 * */
+
+	@BeforeEach
+	public void setUp(){
+		game = new Game();
+		jugadorUno = new Player("Jugador uno");
+		jugadorDos = new Player("Jugador dos");
+
+		try {
+			questions = QuestionLoader.loadQuestions(ResourceConstants.QUESTIONS_TEST_PATH);
+		} catch (QuestionsNotLoadedException e) {
+			fail();
+		}
+
+		game.setPlayers(Arrays.asList(jugadorUno, jugadorDos));
+		game.setQuestions(questions);
+		game.start();
+	}
+
 	 @Test
 	 public void pasarDeTurnoCambiaElJugadorTest() {
-		 Game game = new Game();
-		 Player jugadorUno = new Player("Jugador uno");
-		 Player jugadorDos = new Player("Jugador dos");
-		 List<Player> lista = new ArrayList<>();
-		 lista.add(jugadorUno);
-		 lista.add(jugadorDos);
-		 game.setPlayers(lista);		 		 
-		 try {
-			game.setQuestions(QuestionLoader.loadQuestions(ResourceConstants.QUESTIONS_TEST_PATH));
-		 } catch (QuestionsNotLoadedException e) {
-			fail();
-		 }
-		 game.start();
 		 assertEquals(jugadorUno, game.getCurrentPlayer());
 		 game.nextTurn(new ArrayList<GameOption>(), StringConstants.TWO_MULTIPLIER);
 		 assertEquals(jugadorDos, game.getCurrentPlayer());
@@ -40,33 +57,12 @@ public class GameTest {
 	 
 	 @Test
 	 public void iniciarJuegoSeleccionaPreguntaInicialTest() {
-		 Game game = new Game();
-		 Player jugadorUno = new Player("Jugador uno");
-		 Player jugadorDos = new Player("Jugador dos");
-		 List<Player> lista = new ArrayList<>();
-		 lista.add(jugadorUno);
-		 lista.add(jugadorDos);
-		 game.setPlayers(lista);
-		 List<Question> questions = null;
-		 try {
-			questions = QuestionLoader.loadQuestions(ResourceConstants.QUESTIONS_TEST_PATH);		 
-			game.setQuestions(questions);
-		 } catch (QuestionsNotLoadedException e) {
-			fail();
-		 }
 		 game.start();
 		 assertEquals(questions.get(0), game.getCurrentQuestion());
 	 }
 	 
 	 @Test
 	 public void iterarTodasLasPreguntasFinalizaElJuegoTest() {
-		 Game game = new Game();
-		 Player jugadorUno = new Player("Jugador uno");
-		 Player jugadorDos = new Player("Jugador dos");
-		 List<Player> lista = new ArrayList<>();
-		 lista.add(jugadorUno);
-		 lista.add(jugadorDos);
-		 game.setPlayers(lista);
 		 List<Question> questions = new ArrayList<>();
 		 questions.add(new TrueFalseQuestion("¿1 es mayor a 2?"));
 		 questions.add(new TrueFalseQuestion("¿1 es mayor a 2?"));
@@ -97,4 +93,72 @@ public class GameTest {
 		 game.nextTurn(new ArrayList<GameOption>(), StringConstants.TWO_MULTIPLIER);
 		 assertEquals(jugadorUno, game.getWinner());
 	 }
+
+	@Test
+	public void ambosJugadoresRespondenTodoMalYLosPuntajesSonMenosUnoTest(){
+		while(!game.isOver()) game.nextTurn(new ArrayList(), null);
+
+		for(Player player : game.getPlayers()){
+			Assertions.assertEquals(new Score(-1), player.getScore());
+		}
+	}
+
+	@Test
+	public void ambosJugadoresRespondenTodoBienYLosPuntajesSonNueveTest(){
+		while(!game.isOver())
+			game.nextTurn(game.getCurrentQuestion().getCorrectOptions(), "");
+
+		for(Player player : game.getPlayers()){
+			Assertions.assertEquals(new Score(9), player.getScore());
+		}
+	}
+
+	@Test
+	public void ambosJugadoresAgotanSuExclusividadYNoGananPuntajeEnLasPrimerasDosPreguntasTest(){
+
+		while(!game.isOver()){
+			game.nextTurn(game.getCurrentQuestion().getCorrectOptions(), StringConstants.EXCLUSIVITY_MULTIPLIER);
+		}
+
+		for(Player player : game.getPlayers()){
+			Assertions.assertEquals(new Score(6), player.getScore());
+		}
+	}
+
+	@Test
+	public void juegoCompletoSinMultiplicadoresTest(){
+
+		List<List<GameOption>> respuestasJugador1 = Arrays.asList(
+				Arrays.asList(new GameOption("3"), new GameOption("4")), // suma cero
+				Arrays.asList(new GameOption("2"), new GameOption("3"), new GameOption("4")), // suma uno
+				Arrays.asList(new GameOption("1"), new GameOption("2")), // suma cero
+				Arrays.asList(), // suma cero
+				Arrays.asList(new GameOption("Verdadero")), // suma uno
+				Arrays.asList(new GameOption("Falso")), // resta uno
+				Arrays.asList() // suma cero
+		);
+
+		List<List<GameOption>> respuestasJugador2 = Arrays.asList(
+				Arrays.asList(new GameOption("2"), new GameOption("4")), // suma uno
+				Arrays.asList(new GameOption("2"), new GameOption("3"), new GameOption("4")), // suma uno
+				Arrays.asList(new GameOption("1"), new GameOption("2")), // suma cero
+				Arrays.asList(new GameOption("1"), new GameOption("2"), new GameOption("3"), new GameOption("4")), // suma uno
+				Arrays.asList(new GameOption("Verdadero")), // suma uno
+				Arrays.asList(new GameOption("Falso")), // resta uno
+				Arrays.asList() // suma cero
+		);
+
+		Iterator iterador1 = respuestasJugador1.iterator();
+		Iterator iterador2 = respuestasJugador2.iterator();
+
+		while(!game.isOver()){
+			if(game.getCurrentPlayer().equals(jugadorUno))
+				game.nextTurn((List<GameOption>) iterador1.next(), null);
+			else
+				game.nextTurn((List<GameOption>) iterador2.next(), "");
+		}
+
+		Assertions.assertEquals(new Score(1), jugadorUno.getScore());
+		Assertions.assertEquals(new Score(3), jugadorDos.getScore());
+	}
 }
