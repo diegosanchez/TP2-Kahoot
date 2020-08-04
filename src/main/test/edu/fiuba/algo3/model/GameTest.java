@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import edu.fiuba.algo3.constants.ResourceConstants;
 import edu.fiuba.algo3.constants.StringConstants;
@@ -80,11 +81,11 @@ public class GameTest {
 	 
 	 @Test
 	 public void unJugadorConMasPuntajeQueElOtroResultaGanadorTest() {
-		 Game game = new Game();
-		 Player jugadorUno = new Player("Jugador uno");
-		 jugadorUno.setScore(new Score(100));
-		 Player jugadorDos = new Player("Jugador dos");
-		 jugadorDos.setScore(new Score(50));
+		 Game game = new Game();		 
+		 Player jugadorUno = Mockito.mock(Player.class);
+		 Player jugadorDos = Mockito.mock(Player.class);
+		 Mockito.when(jugadorUno.getScore()).thenReturn(new Score(100));
+		 Mockito.when(jugadorDos.getScore()).thenReturn(new Score(50));
 		 List<Player> lista = new ArrayList<>();
 		 lista.add(jugadorUno);
 		 lista.add(jugadorDos);
