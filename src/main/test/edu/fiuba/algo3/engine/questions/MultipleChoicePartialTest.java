@@ -13,11 +13,11 @@ public class MultipleChoicePartialTest {
 	
 	@Test
 	public void opcionesCorrectasSumaUnPuntoCadaUna() {
-		MultipleChoiceWithPenaltyQuestion question = new MultipleChoiceWithPenaltyQuestion("¿Que numeros son impares?");
+		MultipleChoicePartialQuestion question = new MultipleChoicePartialQuestion("¿Que numeros son impares?");
 		GameOption opcionUno = new GameOption("1");
 		GameOption opcionTres = new GameOption("3");
 		
-		List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
+		List<GameOption> listaOpcionesCorrectas = new ArrayList<>();
 		listaOpcionesCorrectas.add(opcionUno);
 		listaOpcionesCorrectas.add(opcionTres);
 		
@@ -32,7 +32,7 @@ public class MultipleChoicePartialTest {
 	
 	@Test
 	public void opcionIncorrectaDevuelve0() {
-		MultipleChoiceWithPenaltyQuestion question = new MultipleChoiceWithPenaltyQuestion("¿Que numeros son impares?");		
+		MultipleChoicePartialQuestion question = new MultipleChoicePartialQuestion("¿Que numeros son impares?");
 		GameOption opcionUno = new GameOption("1");
 		GameOption opcionTres = new GameOption("3");
 		GameOption opcionCuatro = new GameOption("4");

@@ -2,8 +2,10 @@ package edu.fiuba.algo3.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.VBox;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import edu.fiuba.algo3.App;
 import edu.fiuba.algo3.constants.Views;
@@ -13,6 +15,8 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 
 public class MainController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
 	@FXML
 	public VBox mainWindow;
@@ -26,10 +30,6 @@ public class MainController {
 	@FXML
 	public Button AboutButton;
 
-	public void initialize() {
-		System.out.println("MainController loaded.");
-	}
-	
 	public void exitEvent(ActionEvent event) {
 		Platform.exit();
 	}
@@ -38,7 +38,7 @@ public class MainController {
 		try {
 			SceneLoader.loadModalAndShow(mainWindow, Views.ABOUT_VIEW);
 		} catch (ViewLoadingException e) {
-			e.printStackTrace();
+			logger.error("View not loaded", e);
 			SceneLoader.loadErrorPage();
 		}
 	}
@@ -47,7 +47,7 @@ public class MainController {
 		try {
 			SceneLoader.loadScene(App.getMainStage(),Views.PLAYER_NAME_VIEW);
 		} catch (ViewLoadingException e) {
-			e.printStackTrace();
+			logger.error("View not loaded", e);
 			SceneLoader.loadErrorPage();
 		}
 	}

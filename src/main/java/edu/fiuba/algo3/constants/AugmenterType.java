@@ -1,35 +1,46 @@
 package edu.fiuba.algo3.constants;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import edu.fiuba.algo3.engine.score.augmenters.*;
 import edu.fiuba.algo3.model.Score;
 
 public enum AugmenterType {
-	MULTIPLY_PER_TWO(TwoMultiplier.class, true),
-	MULTIPLY_PER_THREE(ThreeMultiplier.class, true),
-	EXCLUSIVITY(ExclusivityMultiplier.class, false);
-		
+	MULTIPLY_PER_TWO(TwoMultiplier.class, true, AugmenterUses.MULTIPLY_PER_TWO_USES),
+	MULTIPLY_PER_THREE(ThreeMultiplier.class, true, AugmenterUses.MULTIPLY_PER_THREE_USES),
+	EXCLUSIVITY(ExclusivityMultiplier.class, false, AugmenterUses.EXCLUSIVITY_USES),
+	NO_MULTIPLIER(NoMultiplier.class, true, 1);
+
 	private ScoreAugmenter scoreAugmenter;
 	private boolean forPenaltyQuestions;
+	private int usesPerPlayer;
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	AugmenterType(Class scoreAugmenterClass, boolean forPenaltyQuestions){
+	private Logger logger = LoggerFactory.getLogger(AugmenterType.class);
+	
+	AugmenterType(Class<? extends ScoreAugmenter> scoreAugmenterClass, boolean forPenaltyQuestions, int usesPerPlayer){
 		try {
-			this.scoreAugmenter = (ScoreAugmenter) scoreAugmenterClass.getDeclaredConstructor().newInstance();
+			this.scoreAugmenter = scoreAugmenterClass.getDeclaredConstructor().newInstance();
 			this.forPenaltyQuestions = forPenaltyQuestions;
+			this.usesPerPlayer = usesPerPlayer;
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			logger.error(ex.getMessage(), ex);
 		}
 	}
 	
-	public ScoreAugmenter getInstance() {
+	public ScoreAugmenter getScoreAugmenter() {
 		return this.scoreAugmenter;
 	}
 
 	public boolean isForPenaltyQuestions() {
 		return forPenaltyQuestions;
 	}
+	
+	public int getUsesPerPlayer() {
+		return this.usesPerPlayer;
+	}
 
 	public void calculateForInstance(Score playerScore, Score opponentScore) {
 		scoreAugmenter.applyScoreAugmenter(playerScore, opponentScore);
-	}
+	}	
 }

@@ -16,7 +16,7 @@ import javafx.scene.layout.GridPane;
 import java.util.*;
 
 
-public class GenericQuestionController {
+public abstract class GenericQuestionController {
 
 
     public Label playerName;
@@ -31,25 +31,10 @@ public class GenericQuestionController {
 
     private GameController gameController;
     private ArrayList<GameOption> selectedAnswers;
-    private AugmenterType augmenterType;
+    private String augmenterString;
 
 
-    public void setUpView(GameController controller){
-        this.gameController = controller;
-        playerName.setText(gameController.getCurrentPlayer().getName());
-        playerScore.setText((Integer.toString(gameController.getCurrentPlayer().getScore().getValue())));
-        questionText.setText(gameController.getCurrentQuestion().getText());
-
-        List<CheckBox> buttonList = (List) gridPane.getChildren();
-
-        int i = 0;
-        for (GameOption option : (gameController.getCurrentQuestion().getOptions())) {
-            CheckBox button = buttonList.get(i);
-            button.setText(option.getText());
-            button.setOnAction(this::addAnswer);
-            i++;
-        }
-    }
+    public abstract void setUpView();
 
     public void addAnswer(ActionEvent event){
         CheckBox source = (CheckBox) event.getSource();
@@ -69,18 +54,26 @@ public class GenericQuestionController {
 
     public void addAugmenter(MouseEvent event){
         Label source = (Label) event.getSource();
-        ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(source.getText(), gameController.getCurrentQuestion());
-
-        if(augmenter != null) augmenterType = augmenter.getAugmenterType();
+        augmenterString = source.getText();
     }
 
     public void doNext(){
-        gameController.doNext(selectedAnswers, augmenterType);
+        gameController.doNext(selectedAnswers, augmenterString);
     }
 
-    public void initialize(){
-        System.out.println("GenericQuestionController load.");
+    public GameController getGameController(){
+        return this.gameController;
+    }
+
+    public void initialize(GameController controller){
         selectedAnswers = new ArrayList<>();
-        augmenterType = null;
+        augmenterString = "";
+
+        this.gameController = controller;
+        playerName.setText(gameController.getCurrentPlayer().getName());
+        playerScore.setText((Integer.toString(gameController.getCurrentPlayer().getScore().getValue())));
+        questionText.setText(gameController.getCurrentQuestion().getText());
+
+        setUpView();
     }
 }
