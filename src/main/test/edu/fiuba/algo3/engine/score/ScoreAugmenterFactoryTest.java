@@ -3,10 +3,7 @@ package edu.fiuba.algo3.engine.score;
 import edu.fiuba.algo3.constants.StringConstants;
 import edu.fiuba.algo3.engine.questions.TrueFalseQuestion;
 import edu.fiuba.algo3.engine.questions.TrueFalseWithPenaltyQuestion;
-import edu.fiuba.algo3.engine.score.augmenters.ExclusivityMultiplier;
-import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;
-import edu.fiuba.algo3.engine.score.augmenters.ThreeMultiplier;
-import edu.fiuba.algo3.engine.score.augmenters.TwoMultiplier;
+import edu.fiuba.algo3.engine.score.augmenters.*;
 import edu.fiuba.algo3.model.Player;
 import edu.fiuba.algo3.model.Question;
 import org.junit.jupiter.api.Assertions;
@@ -16,9 +13,11 @@ public class ScoreAugmenterFactoryTest {
     @Test
     public void aumentadorDobleParaPreguntaSinPenalidadDevuelveNullTest(){
         Question question = new TrueFalseQuestion("Cuanto es dos mas dos?");
+        NoMultiplier multiplier = new NoMultiplier();
+
         ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(StringConstants.TWO_MULTIPLIER, question);
 
-        Assertions.assertEquals(true, augmenter.isNil());
+        Assertions.assertEquals(multiplier.getAugmenterType(), augmenter.getAugmenterType());
     }
 
     @Test
@@ -34,9 +33,11 @@ public class ScoreAugmenterFactoryTest {
     @Test
     public void aumentadorTripleParaPreguntaSinPenalidadDevuelveNullTest(){
         Question question = new TrueFalseQuestion("Cuanto es dos mas dos?");
+        NoMultiplier multiplier = new NoMultiplier();
+
         ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(StringConstants.THREE_MULTIPLIER, question);
 
-        Assertions.assertEquals(true, augmenter.isNil());
+        Assertions.assertEquals(multiplier.getAugmenterType(), augmenter.getAugmenterType());
     }
 
     @Test
@@ -52,9 +53,11 @@ public class ScoreAugmenterFactoryTest {
     @Test
     public void aumentadorDeExclusividadParaPreguntaConPenalidadDevuelveNullTest(){
         Question question = new TrueFalseWithPenaltyQuestion("Cuanto es dos mas dos?");
+        NoMultiplier multiplier = new NoMultiplier();
+
         ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(StringConstants.EXCLUSIVITY_MULTIPLIER, question);
 
-        Assertions.assertEquals(true, augmenter.isNil());
+        Assertions.assertEquals(multiplier.getAugmenterType(), augmenter.getAugmenterType());
     }
 
     @Test

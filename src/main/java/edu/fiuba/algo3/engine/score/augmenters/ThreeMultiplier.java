@@ -15,9 +15,4 @@ public class ThreeMultiplier extends ScoreAugmenter{
 		return AugmenterType.MULTIPLY_PER_THREE;
 	}
 
-	@Override
-	public boolean isNil() {
-		return false;
-	}
-
 }

@@ -8,6 +8,5 @@ public abstract class ScoreAugmenter {
 	
 	public abstract void applyScoreAugmenter(Score questionScore, Score opponentQuestionScore);
 	public abstract AugmenterType getAugmenterType();
-	public abstract boolean isNil();
 	
 }

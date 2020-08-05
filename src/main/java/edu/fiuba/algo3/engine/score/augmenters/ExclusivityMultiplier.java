@@ -22,9 +22,4 @@ public class ExclusivityMultiplier extends ScoreAugmenter {
 		return AugmenterType.EXCLUSIVITY;
 	}
 
-	@Override
-	public boolean isNil() {
-		return false;
-	}
-
 }

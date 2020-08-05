@@ -11,9 +11,4 @@ public class NoMultiplier extends ScoreAugmenter{
     public AugmenterType getAugmenterType() {
         return AugmenterType.NO_MULTIPLIER;
     }
-
-    @Override
-    public boolean isNil() {
-        return true;
-    }
 }
