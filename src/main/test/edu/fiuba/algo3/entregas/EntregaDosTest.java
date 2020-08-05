@@ -20,10 +20,20 @@ public class EntregaDosTest {
      */
     @Test
     public void opcionesCorrectasEnMCconPenalidadSumaUnPuntoCadaUna() {
-        MultipleChoiceWithPenaltyQuestion question = new MultipleChoiceWithPenaltyQuestion("¿Que numeros son impares?");
+
+        List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
         GameOption opcionUno = new GameOption("1");
+        GameOption opcionDos = new GameOption("2");
         GameOption opcionTres = new GameOption("3");
+        GameOption opcionCuatro = new GameOption("4");
+
+        listaOpciones.add(opcionUno);
+        listaOpciones.add(opcionDos);
+        listaOpciones.add(opcionTres);
+        listaOpciones.add(opcionCuatro);
+
+        MultipleChoiceWithPenaltyQuestion question = new MultipleChoiceWithPenaltyQuestion("¿Que numeros son impares?", listaOpciones);
 
         List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
         listaOpcionesCorrectas.add(opcionUno);
@@ -42,7 +52,8 @@ public class EntregaDosTest {
      * Una Pregunta de Group Choice puede crearse indicándole cuales son las opciones correctas
      */
     @Test
-    public void opcionesCorrectasSumaUnPunto() {
+    public void opcionesCorrectasGroupChoiceSumaUnPunto() {
+
         GroupChoiceQuestion question = new GroupChoiceQuestion("Agrupar las opciones según corresponda.");
         List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
 
@@ -122,11 +133,19 @@ public class EntregaDosTest {
         Player jugadorUno = new Player("JugadorUno");
         Player jugadorDos = new Player("JugadorDos");
 
-        MultipleChoiceQuestion question = new MultipleChoiceQuestion("¿Que numeros son impares?");
+        List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
         GameOption opcionUno = new GameOption("1");
         GameOption opcionDos = new GameOption("2");
         GameOption opcionTres = new GameOption("3");
+        GameOption opcionCuatro = new GameOption("4");
+
+        listaOpciones.add(opcionUno);
+        listaOpciones.add(opcionDos);
+        listaOpciones.add(opcionTres);
+        listaOpciones.add(opcionCuatro);
+
+        MultipleChoiceQuestion question = new MultipleChoiceQuestion("¿Que numeros son impares?", listaOpciones);
 
         List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
         listaOpcionesCorrectas.add(opcionUno);
@@ -275,10 +294,15 @@ public class EntregaDosTest {
         Player jugadorUno = new Player("JugadorUno");
         Player jugadorDos = new Player("JugadorDos");
 
-        TrueFalseWithPenaltyQuestion question = new TrueFalseWithPenaltyQuestion("¿1 es mayor que 2?");
+        List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
         GameOption opcionTrue = new GameOption("True");
         GameOption opcionFalse = new GameOption("False");
+
+        listaOpciones.add(opcionTrue);
+        listaOpciones.add(opcionFalse);
+
+        TrueFalseWithPenaltyQuestion question = new TrueFalseWithPenaltyQuestion("¿1 es mayor que 2?", listaOpciones);
 
         question.setCorrectOption(opcionFalse);
 
@@ -306,10 +330,15 @@ public class EntregaDosTest {
         Player jugadorUno = new Player("JugadorUno");
         Player jugadorDos = new Player("JugadorDos");
 
-        TrueFalseWithPenaltyQuestion question = new TrueFalseWithPenaltyQuestion("¿1 es mayor que 2?");
+        List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
         GameOption opcionTrue = new GameOption("True");
         GameOption opcionFalse = new GameOption("False");
+
+        listaOpciones.add(opcionTrue);
+        listaOpciones.add(opcionFalse);
+
+        TrueFalseWithPenaltyQuestion question = new TrueFalseWithPenaltyQuestion("¿1 es mayor que 2?", listaOpciones);
 
         question.setCorrectOption(opcionFalse);
 
@@ -337,10 +366,15 @@ public class EntregaDosTest {
         Player jugadorUno = new Player("JugadorUno");
         Player jugadorDos = new Player("JugadorDos");
 
-        TrueFalseWithPenaltyQuestion question = new TrueFalseWithPenaltyQuestion("¿1 es mayor que 2?");
+        List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
         GameOption opcionTrue = new GameOption("True");
         GameOption opcionFalse = new GameOption("False");
+
+        listaOpciones.add(opcionTrue);
+        listaOpciones.add(opcionFalse);
+
+        TrueFalseWithPenaltyQuestion question = new TrueFalseWithPenaltyQuestion("¿1 es mayor que 2?", listaOpciones);
 
         question.setCorrectOption(opcionFalse);
 

@@ -13,7 +13,9 @@ public class MultipleChoiceQuestion extends Question {
 		super(text);
 	}
 
-	@Override
+    public MultipleChoiceQuestion(String text, List<GameOption> optionsList) { super(text, optionsList); }
+
+    @Override
 	public int calculatePoints(List<GameOption> selectedOptions) {
 		if(selectedOptions.size() == correctOptions.size() && selectedOptions.containsAll(correctOptions)) {
 			return 1;

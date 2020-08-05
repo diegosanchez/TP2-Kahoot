@@ -14,7 +14,9 @@ public class TrueFalseWithPenaltyQuestion extends Question {
 		super(text);
 	}
 
-	@Override
+    public TrueFalseWithPenaltyQuestion(String text, List<GameOption> optionsList) { super(text, optionsList); }
+
+    @Override
 	public int calculatePoints(List<GameOption> selectedOptions) {
 		if(selectedOptions.equals(correctOptions)) {
 			return 1;
