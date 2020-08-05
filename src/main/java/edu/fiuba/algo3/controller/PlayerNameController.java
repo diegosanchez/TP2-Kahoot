@@ -1,7 +1,9 @@
 package edu.fiuba.algo3.controller;
 
 import edu.fiuba.algo3.constants.Stylesheets;
+import edu.fiuba.algo3.constants.Views;
 import edu.fiuba.algo3.exceptions.StylesheetLoadingException;
+import edu.fiuba.algo3.exceptions.ViewLoadingException;
 import edu.fiuba.algo3.loaders.GameLoader;
 import edu.fiuba.algo3.loaders.SceneLoader;
 import edu.fiuba.algo3.loaders.StylesheetLoader;
@@ -15,7 +17,12 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class PlayerNameController{
+	
+	private static final Logger logger = LoggerFactory.getLogger(PlayerNameController.class);
 
     @FXML
     public TextField textField;
@@ -50,7 +57,19 @@ public class PlayerNameController{
 
     public void nextScene(){
         Stage stage = (Stage) text.getScene().getWindow();
-        GameController controller = new GameController();
+        try {
+			SceneLoader.loadScene(stage, Views.GAME_VIEW);
+			Scene scene = SceneLoader.getCurrentLoadedScene();
+	        StylesheetLoader.loadStylesheet(scene, Stylesheets.QUESTIONS_CSS);
+		} catch (ViewLoadingException e) {
+			logger.error("View not found", e);
+			SceneLoader.loadErrorPage();
+			stage.show();
+		}catch (StylesheetLoadingException e1) {
+        	logger.error("Stylesheet not loaded", e1);
+        }
+        
+        GameController controller = SceneLoader.getCurrentSceneController();
         controller.play(GameLoader.loadGame(players), stage);
     }
 

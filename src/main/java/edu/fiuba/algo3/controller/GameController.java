@@ -1,30 +1,47 @@
 package edu.fiuba.algo3.controller;
 
-import edu.fiuba.algo3.constants.Stylesheets;
 import edu.fiuba.algo3.constants.Views;
-import edu.fiuba.algo3.exceptions.StylesheetLoadingException;
 import edu.fiuba.algo3.exceptions.ViewLoadingException;
 import edu.fiuba.algo3.loaders.SceneLoader;
-import edu.fiuba.algo3.loaders.StylesheetLoader;
 import edu.fiuba.algo3.model.Game;
-import edu.fiuba.algo3.model.GameOption;
 import edu.fiuba.algo3.model.Player;
 import edu.fiuba.algo3.model.Question;
-
-import javafx.scene.Scene;
+import edu.fiuba.algo3.resources.QuestionViewRouter;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class GameController {
+    
+	@FXML
+    public Label playerName;
+    @FXML
+    public Label playerScore;
+    @FXML
+    public Label questionText;
+    @FXML
+    public Button submitButton;    
+    @FXML
+    public Pane questionPane;
 
+    private String augmenterString;
+    
     private Game game;
     private Stage stage;
+    private GenericQuestionController currentQuestionController;
     
     private static final Logger logger = LoggerFactory.getLogger(GameController.class);
+
+    public void addAugmenter(MouseEvent event){
+        Label source = (Label) event.getSource();
+        augmenterString = source.getText();
+    }
     
     public void play(Game game, Stage stage){
         this.game = game;
@@ -36,23 +53,23 @@ public class GameController {
 
     private void setQuestionSceneView(){
         try{
-            SceneLoader.loadScene(stage, getCurrentQuestion().getView());
+        	String viewName = QuestionViewRouter.getViewByQuestionType(getCurrentQuestion().getType());
+        	SceneLoader.loadInsidePane(questionPane, viewName);
+        	currentQuestionController = SceneLoader.getCurrentSceneController();
+        	currentQuestionController.initialize(this);
         } catch (ViewLoadingException e) {
         	logger.error("View not loaded", e);
             SceneLoader.loadErrorPage();
-        }
-
-        Scene scene = SceneLoader.getLoadedScene();
-
-        try {
-            StylesheetLoader.loadStylesheet(scene, Stylesheets.QUESTIONS_CSS);
-        } catch (StylesheetLoadingException e1) {
-        	logger.error("Stylesheet not loaded", e1);
-        }
-
-        GenericQuestionController controller = SceneLoader.getSceneController();
-        controller.initialize(this);
+        }        
+        updateBoard();
     }
+    
+    private void updateBoard() {
+    	playerName.setText(getCurrentPlayer().getName());  
+        playerScore.setText((Integer.toString(getCurrentPlayer().getScore().getValue())));
+        questionText.setText(getCurrentQuestion().getText());
+    }
+    
     public Player getCurrentPlayer(){
         return this.game.getCurrentPlayer();
     }
@@ -61,15 +78,15 @@ public class GameController {
         return this.game.getCurrentQuestion();
     }
 
-    public void doNext(List<GameOption> selectedAnswers, String augmenterString){
-        game.nextTurn(selectedAnswers, augmenterString);
-        setQuestionSceneView();
-
-        if(game.isOver()) endGame();
+    public void doNext(){
+    	 game.nextTurn(currentQuestionController.getSelectedAnswers(), augmenterString);
+         setQuestionSceneView();
+         //submitButton.setVisible(false);
+         
+         if(game.isOver()) endGame();
     }
-
+    
     private void endGame(){
-
         try{
             SceneLoader.loadScene(stage, Views.RESULTS_VIEW);
         } catch (ViewLoadingException e) {
@@ -77,7 +94,7 @@ public class GameController {
         	SceneLoader.loadErrorPage();
         }
 
-        ResultsViewController controller = SceneLoader.getSceneController();
+        ResultsViewController controller = SceneLoader.getCurrentSceneController();
         controller.initialize(game);
     }
 
