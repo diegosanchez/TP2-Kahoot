@@ -17,7 +17,12 @@ public abstract class Question {
 	public Question(String text) {
 		this.text = text;
 	}
-	
+
+	public Question(String text, List<GameOption> optionsList) {
+		this.text = text;
+		this.options = optionsList;
+	}
+
 	public List<GameOption> getOptions() {
 		return options;
 	}
