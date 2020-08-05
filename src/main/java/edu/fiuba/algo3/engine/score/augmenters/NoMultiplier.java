@@ -9,6 +9,7 @@ public class NoMultiplier extends ScoreAugmenter{
 
     @Override
     public AugmenterType getAugmenterType() {
-        return AugmenterType.NO_MULTIPLIER;
+        return null;
     }
+
 }

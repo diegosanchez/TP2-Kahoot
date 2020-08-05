@@ -54,7 +54,8 @@ public class Player {
 		score.setQuestionScore(question.calculatePoints(selectedOption));
 
 		Integer uses = getAugmentersUsesAvailable(augmenter.getAugmenterType());
-		augmentersUsesAvailable.put(augmenter.getAugmenterType(), uses  > 1 ? (uses - 1) : 0);
+		if(uses != null)
+			augmentersUsesAvailable.put(augmenter.getAugmenterType(), uses  > 1 ? (uses - 1) : 0);
 	}
 
 	public void updateScore(Score opponentScore) {
