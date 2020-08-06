@@ -29,7 +29,7 @@ public class QuestionViewType {
 				return GROUP_CHOICE_QUESTION_VIEW;
 
 			default:
-				return "";
+				return ERROR_VIEW;
 		}
 	}
 }

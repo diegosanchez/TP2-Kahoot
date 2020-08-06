@@ -30,7 +30,7 @@ public abstract class GenericQuestionController {
     public Button submitButton;
 
     private GameController gameController;
-    private ArrayList<GameOption> selectedAnswers;
+    public ArrayList<GameOption> selectedAnswers;
     private String augmenterString;
 
 
