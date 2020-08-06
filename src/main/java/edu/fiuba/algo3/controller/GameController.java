@@ -1,5 +1,7 @@
 package edu.fiuba.algo3.controller;
 
+import edu.fiuba.algo3.constants.QuestionType;
+import edu.fiuba.algo3.constants.QuestionViewType;
 import edu.fiuba.algo3.constants.Stylesheets;
 import edu.fiuba.algo3.constants.Views;
 import edu.fiuba.algo3.exceptions.StylesheetLoadingException;
@@ -35,8 +37,9 @@ public class GameController {
     }
 
     private void setQuestionSceneView(){
+        String view = selectQuestionView(getCurrentQuestion().getType());
         try{
-            SceneLoader.loadScene(stage, getCurrentQuestion().getView());
+            SceneLoader.loadScene(stage, view);
         } catch (ViewLoadingException e) {
         	logger.error("View not loaded", e);
             SceneLoader.loadErrorPage();
@@ -53,6 +56,12 @@ public class GameController {
         GenericQuestionController controller = SceneLoader.getSceneController();
         controller.initialize(this);
     }
+
+    public String selectQuestionView(QuestionType type){
+        return QuestionViewType.getView(type);
+
+    }
+
     public Player getCurrentPlayer(){
         return this.game.getCurrentPlayer();
     }
