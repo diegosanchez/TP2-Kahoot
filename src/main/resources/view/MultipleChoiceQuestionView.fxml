@@ -7,9 +7,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -24,26 +21,48 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                     <VBox alignment="CENTER" prefWidth="300.0" />
-                  <GridPane fx:id="gridPane" alignment="CENTER" prefHeight="155.0" prefWidth="390.0">
-                    <columnConstraints>
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints maxHeight="55.0" minHeight="10.0" prefHeight="41.0" valignment="CENTER" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="43.0" valignment="CENTER" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="67.0" minHeight="0.0" prefHeight="44.0" valignment="CENTER" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                     <VBox fx:id="vBoxChecks" alignment="CENTER_LEFT" prefHeight="189.0" prefWidth="390.0">
                      <children>
-                        <CheckBox mnemonicParsing="false" text="CheckBox" />
-                        <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="1" />
-                        <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="1" />
-                        <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.rowIndex="2" />
-                        <CheckBox mnemonicParsing="false" text="CheckBox" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <CheckBox alignment="CENTER" mnemonicParsing="false" text="CheckBox">
+                           <VBox.margin>
+                              <Insets left="60.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font></CheckBox>
+                        <CheckBox alignment="CENTER" mnemonicParsing="false" text="CheckBox">
+                           <VBox.margin>
+                              <Insets left="60.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox alignment="CENTER" mnemonicParsing="false" text="CheckBox">
+                           <VBox.margin>
+                              <Insets left="60.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font></CheckBox>
+                        <CheckBox alignment="CENTER" mnemonicParsing="false" text="CheckBox">
+                           <VBox.margin>
+                              <Insets left="60.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font></CheckBox>
+                        <CheckBox alignment="CENTER" mnemonicParsing="false" text="CheckBox">
+                           <VBox.margin>
+                              <Insets left="60.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font></CheckBox>
                      </children>
-                  </GridPane>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></VBox>
                </children>
             </VBox>
          </children>

@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 import java.util.List;
 
@@ -17,14 +17,14 @@ public class MultipleChoiceQuestionController extends GenericQuestionController{
     @FXML
     public Label playerScore;
     @FXML
-    public GridPane gridPane;
+    public VBox vBoxChecks;
     @FXML
     public Label questionText;
     @FXML
     public Button submitButton;
 
     public void setUpView(){
-        List<CheckBox> buttonList = (List) gridPane.getChildren();
+        List<CheckBox> buttonList = (List) vBoxChecks.getChildren();
 
         int i = 0;
         for (GameOption option : (getGameController().getCurrentQuestion().getOptions())) {
@@ -33,7 +33,7 @@ public class MultipleChoiceQuestionController extends GenericQuestionController{
             button.setOnAction(this::addAnswer);
             i++;
         }
-        while (i<6){
+        while (i<5){
             CheckBox unusedButton = buttonList.get(i);
             unusedButton.setVisible(false);
             i++;

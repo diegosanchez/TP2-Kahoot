@@ -14,7 +14,7 @@
             <Font name="Gigi" size="60.0" />
          </font>
       </Text>
-      <Button fx:id="StartButton" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#startEvent" prefHeight="117.0" prefWidth="308.0" style="-fx-background-color: #163E4A;" text="Comenzar" textFill="WHITE">
+      <Button fx:id="StartButton" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" onAction="#startEvent" prefHeight="94.0" prefWidth="308.0" style="-fx-background-color: #163E4A;" text="Comenzar" textFill="WHITE">
          <font>
             <Font size="21.0" />
          </font>
