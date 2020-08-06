@@ -1,9 +1,5 @@
 package edu.fiuba.algo3.constants;
 
-import edu.fiuba.algo3.engine.questions.*;
-import edu.fiuba.algo3.model.Question;
-
-import static edu.fiuba.algo3.constants.QuestionType.MULTIPLE_CHOICE;
 import static edu.fiuba.algo3.constants.Views.*;
 
 public class QuestionViewType {

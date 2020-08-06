@@ -25,10 +25,4 @@ public class OrderedChoiceQuestion extends Question {
 	public boolean hasPenalty() {
 		return false;
 	}
-
-	@Override
-	public String getView() {
-		return ORDERED_CHOICE_QUESTION_VIEW;
-	}
-
 }

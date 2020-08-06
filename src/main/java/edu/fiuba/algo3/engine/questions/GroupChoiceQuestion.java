@@ -37,9 +37,4 @@ public class GroupChoiceQuestion extends Question {
 	public boolean hasPenalty() {
 		return false;
 	}
-
-	@Override
-	public String getView() {
-		return GROUP_CHOICE_QUESTION_VIEW;
-	}
 }

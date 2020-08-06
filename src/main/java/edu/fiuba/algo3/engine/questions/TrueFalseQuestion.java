@@ -37,10 +37,4 @@ public class TrueFalseQuestion extends Question {
 	public boolean hasPenalty() {
 		return false;
 	}
-
-	@Override
-	public String getView() {
-		return TRUE_FALSE_QUESTION_VIEW;
-	}
-
 }

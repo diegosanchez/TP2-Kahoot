@@ -27,10 +27,4 @@ public class MultipleChoiceQuestion extends Question {
 	public boolean hasPenalty() {
 		return false;
 	}
-
-	@Override
-	public String getView() {
-		return MULTIPLE_CHOICE_QUESTION_VIEW;
-	}
-
 }
