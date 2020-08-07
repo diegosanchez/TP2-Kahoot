@@ -8,13 +8,11 @@ import edu.fiuba.algo3.model.Question;
 
 import static edu.fiuba.algo3.constants.Views.TRUE_FALSE_QUESTION_VIEW;
 
-public class TrueFalseQuestion extends Question {	
-	
-	public TrueFalseQuestion(String text) {
-		super(text);
-	}
+public class TrueFalseQuestion extends Question {
 
-	@Override
+    public TrueFalseQuestion(String text, List<GameOption> optionList) { super(text, optionList); }
+
+    @Override
 	public int calculatePoints(List<GameOption> selectedOptions) {
 		if(selectedOptions.equals(correctOptions)) {
 			return 1;

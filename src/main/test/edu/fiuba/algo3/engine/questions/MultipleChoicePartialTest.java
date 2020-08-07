@@ -13,9 +13,19 @@ public class MultipleChoicePartialTest {
 	
 	@Test
 	public void opcionesCorrectasSumaUnPuntoCadaUna() {
-		MultipleChoicePartialQuestion question = new MultipleChoicePartialQuestion("¿Que numeros son impares?");
+		List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
 		GameOption opcionUno = new GameOption("1");
+		GameOption opcionDos = new GameOption("2");
 		GameOption opcionTres = new GameOption("3");
+		GameOption opcionCuatro = new GameOption("4");
+
+		listaOpciones.add(opcionUno);
+		listaOpciones.add(opcionDos);
+		listaOpciones.add(opcionTres);
+		listaOpciones.add(opcionCuatro);
+
+		MultipleChoicePartialQuestion question = new MultipleChoicePartialQuestion("¿Que numeros son impares?", listaOpciones);
 		
 		List<GameOption> listaOpcionesCorrectas = new ArrayList<>();
 		listaOpcionesCorrectas.add(opcionUno);
@@ -32,10 +42,19 @@ public class MultipleChoicePartialTest {
 	
 	@Test
 	public void opcionIncorrectaDevuelve0() {
-		MultipleChoicePartialQuestion question = new MultipleChoicePartialQuestion("¿Que numeros son impares?");
+		List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
 		GameOption opcionUno = new GameOption("1");
+		GameOption opcionDos = new GameOption("2");
 		GameOption opcionTres = new GameOption("3");
 		GameOption opcionCuatro = new GameOption("4");
+
+		listaOpciones.add(opcionUno);
+		listaOpciones.add(opcionDos);
+		listaOpciones.add(opcionTres);
+		listaOpciones.add(opcionCuatro);
+
+		MultipleChoicePartialQuestion question = new MultipleChoicePartialQuestion("¿Que numeros son impares?", listaOpciones);
 		
 		List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
 		listaOpcionesCorrectas.add(opcionUno);

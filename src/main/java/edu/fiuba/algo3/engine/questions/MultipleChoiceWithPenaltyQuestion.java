@@ -8,10 +8,6 @@ import edu.fiuba.algo3.model.Question;
 import static edu.fiuba.algo3.constants.Views.MULTIPLE_CHOICE_QUESTION_VIEW;
 
 public class MultipleChoiceWithPenaltyQuestion extends Question {
-	
-	public MultipleChoiceWithPenaltyQuestion(String text) {
-		super(text);
-	}
 
     public MultipleChoiceWithPenaltyQuestion(String text, List<GameOption> optionsList) { super(text, optionsList); }
 

@@ -8,10 +8,6 @@ import edu.fiuba.algo3.model.Question;
 import static edu.fiuba.algo3.constants.Views.MULTIPLE_CHOICE_QUESTION_VIEW;
 
 public class MultipleChoiceQuestion extends Question {
-	
-	public MultipleChoiceQuestion(String text) {
-		super(text);
-	}
 
     public MultipleChoiceQuestion(String text, List<GameOption> optionsList) { super(text, optionsList); }
 

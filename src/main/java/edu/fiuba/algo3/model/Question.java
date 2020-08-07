@@ -10,13 +10,7 @@ public abstract class Question {
 	protected String text;
 	protected QuestionType type;
 	protected List<GameOption> options;
-	protected List<GameOption> correctOptions;	
-	
-	public Question() {}
-	
-	public Question(String text) {
-		this.text = text;
-	}
+	protected List<GameOption> correctOptions;
 
 	public Question(String text, List<GameOption> optionsList) {
 		this.text = text;

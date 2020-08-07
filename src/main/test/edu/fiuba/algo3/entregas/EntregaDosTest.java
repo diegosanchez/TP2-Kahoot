@@ -54,8 +54,7 @@ public class EntregaDosTest {
     @Test
     public void opcionesCorrectasGroupChoiceSumaUnPunto() {
 
-        GroupChoiceQuestion question = new GroupChoiceQuestion("Agrupar las opciones según corresponda.");
-        List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
+        List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
         OptionGroup grupoPares = new OptionGroup("Pares");
         OptionGroup grupoImpares = new OptionGroup("Impares");
@@ -70,6 +69,15 @@ public class EntregaDosTest {
 
         opcionUno.setOptionGroup(grupoImpares);
         opcionTres.setOptionGroup(grupoImpares);
+
+        listaOpciones.add(opcionUno);
+        listaOpciones.add(opcionDos);
+        listaOpciones.add(opcionTres);
+        listaOpciones.add(opcionCuatro);
+
+        GroupChoiceQuestion question = new GroupChoiceQuestion("Agrupar las opciones según corresponda.", listaOpciones);
+
+        List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
 
         listaOpcionesCorrectas.add(opcionUno);
         listaOpcionesCorrectas.add(opcionDos);
@@ -103,11 +111,16 @@ public class EntregaDosTest {
      */
     @Test
     public void opcionesEnOrdenCorrectoSumaUnPunto() {
-        OrderedChoiceQuestion question = new OrderedChoiceQuestion("Ordenar los numeros de menor a mayor");
-
         GameOption opcionUno = new GameOption("1");
         GameOption opcionDos = new GameOption("2");
         GameOption opcionTres = new GameOption("3");
+
+        List<GameOption> listaOpciones = new ArrayList<GameOption>();
+        listaOpciones.add(opcionUno);
+        listaOpciones.add(opcionDos);
+        listaOpciones.add(opcionTres);
+
+        OrderedChoiceQuestion question = new OrderedChoiceQuestion("Ordenar los numeros de menor a mayor", listaOpciones);
 
         List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
         listaOpcionesCorrectas.add(opcionUno);
@@ -178,8 +191,7 @@ public class EntregaDosTest {
         Player jugadorUno = new Player("JugadorUno");
         Player jugadorDos = new Player("JugadorDos");
 
-        GroupChoiceQuestion question = new GroupChoiceQuestion("Agrupar las opciones según corresponda.");
-        List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
+        List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
         OptionGroup grupoPares = new OptionGroup("Pares");
         OptionGroup grupoImpares = new OptionGroup("Impares");
@@ -194,6 +206,15 @@ public class EntregaDosTest {
 
         opcionUno.setOptionGroup(grupoImpares);
         opcionTres.setOptionGroup(grupoImpares);
+
+        listaOpciones.add(opcionUno);
+        listaOpciones.add(opcionDos);
+        listaOpciones.add(opcionTres);
+        listaOpciones.add(opcionCuatro);
+
+        GroupChoiceQuestion question = new GroupChoiceQuestion("Agrupar las opciones según corresponda.", listaOpciones);
+
+        List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
 
         listaOpcionesCorrectas.add(opcionUno);
         listaOpcionesCorrectas.add(opcionDos);
@@ -253,11 +274,16 @@ public class EntregaDosTest {
         Player jugadorUno = new Player("JugadorUno");
         Player jugadorDos = new Player("JugadorDos");
 
-        OrderedChoiceQuestion question = new OrderedChoiceQuestion("Ordenar los numeros de menor a mayor");
-
         GameOption opcionUno = new GameOption("1");
         GameOption opcionDos = new GameOption("2");
         GameOption opcionTres = new GameOption("3");
+
+        List<GameOption> listaOpciones = new ArrayList<GameOption>();
+        listaOpciones.add(opcionUno);
+        listaOpciones.add(opcionDos);
+        listaOpciones.add(opcionTres);
+
+        OrderedChoiceQuestion question = new OrderedChoiceQuestion("Ordenar los numeros de menor a mayor", listaOpciones);
 
         List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
         listaOpcionesCorrectas.add(opcionUno);
