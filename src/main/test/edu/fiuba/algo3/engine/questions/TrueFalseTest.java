@@ -6,14 +6,22 @@ import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.model.GameOption;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TrueFalseTest {
 	
 	@Test
 	public void preguntaCorrectaSumaUnPuntoIncorrectaNoSumaNadaTest() {
-		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?");
-		
+		List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
 		GameOption opcionTrue = new GameOption("True");
 		GameOption opcionFalse = new GameOption("False");
+
+		listaOpciones.add(opcionTrue);
+		listaOpciones.add(opcionFalse);
+
+		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?", listaOpciones);
 		
 		question.setCorrectOption(opcionFalse);
 		
@@ -23,11 +31,16 @@ public class TrueFalseTest {
 	
 	@Test
 	public void preguntaCorrectaSumaUnPuntoIncorrectaRestaTest() {
-		TrueFalseWithPenaltyQuestion question = new TrueFalseWithPenaltyQuestion("¿1 es mayor que 2?");
-		
+		List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
 		GameOption opcionTrue = new GameOption("True");
 		GameOption opcionFalse = new GameOption("False");
-		
+
+		listaOpciones.add(opcionTrue);
+		listaOpciones.add(opcionFalse);
+
+		TrueFalseWithPenaltyQuestion question = new TrueFalseWithPenaltyQuestion("¿1 es mayor que 2?", listaOpciones);
+
 		question.setCorrectOption(opcionFalse);
 		
 		assertEquals(1, question.calculatePoints(opcionFalse));

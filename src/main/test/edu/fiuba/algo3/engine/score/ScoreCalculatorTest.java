@@ -21,11 +21,16 @@ public class ScoreCalculatorTest {
 	public void calculoDePreguntaTrueFalseAsignaPuntosALosJugadoresTest() {		
 		Player jugadorUno = new Player("JugadorUno");
 		Player jugadorDos = new Player("JugadorDos");
-		
-		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?");
-		
+
+		List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
 		GameOption opcionTrue = new GameOption("True");
 		GameOption opcionFalse = new GameOption("False");
+
+		listaOpciones.add(opcionTrue);
+		listaOpciones.add(opcionFalse);
+		
+		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?", listaOpciones);
 		
 		question.setCorrectOption(opcionFalse);
 		
@@ -46,12 +51,17 @@ public class ScoreCalculatorTest {
 	public void calculoDePreguntaTrueFalseAsignaPuntosALosJugadoresConMultiplicadorYTieneUnUsoMenosTest() {		
 		Player jugadorUno = new Player("JugadorUno");
 		Player jugadorDos = new Player("JugadorDos");
-		
-		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?");
-		
+
+		List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
 		GameOption opcionTrue = new GameOption("True");
 		GameOption opcionFalse = new GameOption("False");
+
+		listaOpciones.add(opcionTrue);
+		listaOpciones.add(opcionFalse);
 		
+		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?", listaOpciones);
+
 		question.setCorrectOption(opcionFalse);
 		
 		List<GameOption> opcionJugadorUno = new ArrayList<GameOption>();
@@ -71,12 +81,17 @@ public class ScoreCalculatorTest {
 	public void calculoDePreguntaTrueFalseAsignaPuntosALosJugadoresConExclusividadYTieneUnUsoMenosTest() {		
 		Player jugadorUno = new Player("JugadorUno");
 		Player jugadorDos = new Player("JugadorDos");
-		
-		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?");
-		
+
+		List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
 		GameOption opcionTrue = new GameOption("True");
 		GameOption opcionFalse = new GameOption("False");
+
+		listaOpciones.add(opcionTrue);
+		listaOpciones.add(opcionFalse);
 		
+		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?", listaOpciones);
+
 		question.setCorrectOption(opcionFalse);
 		
 		List<GameOption> opcionJugadorUno = new ArrayList<GameOption>();
@@ -97,12 +112,17 @@ public class ScoreCalculatorTest {
 	public void calculoDePreguntaTrueFalseAsignaPuntosALosJugadoresConExclusividadYAmbosContestanBienTest() {		
 		Player jugadorUno = new Player("JugadorUno");
 		Player jugadorDos = new Player("JugadorDos");
-		
-		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?");
-		
+
+		List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
 		GameOption opcionTrue = new GameOption("True");
 		GameOption opcionFalse = new GameOption("False");
+
+		listaOpciones.add(opcionTrue);
+		listaOpciones.add(opcionFalse);
 		
+		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?", listaOpciones);
+
 		question.setCorrectOption(opcionFalse);
 		
 		List<GameOption> opcionJugadorUno = new ArrayList<GameOption>();
@@ -124,11 +144,16 @@ public class ScoreCalculatorTest {
 	public void calculoDePreguntaTrueFalseAsignaPuntosALosJugadoresConExclusividadYCuadriplicaElPuntajeTest() {		
 		Player jugadorUno = new Player("JugadorUno");
 		Player jugadorDos = new Player("JugadorDos");
-		
-		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?");
-		
+
+		List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
 		GameOption opcionTrue = new GameOption("True");
 		GameOption opcionFalse = new GameOption("False");
+
+		listaOpciones.add(opcionTrue);
+		listaOpciones.add(opcionFalse);
+		
+		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?", listaOpciones);
 		
 		question.setCorrectOption(opcionFalse);
 		

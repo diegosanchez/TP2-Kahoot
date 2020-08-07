@@ -64,8 +64,9 @@ public class GameTest {
 	 @Test
 	 public void iterarTodasLasPreguntasFinalizaElJuegoTest() {
 		 List<Question> questions = new ArrayList<>();
-		 questions.add(new TrueFalseQuestion("¿1 es mayor a 2?"));
-		 questions.add(new TrueFalseQuestion("¿1 es mayor a 2?"));
+		 List<GameOption> listaOpciones = Mockito.mock(ArrayList.class);
+		 questions.add(new TrueFalseQuestion("¿1 es mayor a 2?", listaOpciones));
+		 questions.add(new TrueFalseQuestion("¿1 es mayor a 2?", listaOpciones));
 		 game.setQuestions(questions);
 		 game.start();
 		 game.nextTurn(new ArrayList<GameOption>(), StringConstants.TWO_MULTIPLIER);
@@ -77,9 +78,10 @@ public class GameTest {
 	 
 	 @Test
 	 public void unJugadorConMasPuntajeQueElOtroResultaGanadorTest() {
-		 Game game = new Game();		 
+		 Game game = new Game();
 		 Player jugadorUno = Mockito.mock(Player.class);
 		 Player jugadorDos = Mockito.mock(Player.class);
+		 List<GameOption> listaOpciones = Mockito.mock(ArrayList.class);
 		 Mockito.when(jugadorUno.getScore()).thenReturn(new Score(100));
 		 Mockito.when(jugadorDos.getScore()).thenReturn(new Score(50));
 		 List<Player> lista = new ArrayList<>();
@@ -87,7 +89,7 @@ public class GameTest {
 		 lista.add(jugadorDos);
 		 game.setPlayers(lista);
 		 List<Question> questions = new ArrayList<>();
-		 questions.add(new TrueFalseQuestion("¿1 es mayor a 2?"));
+		 questions.add(new TrueFalseQuestion("¿1 es mayor a 2?", listaOpciones));
 		 game.setQuestions(questions);
 		 game.start();
 		 game.nextTurn(new ArrayList<GameOption>(), StringConstants.TWO_MULTIPLIER);

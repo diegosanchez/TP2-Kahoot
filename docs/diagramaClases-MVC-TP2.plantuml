@@ -1,0 +1,75 @@
+@startuml DiagramaUML-Clases-TP2
+hide circle
+skinparam classAttributeIconSize 0
+
+abstract Question{
+    + id : long
+    + options : List<GameOption>
+    # correctOptions : List<GameOption>
+    - {abstract}calculatePoints(List<GameOptions>) : int
+}
+
+class GameOption{
+    + id : long
+	+ text : String
+    + equals(Object obj) : Boolean
+}
+
+class OptionGroup{
+    + options : List<GameOption>
+}
+
+class Score{
+    - value : int
+	- questionScore : int
+	- augmenter : ScoreAugmenter
+    + update(Score oponentScore)
+    + setQuestionScore()
+    + setAugmenter()
+    + equals(Object obj) : Boolean
+}
+
+class Game{
+    + players : List<Player>
+	+ question : List<Question>
+	+ currentPlayer : Player
+    + start()
+    + nextTurn(selectedOptions, selectedAugmenter)
+    + getWinner()
+}
+
+class ScoreCalculator{
+    - {static} calculateAndAssignPoints(Player ... players)
+	+ {static} calculate(List<Player> players)
+}
+
+class Player{
+    + name : String
+	+ score : int
+	+ augmentersUsesAvailable : Map<AugmenterType, Int>
+    + answerQuestion(List<GameOption> selectedOption)
+    + answerQuestionWithAugmenter(selectedOption, augmenter)
+    + updateScore(Score score)
+}
+
+abstract ScoreAugmenter{
+    - {abstract}applyScoreAugmenter(Score score, Score opponentScore)
+    # {abstract}isNil() : Boolean
+    # {abstract}getAugmenterType() : AugmenterType
+}
+
+
+Game  o--"1..*"  Question
+Game o--"1..*"  Player
+
+Score "1..1"*--left ScoreAugmenter
+ScoreCalculator --> Player
+
+Player --left> Question
+
+Player "1..1"*-- Score
+
+Question "1..*"*--left GameOption
+OptionGroup --up|> GameOption
+
+@enduml

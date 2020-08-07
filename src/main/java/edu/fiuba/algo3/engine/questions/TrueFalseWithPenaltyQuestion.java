@@ -8,11 +8,7 @@ import edu.fiuba.algo3.model.Question;
 
 import static edu.fiuba.algo3.constants.Views.TRUE_FALSE_QUESTION_VIEW;
 
-public class TrueFalseWithPenaltyQuestion extends Question {	
-	
-	public TrueFalseWithPenaltyQuestion(String text) {
-		super(text);
-	}
+public class TrueFalseWithPenaltyQuestion extends Question {
 
     public TrueFalseWithPenaltyQuestion(String text, List<GameOption> optionsList) { super(text, optionsList); }
 
