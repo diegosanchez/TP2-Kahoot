@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.engine.score.augmenters;
 
-import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.constants.AugmenterUses;
 import edu.fiuba.algo3.model.Score;
 
@@ -16,11 +15,6 @@ public class ExclusivityMultiplier extends ScoreAugmenter {
 		}else {
 			opponentQuestionScore.setValue(opponentQuestionScore.getValue() * 2);
 		}
-	}
-
-	@Override
-	public AugmenterType getAugmenterType() {
-		return AugmenterType.EXCLUSIVITY;
 	}
 
 	@Override

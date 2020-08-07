@@ -11,7 +11,7 @@ import edu.fiuba.algo3.engine.questions.MultipleChoicePartialQuestion;
 import edu.fiuba.algo3.engine.questions.MultipleChoiceQuestion;
 import edu.fiuba.algo3.engine.questions.MultipleChoiceWithPenaltyQuestion;
 import edu.fiuba.algo3.engine.questions.TrueFalseWithPenaltyQuestion;
-import edu.fiuba.algo3.engine.score.ScoreCalculator;
+import edu.fiuba.algo3.engine.score.AugmenterCalculator;
 import edu.fiuba.algo3.model.GameOption;
 import edu.fiuba.algo3.model.Player;
 import edu.fiuba.algo3.model.Score;
@@ -126,7 +126,7 @@ public class EntregaUnoTest {
 		question.setCorrectOption(opcionFalse);
 		jugadorUno.answerQuestion(question, opcionTrue);
 		jugadorDos.answerQuestion(question, opcionFalse);
-		ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+		AugmenterCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
 		assertEquals(new Score(-1), jugadorUno.getScore());
 		assertEquals(new Score(1), jugadorDos.getScore());
@@ -171,7 +171,7 @@ public class EntregaUnoTest {
 
 		jugadorUno.answerQuestion(question, opcionesJugadorUno);
 		jugadorDos.answerQuestion(question, opcionesJugadorDos);
-		ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+		AugmenterCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
 		assertEquals(new Score(1), jugadorUno.getScore());
 		assertEquals(new Score(0), jugadorDos.getScore());
@@ -215,7 +215,7 @@ public class EntregaUnoTest {
 
 		jugadorUno.answerQuestion(question, opcionesJugadorUno);
 		jugadorDos.answerQuestion(question, opcionesJugadorDos);
-		ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+		AugmenterCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 		
 		assertEquals(new Score(1), jugadorUno.getScore());
 		assertEquals(new Score(2), jugadorDos.getScore());

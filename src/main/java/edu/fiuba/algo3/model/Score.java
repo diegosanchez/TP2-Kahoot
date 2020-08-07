@@ -15,6 +15,10 @@ public class Score {
 	public void setValue(int value) {
 		this.value = value;
 	}
+	
+	public void sum(Score score) {
+		value = score.getValue() + value;
+	}
 
 	@Override
 	public boolean equals(Object obj) {

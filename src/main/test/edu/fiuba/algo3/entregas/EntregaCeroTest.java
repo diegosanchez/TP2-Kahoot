@@ -6,7 +6,7 @@ import edu.fiuba.algo3.model.Score;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.engine.questions.TrueFalseQuestion;
-import edu.fiuba.algo3.engine.score.ScoreCalculator;
+import edu.fiuba.algo3.engine.score.AugmenterCalculator;
 import edu.fiuba.algo3.model.GameOption;
 import edu.fiuba.algo3.model.Player;
 
@@ -58,7 +58,7 @@ public class EntregaCeroTest {
 
 		jugadorUno.answerQuestion(question, opcionTrue);
 		jugadorDos.answerQuestion(question, opcionFalse);
-		ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+		AugmenterCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
 		assertEquals(new Score(0), jugadorUno.getScore());
 		assertEquals(new Score(1), jugadorDos.getScore());

@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.controller;
 
-import edu.fiuba.algo3.engine.score.ScoreAugmenterFactory;
 import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;
 import edu.fiuba.algo3.model.GameOption;

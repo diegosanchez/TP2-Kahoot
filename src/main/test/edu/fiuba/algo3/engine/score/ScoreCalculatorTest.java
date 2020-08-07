@@ -41,7 +41,7 @@ public class ScoreCalculatorTest {
 
 		jugadorUno.answerQuestion(question, opcionJugadorUno);
 		jugadorDos.answerQuestion(question, opcionJugadorDos);
-		ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+		AugmenterCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
 		assertEquals(new Score(0), jugadorUno.getScore());
 		assertEquals(new Score(1), jugadorDos.getScore());
@@ -71,7 +71,7 @@ public class ScoreCalculatorTest {
 
 		jugadorUno.answerQuestion(question, opcionJugadorUno);
 		jugadorDos.answerQuestionWithAugmenter(question, opcionJugadorDos, new ThreeMultiplier());
-		ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+		AugmenterCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
 		assertEquals(new Score(0), jugadorUno.getScore());
 		assertEquals(new Score(3), jugadorDos.getScore());
@@ -101,7 +101,7 @@ public class ScoreCalculatorTest {
 
 		jugadorUno.answerQuestion(question, opcionJugadorUno);
 		jugadorDos.answerQuestionWithAugmenter(question, opcionJugadorDos, new ExclusivityMultiplier());
-		ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+		AugmenterCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
 		assertEquals(new Score(0), jugadorUno.getScore());
 		assertEquals(new Score(2), jugadorDos.getScore());
@@ -132,7 +132,7 @@ public class ScoreCalculatorTest {
 
 		jugadorUno.answerQuestionWithAugmenter(question, opcionJugadorUno, new ExclusivityMultiplier());
 		jugadorDos.answerQuestionWithAugmenter(question, opcionJugadorDos, new ExclusivityMultiplier());
-		ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+		AugmenterCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
 		assertEquals(new Score(0), jugadorUno.getScore());
 		assertEquals(new Score(0), jugadorDos.getScore());
@@ -164,7 +164,7 @@ public class ScoreCalculatorTest {
 		
 		jugadorUno.answerQuestionWithAugmenter(question, opcionJugadorUno, new ExclusivityMultiplier());
 		jugadorDos.answerQuestionWithAugmenter(question, opcionJugadorDos, new ExclusivityMultiplier());
-		ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+		AugmenterCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
 		assertEquals(new Score(0), jugadorUno.getScore());
 		assertEquals(new Score(4), jugadorDos.getScore());

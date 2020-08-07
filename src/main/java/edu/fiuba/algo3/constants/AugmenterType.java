@@ -8,7 +8,8 @@ import edu.fiuba.algo3.engine.score.augmenters.*;
 public enum AugmenterType {
 	MULTIPLY_PER_TWO(TwoMultiplier.class),
 	MULTIPLY_PER_THREE(ThreeMultiplier.class),
-	EXCLUSIVITY(ExclusivityMultiplier.class);
+	EXCLUSIVITY(ExclusivityMultiplier.class),
+	NO_MULTIPLIER(NoMultiplier.class);
 
 	private ScoreAugmenter scoreAugmenter;
 	

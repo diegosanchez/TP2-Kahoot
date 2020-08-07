@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -27,6 +26,18 @@ public class Player {
 	public Score getScore() {
 		return score;
 	}
+	
+	public void sumScore(Score matchScore) {
+		score.sum(matchScore);
+	}
+	
+	public ScoreAugmenter getAugmenter(AugmenterType augmenterType) {
+		int index = augmenters.indexOf(augmenterType.getScoreAugmenter());
+		if(index == -1) {
+			return AugmenterType.NO_MULTIPLIER.getScoreAugmenter();
+		}
+		return augmenters.remove(index);
+	}
 
 	private void loadAugmenters() {
 		for(AugmenterType augmenterType : AugmenterType.values()) {
@@ -35,16 +46,6 @@ public class Player {
 				element -> augmenters.add(augmenter)
 			);
 		}
-	}
-
-	public Score answerQuestion(Question question, GameOption ... selectedOption) {
-		return new Score(question.calculatePoints(Arrays.asList(selectedOption)));
-	}
-
-
-	public void answerQuestionWithAugmenter(Question question, String augmenterName, GameOption ... selectedOption) {
-		
-		score.setQuestionScore(question.calculatePoints(Arrays.asList(selectedOption)));
 	}
 
 }

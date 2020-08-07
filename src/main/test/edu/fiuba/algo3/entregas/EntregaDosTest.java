@@ -2,7 +2,7 @@ package edu.fiuba.algo3.entregas;
 
 import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.engine.questions.*;
-import edu.fiuba.algo3.engine.score.ScoreCalculator;
+import edu.fiuba.algo3.engine.score.AugmenterCalculator;
 import edu.fiuba.algo3.engine.score.augmenters.ThreeMultiplier;
 import edu.fiuba.algo3.engine.score.augmenters.TwoMultiplier;
 import edu.fiuba.algo3.model.*;
@@ -176,7 +176,7 @@ public class EntregaDosTest {
 
         jugadorUno.answerQuestion(question, opcionesJugadorUno);
         jugadorDos.answerQuestion(question, opcionesJugadorDos);
-        ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+        AugmenterCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
         assertEquals(new Score(1), jugadorUno.getScore());
         assertEquals(new Score(0), jugadorDos.getScore());
@@ -259,7 +259,7 @@ public class EntregaDosTest {
 
         jugadorUno.answerQuestion(question, opcionesJugadorUno);
         jugadorDos.answerQuestion(question, opcionesJugadorDos);
-        ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+        AugmenterCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
         assertEquals(new Score(1), jugadorUno.getScore());
         assertEquals(new Score(0), jugadorDos.getScore());
@@ -304,7 +304,7 @@ public class EntregaDosTest {
 
         jugadorUno.answerQuestion(question, opcionesJugadorUno);
         jugadorDos.answerQuestion(question, opcionesJugadorDos);
-        ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+        AugmenterCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
         assertEquals(new Score(1), jugadorUno.getScore());
         assertEquals(new Score(0), jugadorDos.getScore());
@@ -339,7 +339,7 @@ public class EntregaDosTest {
 
         jugadorUno.answerQuestion(question, opcionJugadorUno);
         jugadorDos.answerQuestionWithAugmenter(question, opcionJugadorDos, new TwoMultiplier());
-        ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+        AugmenterCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
         assertEquals(new Score(-1), jugadorUno.getScore());
         assertEquals(new Score(2), jugadorDos.getScore());
@@ -375,7 +375,7 @@ public class EntregaDosTest {
 
         jugadorUno.answerQuestion(question, opcionJugadorUno);
         jugadorDos.answerQuestionWithAugmenter(question, opcionJugadorDos, new ThreeMultiplier());
-        ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+        AugmenterCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
         assertEquals(new Score(-1), jugadorUno.getScore());
         assertEquals(new Score(3), jugadorDos.getScore());
@@ -411,7 +411,7 @@ public class EntregaDosTest {
 
         jugadorUno.answerQuestion(question, opcionJugadorUno);
         jugadorDos.answerQuestionWithAugmenter(question, opcionJugadorDos, new TwoMultiplier());
-        ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+        AugmenterCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
 
         assertEquals(new Score(1), jugadorUno.getScore());
         assertEquals(new Score(-2), jugadorDos.getScore());
