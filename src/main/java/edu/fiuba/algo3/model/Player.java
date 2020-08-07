@@ -1,24 +1,23 @@
 package edu.fiuba.algo3.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.IntStream;
 
 import edu.fiuba.algo3.constants.AugmenterType;
-import edu.fiuba.algo3.engine.score.augmenters.NoMultiplier;
 import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;
 
 public class Player {
 	
 	private String name;
 	private Score score;
-	private Map<AugmenterType, Integer> augmentersUsesAvailable;
+	private List<ScoreAugmenter> augmenters = new ArrayList<>();
 
 	public Player(String name){
 		this.name = name;
 		score = new Score(0);
-		initializeAugmenterUses();
+		loadAugmenters();
 	}
 
 	public String getName() {
@@ -29,36 +28,23 @@ public class Player {
 		return score;
 	}
 
-	private void initializeAugmenterUses() {
-		augmentersUsesAvailable = new HashMap<>();
+	private void loadAugmenters() {
 		for(AugmenterType augmenterType : AugmenterType.values()) {
-			augmentersUsesAvailable.put(augmenterType, augmenterType.getUsesPerPlayer());
+			ScoreAugmenter augmenter = augmenterType.getScoreAugmenter();
+			IntStream.range(0, augmenter.getUsesPerPlayer()).forEach(
+				element -> augmenters.add(augmenter)
+			);
 		}
 	}
-	
-	public Integer getAugmentersUsesAvailable(AugmenterType augmenterType)  {
-		return augmentersUsesAvailable.get(augmenterType);
+
+	public Score answerQuestion(Question question, GameOption ... selectedOption) {
+		return new Score(question.calculatePoints(Arrays.asList(selectedOption)));
 	}
 
-	public void answerQuestion(Question question, List<GameOption> selectedOption) {
-		score.setAugmenter(new NoMultiplier());
-		score.setQuestionScore(question.calculatePoints(selectedOption));
+
+	public void answerQuestionWithAugmenter(Question question, String augmenterName, GameOption ... selectedOption) {
+		
+		score.setQuestionScore(question.calculatePoints(Arrays.asList(selectedOption)));
 	}
 
-	public void answerQuestion(Question question, GameOption selectedOption) {
-		answerQuestion(question, Arrays.asList(selectedOption));
-	}
-
-	public void answerQuestionWithAugmenter(Question question, List<GameOption> selectedOption, ScoreAugmenter augmenter) {
-		score.setAugmenter(augmenter);
-		score.setQuestionScore(question.calculatePoints(selectedOption));
-
-		Integer uses = getAugmentersUsesAvailable(augmenter.getAugmenterType());
-		if(uses != null)
-			augmentersUsesAvailable.put(augmenter.getAugmenterType(), uses  > 1 ? (uses - 1) : 0);
-	}
-
-	public void updateScore(Score opponentScore) {
-		this.score.update(opponentScore);
-	}
 }

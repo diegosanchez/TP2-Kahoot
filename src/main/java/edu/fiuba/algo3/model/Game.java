@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.model;
 
-import edu.fiuba.algo3.engine.score.ScoreAugmenterFactory;
 import edu.fiuba.algo3.engine.score.ScoreCalculator;
-import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;
-
 import java.util.Iterator;
 import java.util.List;
 
@@ -58,10 +55,7 @@ public class Game {
 	}
 
 	public void nextTurn(List<GameOption> selectedOptions, String augmenterString){
-		ScoreAugmenter selectedAugmenter = ScoreAugmenterFactory.
-				createScoreAugmenter(currentPlayer, currentQuestion, augmenterString);
-
-		currentPlayer.answerQuestionWithAugmenter(currentQuestion, selectedOptions, selectedAugmenter);
+		currentPlayer.answerQuestionWithAugmenter(currentQuestion, augmenterString, selectedOptions);
 
 		if(playersIterator.hasNext()){
 			currentPlayer = playersIterator.next();

@@ -2,7 +2,6 @@ package edu.fiuba.algo3.model;
 
 import java.util.List;
 
-import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.constants.QuestionType;
 
 public abstract class Question {
