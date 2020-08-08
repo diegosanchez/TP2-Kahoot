@@ -4,33 +4,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.GameController">
-   <center>
-      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="390.0">
-         <children>
-            <VBox alignment="CENTER" layoutX="36.0" layoutY="45.0" prefHeight="278.0" prefWidth="390.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
-               <children>
-                  <Label fx:id="questionText" alignment="CENTER" prefHeight="63.0" prefWidth="346.0" text="Question Label">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                     <VBox alignment="CENTER" prefWidth="300.0" />
-                  <Pane fx:id="questionPane" prefHeight="200.0" prefWidth="200.0" />
-               </children>
-            </VBox>
-         </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </AnchorPane>
-   </center>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="640.0" stylesheets="@../styles/questions.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.GameController">
    <bottom>
       <VBox alignment="CENTER" fillWidth="false" prefHeight="40.0" prefWidth="640.0">
          <children>
@@ -43,7 +22,7 @@
                   <Font size="20.0" />
                </font>
                <VBox.margin>
-                  <Insets left="27.0" />
+                  <Insets />
                </VBox.margin>
             </Button>
          </children>
@@ -53,57 +32,27 @@
       </VBox>
    </bottom>
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="368.0" prefWidth="130.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label fx:id="playerName" alignment="CENTER" prefHeight="32.0" prefWidth="140.0" text="Jugador Label" textFill="#706e6ed5">
-               <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="26.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="80.0" />
-               </VBox.margin>
-            </Label>
-            <Label onMouseClicked="#addAugmenter" styleClass="stylishLabel" text="x2">
-               <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="33.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="30.0" top="60.0" />
-               </VBox.margin>
-            </Label>
-            <Label onMouseClicked="#addAugmenter" styleClass="stylishLabel" text="x3">
-               <font>
-                  <Font size="34.0" />
-               </font></Label>
-         </children>
+      <VBox alignment="TOP_CENTER" prefHeight="368.0" prefWidth="200.0" BorderPane.alignment="BOTTOM_LEFT">
          <BorderPane.margin>
-            <Insets left="10.0" />
+            <Insets />
          </BorderPane.margin>
+         <children>
+            <Pane fx:id="playerPane" prefHeight="120.0" prefWidth="200.0" />
+            <Pane fx:id="augmenterPane" prefHeight="150.0" prefWidth="200.0" />
+            <Pane fx:id="exclusivityPane" prefHeight="100.0" prefWidth="200.0" />
+         </children>
       </VBox>
    </left>
-   <right>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+   <center>
+      <VBox alignment="BOTTOM_CENTER" prefHeight="440.0" prefWidth="340.0" BorderPane.alignment="BOTTOM_CENTER">
          <children>
-            <Label fx:id="playerScore" alignment="CENTER" styleClass="stylishLabel" text="60">
+            <Label fx:id="questionText" alignment="CENTER" prefHeight="120.0" prefWidth="440.0" text="Question">
                <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="33.0" />
+                  <Font size="20.0" />
                </font>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
             </Label>
-            <Label onMouseClicked="#addAugmenter" styleClass="stylishLabel" text="Ex">
-               <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="33.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="60.0" />
-               </VBox.margin>
-            </Label>
+            <Pane fx:id="questionPane" prefHeight="237.0" prefWidth="440.0" />
          </children>
-         <BorderPane.margin>
-            <Insets right="10.0" />
-         </BorderPane.margin>
       </VBox>
-   </right>
+   </center>
 </BorderPane>

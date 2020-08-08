@@ -14,5 +14,8 @@ public class Views {
 	public static final String RESULTS_VIEW = "ResultsView";
 	public static final String ERROR_VIEW = "ErrorView";
 	public static final String GAME_VIEW = "GameView";
+	public static final String PLAYER_PANE = "PlayerPane";
+	public static final String AUGMENTER_PANE = "AugmenterPane";
+	public static final String EXCLUSIVITY_PANE = "ExclusivityPane";
 
 }

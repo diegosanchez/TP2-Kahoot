@@ -17,25 +17,35 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static edu.fiuba.algo3.constants.Views.*;
+
 public class GameController {
-    
+    /*
 	@FXML
     public Label playerName;
     @FXML
     public Label playerScore;
+         */
     @FXML
     public Label questionText;
     @FXML
-    public Button submitButton;    
-    @FXML
     public Pane questionPane;
+    @FXML
+    public Pane playerPane;
+    @FXML
+    public Pane augmenterPane;
+    @FXML
+    public Pane exclusivityPane;
+    @FXML
+    public Button submitButton;
 
-    private String augmenterString;
-    
-    private Game game;
     private Stage stage;
+    private Game game;
+    private String augmenterString;
     private GenericQuestionController currentQuestionController;
-    
+    private AugmenterPaneController currentAugController;
+    private ExclusivityPaneController currentExclController;
+
     private static final Logger logger = LoggerFactory.getLogger(GameController.class);
 
     public void addAugmenter(MouseEvent event){
@@ -48,27 +58,71 @@ public class GameController {
         this.stage = stage;
 
         game.start();
-        setQuestionSceneView();
+        updatePanes();
     }
 
-    private void setQuestionSceneView(){
+    private void setPlayerPane(){
+        PlayerPaneController currentPlayerController;
+        try{
+            SceneLoader.loadInsidePane(playerPane, PLAYER_PANE);
+            currentPlayerController = SceneLoader.getCurrentSceneController();
+            currentPlayerController.initialize(this);
+        } catch (ViewLoadingException e) {
+            logger.error("View not loaded", e);
+            SceneLoader.loadErrorPage();
+        }
+    }
+
+    private void setQuestionPane(){
         try{
         	String viewName = QuestionViewRouter.getViewByQuestionType(getCurrentQuestion().getType());
         	SceneLoader.loadInsidePane(questionPane, viewName);
         	currentQuestionController = SceneLoader.getCurrentSceneController();
         	currentQuestionController.initialize(this);
+        	questionText.setText(getCurrentQuestion().getText());
         } catch (ViewLoadingException e) {
         	logger.error("View not loaded", e);
             SceneLoader.loadErrorPage();
         }        
-        updateBoard();
     }
-    
+
+    private void setAugmentersPane(){
+        try{
+            SceneLoader.loadInsidePane(augmenterPane, AUGMENTER_PANE);
+            currentAugController = SceneLoader.getCurrentSceneController();
+            currentAugController.initialize(this);
+        } catch (ViewLoadingException e) {
+            logger.error("View not loaded", e);
+            SceneLoader.loadErrorPage();
+        }
+    }
+
+    private void setExclusivityPane(){
+        try{
+            SceneLoader.loadInsidePane(augmenterPane, EXCLUSIVITY_PANE);
+            currentExclController = SceneLoader.getCurrentSceneController();
+            currentExclController.initialize(this);
+        } catch (ViewLoadingException e) {
+            logger.error("View not loaded", e);
+            SceneLoader.loadErrorPage();
+        }
+    }
+
+    private void updatePanes(){
+        setPlayerPane();
+        setQuestionPane();
+        setAugmentersPane();
+        setExclusivityPane();
+    }
+
+    /*
     private void updateBoard() {
     	playerName.setText(getCurrentPlayer().getName());  
         playerScore.setText((Integer.toString(getCurrentPlayer().getScore().getValue())));
         questionText.setText(getCurrentQuestion().getText());
     }
+
+     */
     
     public Player getCurrentPlayer(){
         return this.game.getCurrentPlayer();
@@ -80,7 +134,7 @@ public class GameController {
 
     public void doNext(){
     	 game.nextTurn(currentQuestionController.getSelectedAnswers(), augmenterString);
-         setQuestionSceneView();
+         updatePanes();
          //submitButton.setVisible(false);
          
          if(game.isOver()) endGame();
