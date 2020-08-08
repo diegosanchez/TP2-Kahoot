@@ -17,7 +17,7 @@ public class ScoreCalculator {
 		resultList.stream().forEach(resultOne -> {
 			resultList.stream().forEach(resultTwo -> {
 				if(!resultOne.equals(resultTwo)) {	
-					resultOne.applyScoreAugmenter(resultTwo.getMatchScore());				
+					resultOne.applyScoreAugmenter(resultTwo);				
 				}
 			});
 		});

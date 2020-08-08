@@ -29,29 +29,17 @@ public class MatchResult {
 	public MatchResult(Player player, Question question, GameOption ... selectedOptions) {
 		this(player,  question, null, Arrays.asList(selectedOptions));
 	}
-
-	public Player getPlayer() {
-		return player;
-	}
-
-	public void setPlayer(Player player) {
-		this.player = player;
-	}
-
+	
 	public Score getMatchScore() {
 		return matchScore;
-	}
-
-	public void setMatchScore(Score matchScore) {
-		this.matchScore = matchScore;
 	}
 
 	public void sumMatchScoreToPlayer() {
 		player.sumScore(matchScore);
 	}
 
-	public void applyScoreAugmenter(Score opponentScore) {
-		selectedAugmenter.applyScoreAugmenter(matchScore, opponentScore);
+	public void applyScoreAugmenter(MatchResult opponentResult) {
+		selectedAugmenter.applyScoreAugmenter(matchScore, opponentResult.getMatchScore());
 	}
 
 	
