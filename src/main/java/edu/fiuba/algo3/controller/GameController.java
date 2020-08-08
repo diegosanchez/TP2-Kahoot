@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import org.slf4j.Logger;
@@ -20,14 +21,9 @@ import org.slf4j.LoggerFactory;
 import static edu.fiuba.algo3.constants.Views.*;
 
 public class GameController {
-    /*
-	@FXML
-    public Label playerName;
+
     @FXML
-    public Label playerScore;
-         */
-    @FXML
-    public Label questionText;
+    public Text questionText;
     @FXML
     public Pane questionPane;
     @FXML
@@ -99,7 +95,7 @@ public class GameController {
 
     private void setExclusivityPane(){
         try{
-            SceneLoader.loadInsidePane(augmenterPane, EXCLUSIVITY_PANE);
+            SceneLoader.loadInsidePane(exclusivityPane, EXCLUSIVITY_PANE);
             currentExclController = SceneLoader.getCurrentSceneController();
             currentExclController.initialize(this);
         } catch (ViewLoadingException e) {
@@ -115,15 +111,6 @@ public class GameController {
         setExclusivityPane();
     }
 
-    /*
-    private void updateBoard() {
-    	playerName.setText(getCurrentPlayer().getName());  
-        playerScore.setText((Integer.toString(getCurrentPlayer().getScore().getValue())));
-        questionText.setText(getCurrentQuestion().getText());
-    }
-
-     */
-    
     public Player getCurrentPlayer(){
         return this.game.getCurrentPlayer();
     }
@@ -135,8 +122,6 @@ public class GameController {
     public void doNext(){
     	 game.nextTurn(currentQuestionController.getSelectedAnswers(), augmenterString);
          updatePanes();
-         //submitButton.setVisible(false);
-         
          if(game.isOver()) endGame();
     }
     
