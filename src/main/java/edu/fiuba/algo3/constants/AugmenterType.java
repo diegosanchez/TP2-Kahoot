@@ -26,5 +26,13 @@ public enum AugmenterType {
 	public ScoreAugmenter getScoreAugmenter() {
 		return this.scoreAugmenter;
 	}
+	
+	public static AugmenterType getEnumByName(String name) {		
+		try {
+			return AugmenterType.valueOf(name);
+		}catch(IllegalArgumentException | NullPointerException ex) {
+			return AugmenterType.NO_MULTIPLIER;
+		}
+	}
 
 }

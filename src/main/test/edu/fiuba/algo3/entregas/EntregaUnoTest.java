@@ -7,12 +7,14 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.engine.questions.MultipleChoicePartialQuestion;
 import edu.fiuba.algo3.engine.questions.MultipleChoiceQuestion;
 import edu.fiuba.algo3.engine.questions.MultipleChoiceWithPenaltyQuestion;
 import edu.fiuba.algo3.engine.questions.TrueFalseWithPenaltyQuestion;
-import edu.fiuba.algo3.engine.score.AugmenterCalculator;
+import edu.fiuba.algo3.engine.score.ScoreCalculator;
 import edu.fiuba.algo3.model.GameOption;
+import edu.fiuba.algo3.model.MatchResult;
 import edu.fiuba.algo3.model.Player;
 import edu.fiuba.algo3.model.Score;
 
@@ -124,9 +126,13 @@ public class EntregaUnoTest {
 		TrueFalseWithPenaltyQuestion question = new TrueFalseWithPenaltyQuestion("¿1 es mayor que 2?", listaOpciones);
 		
 		question.setCorrectOption(opcionFalse);
-		jugadorUno.answerQuestion(question, opcionTrue);
-		jugadorDos.answerQuestion(question, opcionFalse);
-		AugmenterCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+		
+		List<MatchResult> resultadosRonda = new ArrayList<MatchResult>();
+		
+		resultadosRonda.add(new MatchResult(jugadorUno, question, opcionTrue));
+		resultadosRonda.add(new MatchResult(jugadorDos, question, opcionFalse));
+		
+		ScoreCalculator.calculateAndAssignPoints(resultadosRonda);
 
 		assertEquals(new Score(-1), jugadorUno.getScore());
 		assertEquals(new Score(1), jugadorDos.getScore());
@@ -168,10 +174,13 @@ public class EntregaUnoTest {
 		List<GameOption> opcionesJugadorDos = new ArrayList<GameOption>();
 		opcionesJugadorDos.add(opcionUno);						
 		opcionesJugadorDos.add(opcionDos);
-
-		jugadorUno.answerQuestion(question, opcionesJugadorUno);
-		jugadorDos.answerQuestion(question, opcionesJugadorDos);
-		AugmenterCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+		
+		List<MatchResult> resultadosRonda = new ArrayList<MatchResult>();
+		
+		resultadosRonda.add(new MatchResult(jugadorUno, question, opcionesJugadorUno));
+		resultadosRonda.add(new MatchResult(jugadorDos, question, opcionesJugadorDos));
+		
+		ScoreCalculator.calculateAndAssignPoints(resultadosRonda);
 
 		assertEquals(new Score(1), jugadorUno.getScore());
 		assertEquals(new Score(0), jugadorDos.getScore());
@@ -213,9 +222,12 @@ public class EntregaUnoTest {
 		opcionesJugadorDos.add(opcionUno);						
 		opcionesJugadorDos.add(opcionTres);
 
-		jugadorUno.answerQuestion(question, opcionesJugadorUno);
-		jugadorDos.answerQuestion(question, opcionesJugadorDos);
-		AugmenterCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+		List<MatchResult> resultadosRonda = new ArrayList<MatchResult>();
+		
+		resultadosRonda.add(new MatchResult(jugadorUno, question, opcionesJugadorUno));
+		resultadosRonda.add(new MatchResult(jugadorDos, question, opcionesJugadorDos));
+		
+		ScoreCalculator.calculateAndAssignPoints(resultadosRonda);
 		
 		assertEquals(new Score(1), jugadorUno.getScore());
 		assertEquals(new Score(2), jugadorDos.getScore());

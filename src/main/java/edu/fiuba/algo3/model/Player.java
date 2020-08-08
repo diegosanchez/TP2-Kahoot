@@ -32,11 +32,13 @@ public class Player {
 	}
 	
 	public ScoreAugmenter getAugmenter(AugmenterType augmenterType) {
-		int index = augmenters.indexOf(augmenterType.getScoreAugmenter());
-		if(index == -1) {
-			return AugmenterType.NO_MULTIPLIER.getScoreAugmenter();
+		if(augmenterType != null) {					
+			int index = augmenters.indexOf(augmenterType.getScoreAugmenter());
+			if(index > -1) {
+				return augmenters.remove(index);
+			}
 		}
-		return augmenters.remove(index);
+		return AugmenterType.NO_MULTIPLIER.getScoreAugmenter();		
 	}
 
 	private void loadAugmenters() {

@@ -14,8 +14,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.constants.ResourceConstants;
-import edu.fiuba.algo3.constants.StringConstants;
 import edu.fiuba.algo3.engine.questions.TrueFalseQuestion;
 import edu.fiuba.algo3.exceptions.QuestionsNotLoadedException;
 import edu.fiuba.algo3.loaders.QuestionLoader;
@@ -51,7 +51,7 @@ public class GameTest {
 	 @Test
 	 public void pasarDeTurnoCambiaElJugadorTest() {
 		 assertEquals(jugadorUno, game.getCurrentPlayer());
-		 game.nextTurn(new ArrayList<GameOption>(), StringConstants.TWO_MULTIPLIER);
+		 game.nextTurn(new ArrayList<GameOption>(), AugmenterType.MULTIPLY_PER_TWO.toString());
 		 assertEquals(jugadorDos, game.getCurrentPlayer());
 	 }
 	 
@@ -69,10 +69,10 @@ public class GameTest {
 		 questions.add(new TrueFalseQuestion("¿1 es mayor a 2?", listaOpciones));
 		 game.setQuestions(questions);
 		 game.start();
-		 game.nextTurn(new ArrayList<GameOption>(), StringConstants.TWO_MULTIPLIER);
-		 game.nextTurn(new ArrayList<GameOption>(), StringConstants.TWO_MULTIPLIER);
-		 game.nextTurn(new ArrayList<GameOption>(), StringConstants.TWO_MULTIPLIER);
-		 game.nextTurn(new ArrayList<GameOption>(), StringConstants.TWO_MULTIPLIER);
+		 game.nextTurn(new ArrayList<GameOption>(), AugmenterType.MULTIPLY_PER_TWO.toString());
+		 game.nextTurn(new ArrayList<GameOption>(), AugmenterType.MULTIPLY_PER_TWO.toString());
+		 game.nextTurn(new ArrayList<GameOption>(), AugmenterType.MULTIPLY_PER_TWO.toString());
+		 game.nextTurn(new ArrayList<GameOption>(), AugmenterType.MULTIPLY_PER_TWO.toString());
 		 assertTrue(game.isOver());
 	 }
 	 
@@ -92,7 +92,7 @@ public class GameTest {
 		 questions.add(new TrueFalseQuestion("¿1 es mayor a 2?", listaOpciones));
 		 game.setQuestions(questions);
 		 game.start();
-		 game.nextTurn(new ArrayList<GameOption>(), StringConstants.TWO_MULTIPLIER);
+		 game.nextTurn(new ArrayList<GameOption>(), AugmenterType.MULTIPLY_PER_TWO.toString());
 		 assertEquals(jugadorUno, game.getWinner());
 	 }
 
@@ -119,7 +119,7 @@ public class GameTest {
 	public void ambosJugadoresAgotanSuExclusividadYNoGananPuntajeEnLasPrimerasDosPreguntasTest(){
 
 		while(!game.isOver()){
-			game.nextTurn(game.getCurrentQuestion().getCorrectOptions(), StringConstants.EXCLUSIVITY_MULTIPLIER);
+			game.nextTurn(game.getCurrentQuestion().getCorrectOptions(), AugmenterType.EXCLUSIVITY.toString());
 		}
 
 		for(Player player : game.getPlayers()){
@@ -169,29 +169,45 @@ public class GameTest {
 
 		List<List<GameOption>> respuestasJugador1 = Arrays.asList(
 				Arrays.asList(new GameOption("3"), new GameOption("4")), // suma cero
-				Arrays.asList(new GameOption("2"), new GameOption("3"), new GameOption("4")), // suma uno
+				Arrays.asList(new GameOption("2"), new GameOption("3"), new GameOption("4")), // suma uno -> suma dos
 				Arrays.asList(new GameOption("1"), new GameOption("2")), // suma cero
 				Arrays.asList(), // suma cero
-				Arrays.asList(new GameOption("Verdadero")), // suma uno
-				Arrays.asList(new GameOption("Falso")), // resta uno
+				Arrays.asList(new GameOption("Verdadero")), // suma uno -> suma uno porque se queda sin usos del multiplicador
+				Arrays.asList(new GameOption("Falso")), // resta uno -> resta tres
 				Arrays.asList() // suma cero
 		);
 
-		List<String> multiplicadoresJugador1 = Arrays.asList("", StringConstants.TWO_MULTIPLIER, "",
-				StringConstants.EXCLUSIVITY_MULTIPLIER, StringConstants.TWO_MULTIPLIER, StringConstants.THREE_MULTIPLIER, "");
+		List<String> multiplicadoresJugador1 = Arrays.asList(
+				"", 
+				AugmenterType.MULTIPLY_PER_TWO.toString(), 
+				"",
+				AugmenterType.EXCLUSIVITY.toString(),
+				AugmenterType.MULTIPLY_PER_TWO.toString(),
+				AugmenterType.MULTIPLY_PER_THREE.toString(), 
+				"");
+		
+		// 0 + 2 + 0 + 0 + 1 - 3 = 1
 
 		List<List<GameOption>> respuestasJugador2 = Arrays.asList(
-				Arrays.asList(new GameOption("2"), new GameOption("4")), // suma uno
+				Arrays.asList(new GameOption("2"), new GameOption("4")), // suma uno -> suma dos
 				Arrays.asList(new GameOption("2"), new GameOption("3"), new GameOption("4")), // suma uno
 				Arrays.asList(new GameOption("1"), new GameOption("2")), // suma cero
-				Arrays.asList(new GameOption("1"), new GameOption("2"), new GameOption("3"), new GameOption("4")), // suma uno
-				Arrays.asList(new GameOption("Verdadero")), // suma uno
-				Arrays.asList(new GameOption("Falso")), // resta uno
+				Arrays.asList(new GameOption("1"), new GameOption("2"), new GameOption("3"), new GameOption("4")), // suma uno -> suma cuatro
+				Arrays.asList(new GameOption("Verdadero")), // suma uno -> suma tres
+				Arrays.asList(new GameOption("Falso")), // resta uno -> resta dos
 				Arrays.asList() // suma cero
 		);
 
-		List<String> multiplicadoresJugador2 = Arrays.asList(StringConstants.EXCLUSIVITY_MULTIPLIER, "", "",
-				StringConstants.EXCLUSIVITY_MULTIPLIER, StringConstants.THREE_MULTIPLIER, StringConstants.TWO_MULTIPLIER, "");
+		List<String> multiplicadoresJugador2 = Arrays.asList(
+				AugmenterType.EXCLUSIVITY.toString(), 
+				"", 
+				"",
+				AugmenterType.EXCLUSIVITY.toString(),
+				AugmenterType.MULTIPLY_PER_THREE.toString(),
+				AugmenterType.MULTIPLY_PER_TWO.toString(),
+				"");
+		
+		// 2 + 1 + 0 + 4 + 3 - 2 = 8
 
 		Iterator<List<GameOption>> iterador1 = respuestasJugador1.iterator();
 		Iterator<List<GameOption>> iterador2 = respuestasJugador2.iterator();
@@ -206,6 +222,6 @@ public class GameTest {
 		}
 
 		Assertions.assertEquals(new Score(0), jugadorUno.getScore());
-		Assertions.assertEquals(new Score(6), jugadorDos.getScore());
+		Assertions.assertEquals(new Score(8), jugadorDos.getScore());
 	}
 }

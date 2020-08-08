@@ -4,9 +4,9 @@ import java.util.List;
 
 import edu.fiuba.algo3.model.MatchResult;
 
-public class AugmenterCalculator {
+public class ScoreCalculator {
 	
-	private AugmenterCalculator() {}
+	private ScoreCalculator() {}
 	
 	public static void calculateAndAssignPoints(List<MatchResult> matchResults) {
 		calculateAugmenters(matchResults);

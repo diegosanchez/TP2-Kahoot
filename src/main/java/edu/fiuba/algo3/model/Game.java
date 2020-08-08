@@ -1,7 +1,7 @@
 package edu.fiuba.algo3.model;
 
 import edu.fiuba.algo3.constants.AugmenterType;
-import edu.fiuba.algo3.engine.score.AugmenterCalculator;
+import edu.fiuba.algo3.engine.score.ScoreCalculator;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -60,15 +60,15 @@ public class Game {
 	}
 
 	public void nextTurn(List<GameOption> selectedOptions, String augmenterString){
-		Score matchScore = new Score(currentQuestion.calculatePoints(selectedOptions));
-		AugmenterType selectedAugmenter = AugmenterType.valueOf(augmenterString);
-		matchResults.add(new MatchResult(currentPlayer, selectedAugmenter, matchScore));
+		AugmenterType selectedAugmenter = AugmenterType.getEnumByName(augmenterString);
+		
+		matchResults.add(new MatchResult(currentPlayer, currentQuestion, selectedAugmenter, selectedOptions));
 		
 		if(playersIterator.hasNext()){
 			currentPlayer = playersIterator.next();
 		}
 		else if(!isOver){
-			AugmenterCalculator.calculateAndAssignPoints(matchResults);
+			ScoreCalculator.calculateAndAssignPoints(matchResults);
 
 			if(questionIterator.hasNext()){
 				currentQuestion = questionIterator.next();
