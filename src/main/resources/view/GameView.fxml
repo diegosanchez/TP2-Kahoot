@@ -38,7 +38,7 @@
          </BorderPane.margin>
          <children>
             <Pane fx:id="playerPane" prefHeight="130.0" prefWidth="200.0" />
-            <Pane fx:id="augmenterPane" prefHeight="130.0" prefWidth="200.0" />
+            <Pane fx:id="augmenterPane" prefHeight="100.0" prefWidth="200.0" />
             <Pane fx:id="exclusivityPane" prefHeight="50.0" prefWidth="200.0" />
          </children>
       </VBox>
