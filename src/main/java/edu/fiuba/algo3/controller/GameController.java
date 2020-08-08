@@ -1,9 +1,6 @@
 package edu.fiuba.algo3.controller;
 
 
-import edu.fiuba.algo3.constants.QuestionType;
-import edu.fiuba.algo3.constants.QuestionViewType;
-import edu.fiuba.algo3.constants.Stylesheets;
 import edu.fiuba.algo3.constants.Views;
 import edu.fiuba.algo3.exceptions.ViewLoadingException;
 import edu.fiuba.algo3.loaders.SceneLoader;
