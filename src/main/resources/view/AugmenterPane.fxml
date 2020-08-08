@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.AugmenterPaneController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+         <children>
+            <RadioButton fx:id="augmenterx2" mnemonicParsing="false" text="AugX2">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Augmenters" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="augmenterx3" mnemonicParsing="false" text="AugX3" toggleGroup="$Augmenters" />
+         </children>
+      </VBox>
+   </children>
+</Pane>
