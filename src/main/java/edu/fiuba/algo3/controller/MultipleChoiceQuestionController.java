@@ -17,7 +17,7 @@ public class MultipleChoiceQuestionController extends GenericQuestionController{
     public GridPane gridPane;
 
     public void setUpView(){
-        List<CheckBox> buttonList = (List) vBoxChecks.getChildren();
+        List<CheckBox> buttonList = (List) gridPane.getChildren();
 
         int i = 0;
         for (GameOption option : (gameController.getCurrentQuestion().getOptions())) {
