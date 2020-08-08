@@ -8,12 +8,10 @@ import edu.fiuba.algo3.model.Question;
 import static edu.fiuba.algo3.constants.Views.MULTIPLE_CHOICE_QUESTION_VIEW;
 
 public class MultipleChoicePartialQuestion extends Question {
-	
-	public MultipleChoicePartialQuestion(String text) {
-		super(text);
-	}
 
-	@Override
+    public MultipleChoicePartialQuestion(String text, List<GameOption> optionList) { super(text, optionList); }
+
+    @Override
 	public int calculatePoints(List<GameOption> selectedOptions) {
 		int puntaje = 0;
 		for(GameOption option : selectedOptions) {
@@ -30,10 +28,4 @@ public class MultipleChoicePartialQuestion extends Question {
 	public boolean hasPenalty() {
 		return false;
 	}
-
-	@Override
-	public String getView() {
-		return MULTIPLE_CHOICE_QUESTION_VIEW;
-	}
-
 }

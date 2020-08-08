@@ -11,6 +11,7 @@ public class Views {
 	public static final String MULTIPLE_CHOICE_WITH_PENALTY_QUESTION_VIEW = "MultipleChoiceWithPenaltyQuestionView";
 	public static final String ORDERED_CHOICE_QUESTION_VIEW = "OrderedChoiceQuestionView";
 	public static final String TRUE_FALSE_QUESTION_VIEW = "TrueFalseQuestionView";
+	public static final String TRUE_FALSE_QUESTION_WITH_PENALTY_VIEW = "TrueFalseQuestionWithPenaltyView";
 	public static final String RESULTS_VIEW = "ResultsView";
 	public static final String ERROR_VIEW = "ErrorView";
 	public static final String GAME_VIEW = "GameView";

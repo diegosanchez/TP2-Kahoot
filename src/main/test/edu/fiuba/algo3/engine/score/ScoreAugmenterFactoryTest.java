@@ -4,15 +4,26 @@ import edu.fiuba.algo3.constants.StringConstants;
 import edu.fiuba.algo3.engine.questions.TrueFalseQuestion;
 import edu.fiuba.algo3.engine.questions.TrueFalseWithPenaltyQuestion;
 import edu.fiuba.algo3.engine.score.augmenters.*;
+import edu.fiuba.algo3.model.GameOption;
 import edu.fiuba.algo3.model.Player;
 import edu.fiuba.algo3.model.Question;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ScoreAugmenterFactoryTest {
     @Test
     public void aumentadorDobleParaPreguntaSinPenalidadDevuelveNullTest(){
-        Question question = new TrueFalseQuestion("Cuanto es dos mas dos?");
+        List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
+        GameOption opcionTrue = new GameOption("True");
+        GameOption opcionFalse = new GameOption("False");
+
+        listaOpciones.add(opcionTrue);
+        listaOpciones.add(opcionFalse);
+        Question question = new TrueFalseQuestion("Cuanto es dos mas dos?", listaOpciones);
         NoMultiplier multiplier = new NoMultiplier();
 
         ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(StringConstants.TWO_MULTIPLIER, question);
@@ -22,7 +33,14 @@ public class ScoreAugmenterFactoryTest {
 
     @Test
     public void aumentadorDobleParaPreguntaConPenalidadSeInicializaCorrectamenteTest(){
-        Question question = new TrueFalseWithPenaltyQuestion("Cuanto es dos mas dos?");
+        List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
+        GameOption opcionTrue = new GameOption("True");
+        GameOption opcionFalse = new GameOption("False");
+
+        listaOpciones.add(opcionTrue);
+        listaOpciones.add(opcionFalse);
+        Question question = new TrueFalseWithPenaltyQuestion("Cuanto es dos mas dos?", listaOpciones);
         TwoMultiplier multiplier = new TwoMultiplier();
 
         ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(StringConstants.TWO_MULTIPLIER, question);
@@ -32,7 +50,14 @@ public class ScoreAugmenterFactoryTest {
 
     @Test
     public void aumentadorTripleParaPreguntaSinPenalidadDevuelveNullTest(){
-        Question question = new TrueFalseQuestion("Cuanto es dos mas dos?");
+        List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
+        GameOption opcionTrue = new GameOption("True");
+        GameOption opcionFalse = new GameOption("False");
+
+        listaOpciones.add(opcionTrue);
+        listaOpciones.add(opcionFalse);
+        Question question = new TrueFalseQuestion("Cuanto es dos mas dos?", listaOpciones);
         NoMultiplier multiplier = new NoMultiplier();
 
         ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(StringConstants.THREE_MULTIPLIER, question);
@@ -42,7 +67,14 @@ public class ScoreAugmenterFactoryTest {
 
     @Test
     public void aumentadorTripleParaPreguntaConPenalidadSeInicializaCorrectamenteTest(){
-        Question question = new TrueFalseWithPenaltyQuestion("Cuanto es dos mas dos?");
+        List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
+        GameOption opcionTrue = new GameOption("True");
+        GameOption opcionFalse = new GameOption("False");
+
+        listaOpciones.add(opcionTrue);
+        listaOpciones.add(opcionFalse);
+        Question question = new TrueFalseWithPenaltyQuestion("Cuanto es dos mas dos?", listaOpciones);
         ThreeMultiplier multiplier = new ThreeMultiplier();
 
         ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(StringConstants.THREE_MULTIPLIER, question);
@@ -52,7 +84,14 @@ public class ScoreAugmenterFactoryTest {
 
     @Test
     public void aumentadorDeExclusividadParaPreguntaConPenalidadDevuelveNullTest(){
-        Question question = new TrueFalseWithPenaltyQuestion("Cuanto es dos mas dos?");
+        List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
+        GameOption opcionTrue = new GameOption("True");
+        GameOption opcionFalse = new GameOption("False");
+
+        listaOpciones.add(opcionTrue);
+        listaOpciones.add(opcionFalse);
+        Question question = new TrueFalseWithPenaltyQuestion("Cuanto es dos mas dos?", listaOpciones);
         NoMultiplier multiplier = new NoMultiplier();
 
         ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(StringConstants.EXCLUSIVITY_MULTIPLIER, question);
@@ -62,7 +101,14 @@ public class ScoreAugmenterFactoryTest {
 
     @Test
     public void aumentadorDeExclusividadParaPreguntaSinPenalidadSeInicializaCorrectamenteTest(){
-        Question question = new TrueFalseQuestion("Cuanto es dos mas dos?");
+        List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
+        GameOption opcionTrue = new GameOption("True");
+        GameOption opcionFalse = new GameOption("False");
+
+        listaOpciones.add(opcionTrue);
+        listaOpciones.add(opcionFalse);
+        Question question = new TrueFalseQuestion("Cuanto es dos mas dos?", listaOpciones);
         ExclusivityMultiplier multiplier = new ExclusivityMultiplier();
 
         ScoreAugmenter augmenter = ScoreAugmenterFactory.createScoreAugmenter(StringConstants.EXCLUSIVITY_MULTIPLIER, question);
@@ -72,7 +118,14 @@ public class ScoreAugmenterFactoryTest {
     
     @Test
     public void aumentadorDobleConJugadorParaPreguntaConPenalidadSeInicializaCorrectamenteTest(){
-        Question question = new TrueFalseWithPenaltyQuestion("Cuanto es dos mas dos?");
+        List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
+        GameOption opcionTrue = new GameOption("True");
+        GameOption opcionFalse = new GameOption("False");
+
+        listaOpciones.add(opcionTrue);
+        listaOpciones.add(opcionFalse);
+        Question question = new TrueFalseWithPenaltyQuestion("Cuanto es dos mas dos?", listaOpciones);
         Player player = new Player("Jugador");
         TwoMultiplier multiplier = new TwoMultiplier();
 
@@ -83,7 +136,14 @@ public class ScoreAugmenterFactoryTest {
     
     @Test
     public void aumentadorTripleConJugadorParaPreguntaConPenalidadSeInicializaCorrectamenteTest(){
-        Question question = new TrueFalseWithPenaltyQuestion("Cuanto es dos mas dos?");
+        List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
+        GameOption opcionTrue = new GameOption("True");
+        GameOption opcionFalse = new GameOption("False");
+
+        listaOpciones.add(opcionTrue);
+        listaOpciones.add(opcionFalse);
+        Question question = new TrueFalseWithPenaltyQuestion("Cuanto es dos mas dos?", listaOpciones);
         Player player = new Player("Jugador");
         ThreeMultiplier multiplier = new ThreeMultiplier();
 
@@ -94,7 +154,14 @@ public class ScoreAugmenterFactoryTest {
     
     @Test
     public void aumentadorExclusividadConJugadorParaPreguntaSinPenalidadSeInicializaCorrectamenteTest(){
-    	Question question = new TrueFalseQuestion("Cuanto es dos mas dos?");
+        List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
+        GameOption opcionTrue = new GameOption("True");
+        GameOption opcionFalse = new GameOption("False");
+
+        listaOpciones.add(opcionTrue);
+        listaOpciones.add(opcionFalse);
+        Question question = new TrueFalseQuestion("Cuanto es dos mas dos?", listaOpciones);
         Player player = new Player("Jugador");
         ExclusivityMultiplier multiplier = new ExclusivityMultiplier();
 

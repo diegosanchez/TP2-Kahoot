@@ -14,11 +14,16 @@ public class OrderedChoiceTest {
 	
 	@Test
 	public void opcionesEnOrdenCorrectoSumaUnPunto() {
-		OrderedChoiceQuestion question = new OrderedChoiceQuestion("Ordenar los numeros de menor a mayor");
-		
 		GameOption opcionUno = new GameOption("1");
 		GameOption opcionDos = new GameOption("2");
 		GameOption opcionTres = new GameOption("3");
+
+		List<GameOption> listaOpciones = new ArrayList<GameOption>();
+		listaOpciones.add(opcionUno);
+		listaOpciones.add(opcionDos);
+		listaOpciones.add(opcionTres);
+
+		OrderedChoiceQuestion question = new OrderedChoiceQuestion("Ordenar los numeros de menor a mayor", listaOpciones);
 		
 		List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
 		listaOpcionesCorrectas.add(opcionUno);
@@ -37,11 +42,16 @@ public class OrderedChoiceTest {
 	
 	@Test
 	public void opcionesEnOrdenIncorrectoDevuelveCero() {
-		OrderedChoiceQuestion question = new OrderedChoiceQuestion("Ordenar los numeros de menor a mayor");
-		
 		GameOption opcionUno = new GameOption("1");
 		GameOption opcionDos = new GameOption("2");
 		GameOption opcionTres = new GameOption("3");
+
+		List<GameOption> listaOpciones = new ArrayList<GameOption>();
+		listaOpciones.add(opcionUno);
+		listaOpciones.add(opcionDos);
+		listaOpciones.add(opcionTres);
+
+		OrderedChoiceQuestion question = new OrderedChoiceQuestion("Ordenar los numeros de menor a mayor", listaOpciones);
 		
 		List<GameOption> listaOpcionesCorrectas = new ArrayList<GameOption>();
 		listaOpcionesCorrectas.add(opcionUno);

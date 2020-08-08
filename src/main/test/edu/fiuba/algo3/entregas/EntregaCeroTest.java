@@ -10,6 +10,9 @@ import edu.fiuba.algo3.engine.score.ScoreCalculator;
 import edu.fiuba.algo3.model.GameOption;
 import edu.fiuba.algo3.model.Player;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EntregaCeroTest {
 
 	/***
@@ -17,10 +20,15 @@ public class EntregaCeroTest {
 	 */
 	@Test
 	public void preguntaCorrectaSumaUnPuntoIncorrectaNoSumaNadaTest() {
-		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?");
-		
+		List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
 		GameOption opcionTrue = new GameOption("True");
 		GameOption opcionFalse = new GameOption("False");
+
+		listaOpciones.add(opcionTrue);
+		listaOpciones.add(opcionFalse);
+
+		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?", listaOpciones);
 		
 		question.setCorrectOption(opcionFalse);
 		
@@ -35,11 +43,16 @@ public class EntregaCeroTest {
 	public void calculoDePreguntaTrueFalseAsignaPuntosALosJugadoresTest() {		
 		Player jugadorUno = new Player("JugadorUno");
 		Player jugadorDos = new Player("JugadorDos");
-		
-		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?");
-		
+
+		List<GameOption> listaOpciones = new ArrayList<GameOption>();
+
 		GameOption opcionTrue = new GameOption("True");
 		GameOption opcionFalse = new GameOption("False");
+
+		listaOpciones.add(opcionTrue);
+		listaOpciones.add(opcionFalse);
+
+		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?", listaOpciones);
 		
 		question.setCorrectOption(opcionFalse);
 

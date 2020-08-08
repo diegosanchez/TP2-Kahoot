@@ -24,5 +24,10 @@ public class GroupChoiceQuestionController extends GenericQuestionController{
             button.setVisible(true);
             i++;
         }
+        while (i<6){
+            CheckBox unusedButton = buttonList.get(i);
+            unusedButton.setVisible(false);
+            i++;
+        }
     }
 }
