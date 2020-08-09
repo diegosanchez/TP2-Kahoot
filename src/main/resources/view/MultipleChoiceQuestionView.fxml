@@ -1,149 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.MultipleChoiceQuestionController">
-   <center>
-      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="390.0">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="174.0" prefWidth="402.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.MultipleChoiceQuestionController">
+   <children>
+      <GridPane fx:id="gridPane" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="155.0" prefWidth="390.0">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="55.0" minHeight="10.0" prefHeight="41.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="43.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="67.0" minHeight="0.0" prefHeight="44.0" valignment="CENTER" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <VBox alignment="CENTER" layoutX="36.0" layoutY="45.0" prefHeight="278.0" prefWidth="390.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
-               <children>
-                  <Label fx:id="questionText" alignment="CENTER" prefHeight="63.0" prefWidth="346.0" text="Question Label">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                     <VBox fx:id="vBoxChecks" alignment="CENTER_LEFT" prefHeight="189.0" prefWidth="390.0">
-                     <children>
-                        <CheckBox alignment="CENTER" mnemonicParsing="false" text="CheckBox">
-                           <VBox.margin>
-                              <Insets left="60.0" top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="16.0" />
-                           </font></CheckBox>
-                        <CheckBox alignment="CENTER" mnemonicParsing="false" text="CheckBox">
-                           <VBox.margin>
-                              <Insets left="60.0" top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </CheckBox>
-                        <CheckBox alignment="CENTER" mnemonicParsing="false" text="CheckBox">
-                           <VBox.margin>
-                              <Insets left="60.0" top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="16.0" />
-                           </font></CheckBox>
-                        <CheckBox alignment="CENTER" mnemonicParsing="false" text="CheckBox">
-                           <VBox.margin>
-                              <Insets left="60.0" top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="16.0" />
-                           </font></CheckBox>
-                        <CheckBox alignment="CENTER" mnemonicParsing="false" text="CheckBox">
-                           <VBox.margin>
-                              <Insets left="60.0" top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="16.0" />
-                           </font></CheckBox>
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets></VBox>
-               </children>
-            </VBox>
+            <CheckBox mnemonicParsing="false" text="CheckBox" visible="false" />
+            <CheckBox mnemonicParsing="false" text="CheckBox" visible="false" GridPane.columnIndex="1" />
+            <CheckBox mnemonicParsing="false" text="CheckBox" visible="false" GridPane.rowIndex="1" />
+            <CheckBox mnemonicParsing="false" text="CheckBox" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <CheckBox mnemonicParsing="false" text="CheckBox" visible="false" GridPane.rowIndex="2" />
+            <CheckBox mnemonicParsing="false" text="CheckBox" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </AnchorPane>
-   </center>
-   <bottom>
-      <VBox alignment="CENTER" fillWidth="false" prefHeight="40.0" prefWidth="640.0">
-         <children>
-            <Button fx:id="submitButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#doNext" prefHeight="45.0" prefWidth="140.0" style="-fx-background-color: #EF4649;" text="Siguiente" textFill="WHITE" visible="false">
-               <styleClass>
-                  <String fx:value="textControl" />
-                  <String fx:value="nextButton" />
-               </styleClass>
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="27.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-         <BorderPane.margin>
-            <Insets bottom="20.0" />
-         </BorderPane.margin>
-      </VBox>
-   </bottom>
-   <left>
-      <VBox alignment="TOP_CENTER" prefHeight="368.0" prefWidth="130.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label fx:id="playerName" alignment="CENTER" prefHeight="32.0" prefWidth="140.0" text="Jugador Label" textFill="#706e6ed5">
-               <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="26.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="80.0" />
-               </VBox.margin>
-            </Label>
-            <Label onMouseClicked="#addAugmenter" styleClass="stylishLabel" text="x2">
-               <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="33.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="30.0" top="60.0" />
-               </VBox.margin>
-            </Label>
-            <Label onMouseClicked="#addAugmenter" styleClass="stylishLabel" text="x3">
-               <font>
-                  <Font size="34.0" />
-               </font></Label>
-         </children>
-         <BorderPane.margin>
-            <Insets left="10.0" />
-         </BorderPane.margin>
-      </VBox>
-   </left>
-   <right>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-         <children>
-            <Label fx:id="playerScore" alignment="CENTER" styleClass="stylishLabel" text="60">
-               <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="33.0" />
-               </font>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Label>
-            <Label onMouseClicked="#addAugmenter" styleClass="stylishLabel" text="Ex">
-               <font>
-                  <Font name="Berlin Sans FB Demi Bold" size="33.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="60.0" />
-               </VBox.margin>
-            </Label>
-         </children>
-         <BorderPane.margin>
-            <Insets right="10.0" />
-         </BorderPane.margin>
-      </VBox>
-   </right>
-</BorderPane>
+      </GridPane>
+   </children>
+</AnchorPane>

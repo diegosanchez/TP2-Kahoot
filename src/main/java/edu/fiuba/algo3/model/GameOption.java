@@ -2,7 +2,7 @@ package edu.fiuba.algo3.model;
 
 public class GameOption {
 	
-	private long id;
+	private Long id;
 	private String text;
 	private OptionGroup optionGroup;
 	
@@ -16,10 +16,10 @@ public class GameOption {
 	public void setText(String text) {
 		this.text = text;
 	}
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
