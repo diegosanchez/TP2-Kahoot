@@ -35,16 +35,12 @@ public abstract class Question {
 	public void setText(String text) {
 		this.text = text;
 	}
-	
-	public QuestionType getType() {
-		return type;
-	}
 
 	/***
 	 * Returns the earned or lost points depending on the answer to the question
 	 * @return
 	 */
 	public abstract int calculatePoints(List<GameOption> selectedOptions);
-
+	public  abstract QuestionType getType();
 	public abstract boolean hasPenalty();
 }
