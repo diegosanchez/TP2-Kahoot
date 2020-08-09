@@ -1,6 +1,5 @@
 package edu.fiuba.algo3.model;
 
-import java.util.Arrays;
 import java.util.List;
 
 import edu.fiuba.algo3.constants.AugmenterType;
@@ -12,23 +11,12 @@ public class MatchResult {
 	private ScoreAugmenter selectedAugmenter;
 	private Score matchScore;
 
-	public MatchResult(Player player, Question question, AugmenterType selectedAugmenter, List<GameOption> selectedOptions) {
+	public MatchResult(Player player, AugmenterType selectedAugmenter, Score matchScore) {
 		this.player = player;
 		this.selectedAugmenter = player.getAugmenter(selectedAugmenter);
-		this.matchScore = new Score(question.calculatePoints(selectedOptions));
+		this.matchScore = matchScore;
 	}
 	
-	public MatchResult(Player player, Question question, List<GameOption> selectedOptions) {
-		this(player,  question, null, selectedOptions);
-	}
-	
-	public MatchResult(Player player, Question question, AugmenterType selectedAugmenter, GameOption ... selectedOptions) {
-		this(player,  question, selectedAugmenter, Arrays.asList(selectedOptions));
-	}
-	
-	public MatchResult(Player player, Question question, GameOption ... selectedOptions) {
-		this(player,  question, null, Arrays.asList(selectedOptions));
-	}
 	
 	public Score getMatchScore() {
 		return matchScore;
@@ -38,10 +26,13 @@ public class MatchResult {
 		player.sumScore(matchScore);
 	}
 
-	public void applyScoreAugmenter(MatchResult opponentResult) {
-		selectedAugmenter.applyScoreAugmenter(matchScore, opponentResult.getMatchScore());
+	public void applyScoreAugmenter(List<MatchResult> resultList) {
+		resultList.stream().forEach(result -> {
+			if(!this.equals(result)) {	
+				selectedAugmenter.applyScoreAugmenter(matchScore, result.getMatchScore());			
+			}
+		});
 	}
-
 	
 	
 }
