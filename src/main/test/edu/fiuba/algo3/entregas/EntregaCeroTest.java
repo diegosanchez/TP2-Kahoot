@@ -5,9 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import edu.fiuba.algo3.model.Score;
 import org.junit.jupiter.api.Test;
 
+import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.engine.questions.TrueFalseQuestion;
 import edu.fiuba.algo3.engine.score.ScoreCalculator;
 import edu.fiuba.algo3.model.GameOption;
+import edu.fiuba.algo3.model.MatchResult;
 import edu.fiuba.algo3.model.Player;
 
 import java.util.ArrayList;
@@ -55,10 +57,13 @@ public class EntregaCeroTest {
 		TrueFalseQuestion question = new TrueFalseQuestion("¿1 es mayor que 2?", listaOpciones);
 		
 		question.setCorrectOption(opcionFalse);
+		
+		List<MatchResult> resultadosRonda = new ArrayList<MatchResult>();
+		
+		resultadosRonda.add(new MatchResult(jugadorUno, question, opcionTrue));
+		resultadosRonda.add(new MatchResult(jugadorDos, question, opcionFalse));
 
-		jugadorUno.answerQuestion(question, opcionTrue);
-		jugadorDos.answerQuestion(question, opcionFalse);
-		ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+		ScoreCalculator.calculateAndAssignPoints(resultadosRonda);
 
 		assertEquals(new Score(0), jugadorUno.getScore());
 		assertEquals(new Score(1), jugadorDos.getScore());

@@ -1,26 +1,33 @@
 package edu.fiuba.algo3.engine.score;
 
-import java.util.Arrays;
 import java.util.List;
 
-import edu.fiuba.algo3.model.Player;
+import edu.fiuba.algo3.model.MatchResult;
 
 public class ScoreCalculator {
 	
 	private ScoreCalculator() {}
 	
-	private static void calculate(List<Player> players) {
-		players.stream().forEach(playerOne -> {
-			players.stream().forEach(playerTwo -> {
-				if(!playerOne.equals(playerTwo)) {
-					playerOne.updateScore(playerTwo.getScore());
+	public static void calculateAndAssignPoints(List<MatchResult> matchResults) {
+		calculateAugmenters(matchResults);
+		sumFinalScore(matchResults);				
+	}
+	
+	private static void calculateAugmenters(List<MatchResult> resultList) {
+		resultList.stream().forEach(resultOne -> {
+			resultList.stream().forEach(resultTwo -> {
+				if(!resultOne.equals(resultTwo)) {	
+					resultOne.applyScoreAugmenter(resultTwo);				
 				}
 			});
 		});
 	}
-
-	public static void calculateAndAssignPoints(Player ... players){
-		calculate(Arrays.asList(players));
+	
+	private static void sumFinalScore(List<MatchResult> resultList) {
+		resultList.stream().forEach(
+			MatchResult::sumMatchScoreToPlayer
+		);
 	}
+	
 
 }

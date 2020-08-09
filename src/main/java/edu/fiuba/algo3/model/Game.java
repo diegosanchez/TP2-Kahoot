@@ -1,9 +1,9 @@
 package edu.fiuba.algo3.model;
 
-import edu.fiuba.algo3.engine.score.ScoreAugmenterFactory;
+import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.engine.score.ScoreCalculator;
-import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,6 +15,7 @@ public class Game {
 	private Question currentQuestion;
 	private Iterator<Player> playersIterator;
 	private Iterator<Question> questionIterator;
+	private List<MatchResult> matchResults;
 	private boolean isOver;
 
 	public List<Player> getPlayers() {
@@ -45,33 +46,33 @@ public class Game {
 		return currentQuestion;
 	}
 
-	public void initPlayers(){
+	public void newRound(){
 		playersIterator = players.iterator();
 		currentPlayer = playersIterator.next();
+		matchResults = new ArrayList<>();
 	}
 
 	public void start(){
-		initPlayers();
+		newRound();
 		questionIterator = questions.iterator();
 		currentQuestion = questionIterator.next();
 		isOver = false;
 	}
 
 	public void nextTurn(List<GameOption> selectedOptions, String augmenterString){
-		ScoreAugmenter selectedAugmenter = ScoreAugmenterFactory.
-				createScoreAugmenter(currentPlayer, currentQuestion, augmenterString);
-
-		currentPlayer.answerQuestionWithAugmenter(currentQuestion, selectedOptions, selectedAugmenter);
-
+		AugmenterType selectedAugmenter = AugmenterType.getEnumByName(augmenterString);
+		
+		matchResults.add(new MatchResult(currentPlayer, currentQuestion, selectedAugmenter, selectedOptions));
+		
 		if(playersIterator.hasNext()){
 			currentPlayer = playersIterator.next();
 		}
 		else if(!isOver){
-			ScoreCalculator.calculateAndAssignPoints(players.get(0), currentPlayer);
+			ScoreCalculator.calculateAndAssignPoints(matchResults);
 
 			if(questionIterator.hasNext()){
 				currentQuestion = questionIterator.next();
-				initPlayers();
+				newRound();
 			}
 			else isOver = true;
 		}

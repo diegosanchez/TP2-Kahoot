@@ -174,9 +174,12 @@ public class EntregaDosTest {
         opcionesJugadorDos.add(opcionUno);
         opcionesJugadorDos.add(opcionDos);
 
-        jugadorUno.answerQuestion(question, opcionesJugadorUno);
-        jugadorDos.answerQuestion(question, opcionesJugadorDos);
-        ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+        List<MatchResult> resultadosRonda = new ArrayList<MatchResult>();
+		
+		resultadosRonda.add(new MatchResult(jugadorUno, question, opcionesJugadorUno));
+		resultadosRonda.add(new MatchResult(jugadorDos, question, opcionesJugadorDos));
+		
+		ScoreCalculator.calculateAndAssignPoints(resultadosRonda);
 
         assertEquals(new Score(1), jugadorUno.getScore());
         assertEquals(new Score(0), jugadorDos.getScore());
@@ -257,9 +260,12 @@ public class EntregaDosTest {
         opcionesJugadorDos.add(opcionElegidaJ2Tres);
         opcionesJugadorDos.add(opcionElegidaJ2Cuatro);
 
-        jugadorUno.answerQuestion(question, opcionesJugadorUno);
-        jugadorDos.answerQuestion(question, opcionesJugadorDos);
-        ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+        List<MatchResult> resultadosRonda = new ArrayList<MatchResult>();
+		
+		resultadosRonda.add(new MatchResult(jugadorUno, question, opcionesJugadorUno));
+		resultadosRonda.add(new MatchResult(jugadorDos, question, opcionesJugadorDos));
+		
+		ScoreCalculator.calculateAndAssignPoints(resultadosRonda);
 
         assertEquals(new Score(1), jugadorUno.getScore());
         assertEquals(new Score(0), jugadorDos.getScore());
@@ -302,9 +308,12 @@ public class EntregaDosTest {
         opcionesJugadorDos.add(opcionTres);
         opcionesJugadorDos.add(opcionDos);
 
-        jugadorUno.answerQuestion(question, opcionesJugadorUno);
-        jugadorDos.answerQuestion(question, opcionesJugadorDos);
-        ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+        List<MatchResult> resultadosRonda = new ArrayList<MatchResult>();
+		
+		resultadosRonda.add(new MatchResult(jugadorUno, question, opcionesJugadorUno));
+		resultadosRonda.add(new MatchResult(jugadorDos, question, opcionesJugadorDos));
+		
+		ScoreCalculator.calculateAndAssignPoints(resultadosRonda);
 
         assertEquals(new Score(1), jugadorUno.getScore());
         assertEquals(new Score(0), jugadorDos.getScore());
@@ -316,7 +325,7 @@ public class EntregaDosTest {
      */
 
     @Test
-    public void calculoDePreguntaTrueFalseAsignaPuntosAlJugadorConMultiplicadorx2YTieneUnUsoMenosTest() {
+    public void calculoDePreguntaTrueFalseAsignaPuntosAlJugadorConMultiplicadorx2Test() {
         Player jugadorUno = new Player("JugadorUno");
         Player jugadorDos = new Player("JugadorDos");
 
@@ -332,18 +341,15 @@ public class EntregaDosTest {
 
         question.setCorrectOption(opcionFalse);
 
-        List<GameOption> opcionJugadorUno = new ArrayList<GameOption>();
-        opcionJugadorUno.add(opcionTrue);
-        List<GameOption> opcionJugadorDos = new ArrayList<GameOption>();
-        opcionJugadorDos.add(opcionFalse);
-
-        jugadorUno.answerQuestion(question, opcionJugadorUno);
-        jugadorDos.answerQuestionWithAugmenter(question, opcionJugadorDos, new TwoMultiplier());
-        ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+        List<MatchResult> resultadosRonda = new ArrayList<MatchResult>();
+		
+		resultadosRonda.add(new MatchResult(jugadorUno, question, opcionTrue));
+		resultadosRonda.add(new MatchResult(jugadorDos, question, AugmenterType.MULTIPLY_PER_TWO, opcionFalse));
+		
+		ScoreCalculator.calculateAndAssignPoints(resultadosRonda);
 
         assertEquals(new Score(-1), jugadorUno.getScore());
         assertEquals(new Score(2), jugadorDos.getScore());
-        assertEquals(0, jugadorDos.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_TWO));
     }
 
     /***
@@ -352,7 +358,7 @@ public class EntregaDosTest {
      */
 
     @Test
-    public void calculoDePreguntaTrueFalseAsignaPuntosAlJugadorConMultiplicadorx3YTieneUnUsoMenosTest() {
+    public void calculoDePreguntaTrueFalseAsignaPuntosAlJugadorConMultiplicadorx3Test() {
         Player jugadorUno = new Player("JugadorUno");
         Player jugadorDos = new Player("JugadorDos");
 
@@ -368,18 +374,15 @@ public class EntregaDosTest {
 
         question.setCorrectOption(opcionFalse);
 
-        List<GameOption> opcionJugadorUno = new ArrayList<GameOption>();
-        opcionJugadorUno.add(opcionTrue);
-        List<GameOption> opcionJugadorDos = new ArrayList<GameOption>();
-        opcionJugadorDos.add(opcionFalse);
-
-        jugadorUno.answerQuestion(question, opcionJugadorUno);
-        jugadorDos.answerQuestionWithAugmenter(question, opcionJugadorDos, new ThreeMultiplier());
-        ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+        List<MatchResult> resultadosRonda = new ArrayList<MatchResult>();
+		
+		resultadosRonda.add(new MatchResult(jugadorUno, question, opcionTrue));
+		resultadosRonda.add(new MatchResult(jugadorDos, question, AugmenterType.MULTIPLY_PER_THREE, opcionFalse));
+		
+		ScoreCalculator.calculateAndAssignPoints(resultadosRonda);
 
         assertEquals(new Score(-1), jugadorUno.getScore());
         assertEquals(new Score(3), jugadorDos.getScore());
-        assertEquals(0, jugadorDos.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_THREE));
     }
 
     /***
@@ -388,7 +391,7 @@ public class EntregaDosTest {
      */
 
     @Test
-    public void calculoDePreguntaTrueFalseRestaPuntosAlJugadorConMultiplicadorx2YTieneUnUsoMenosTest() {
+    public void calculoDePreguntaTrueFalseRestaPuntosAlJugadorConMultiplicadorx2Test() {
         Player jugadorUno = new Player("JugadorUno");
         Player jugadorDos = new Player("JugadorDos");
 
@@ -404,17 +407,14 @@ public class EntregaDosTest {
 
         question.setCorrectOption(opcionFalse);
 
-        List<GameOption> opcionJugadorUno = new ArrayList<GameOption>();
-        opcionJugadorUno.add(opcionFalse);
-        List<GameOption> opcionJugadorDos = new ArrayList<GameOption>();
-        opcionJugadorDos.add(opcionTrue);
-
-        jugadorUno.answerQuestion(question, opcionJugadorUno);
-        jugadorDos.answerQuestionWithAugmenter(question, opcionJugadorDos, new TwoMultiplier());
-        ScoreCalculator.calculateAndAssignPoints(jugadorUno, jugadorDos);
+        List<MatchResult> resultadosRonda = new ArrayList<MatchResult>();
+		
+		resultadosRonda.add(new MatchResult(jugadorUno, question, opcionFalse));
+		resultadosRonda.add(new MatchResult(jugadorDos, question, AugmenterType.MULTIPLY_PER_TWO, opcionTrue));
+		
+		ScoreCalculator.calculateAndAssignPoints(resultadosRonda);
 
         assertEquals(new Score(1), jugadorUno.getScore());
         assertEquals(new Score(-2), jugadorDos.getScore());
-        assertEquals(0, jugadorDos.getAugmentersUsesAvailable(AugmenterType.MULTIPLY_PER_TWO));
     }
 }
