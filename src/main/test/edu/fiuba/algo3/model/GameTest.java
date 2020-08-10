@@ -33,7 +33,7 @@ public class GameTest {
 
 	@BeforeEach
 	public void setUp(){
-		game = new Game();
+		
 		jugadorUno = new Player("Jugador uno");
 		jugadorDos = new Player("Jugador dos");
 
@@ -42,9 +42,7 @@ public class GameTest {
 		} catch (QuestionsNotLoadedException e) {
 			fail();
 		}
-
-		game.setPlayers(Arrays.asList(jugadorUno, jugadorDos));
-		game.setQuestions(questions);
+		game = new Game(Arrays.asList(jugadorUno, jugadorDos), questions);		
 		game.start();
 	}
 
@@ -77,8 +75,7 @@ public class GameTest {
 	 }
 	 
 	 @Test
-	 public void unJugadorConMasPuntajeQueElOtroResultaGanadorTest() {
-		 Game game = new Game();
+	 public void unJugadorConMasPuntajeQueElOtroResultaGanadorTest() {		 
 		 Player jugadorUno = Mockito.mock(Player.class);
 		 Player jugadorDos = Mockito.mock(Player.class);
 		 List<GameOption> listaOpciones = Mockito.mock(ArrayList.class);
@@ -86,11 +83,11 @@ public class GameTest {
 		 Mockito.when(jugadorDos.getScore()).thenReturn(new Score(50));
 		 List<Player> lista = new ArrayList<>();
 		 lista.add(jugadorUno);
-		 lista.add(jugadorDos);
-		 game.setPlayers(lista);
+		 lista.add(jugadorDos);		 
 		 List<Question> questions = new ArrayList<>();
 		 questions.add(new TrueFalseQuestion("¿1 es mayor a 2?", listaOpciones));
 		 game.setQuestions(questions);
+		 Game game = new Game(lista, questions);
 		 game.start();
 		 game.nextTurn(new ArrayList<GameOption>(), AugmenterType.MULTIPLY_PER_TWO.toString());
 		 assertEquals(jugadorUno, game.getWinner());
@@ -235,4 +232,18 @@ public class GameTest {
 		}
 		Assertions.assertEquals(game.getQuestions().size() * game.getPlayers().size(), game.getTurnCount());
 	}
+	
+	@Test
+	public void sePuedeSaberSiUnAugmenterExistenteEsValidoPorSuNombreTest(){
+		boolean augmenterValido = game.isAugmenterAvailable(AugmenterType.EXCLUSIVITY.toString());
+		Assertions.assertTrue(augmenterValido);
+	}
+	
+	@Test
+	public void sePuedeSaberSiUnAugmenterAgotadoEsValidoPorSuNombreYNoDebeSerloTest(){
+		game.getCurrentPlayer().getAugmenter(AugmenterType.MULTIPLY_PER_THREE);
+		boolean augmenterValido = game.isAugmenterAvailable(AugmenterType.MULTIPLY_PER_THREE.toString());
+		Assertions.assertFalse(augmenterValido);
+	}
+	
 }

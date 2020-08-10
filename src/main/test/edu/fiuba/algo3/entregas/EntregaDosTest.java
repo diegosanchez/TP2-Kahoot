@@ -146,9 +146,6 @@ public class EntregaDosTest {
 		jugadores.add(jugadorUno);
 		jugadores.add(jugadorDos);
 		
-		Game game = new Game();
-		game.setPlayers(jugadores);
-
         List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
         GameOption opcionUno = new GameOption("1");
@@ -180,7 +177,7 @@ public class EntregaDosTest {
         List<Question> questions = new ArrayList<>();	
         questions.add(question);
 		
-		game.setQuestions(questions);
+        Game game = new Game(jugadores, questions);		
 		
 		game.start();
 		
@@ -202,9 +199,6 @@ public class EntregaDosTest {
 		Player jugadorDos = new Player("JugadorDos");
 		jugadores.add(jugadorUno);
 		jugadores.add(jugadorDos);
-		
-		Game game = new Game();
-		game.setPlayers(jugadores);
 
         List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
@@ -275,7 +269,7 @@ public class EntregaDosTest {
         List<Question> questions = new ArrayList<>();	
         questions.add(question);
 		
-		game.setQuestions(questions);
+        Game game = new Game(jugadores, questions);		
 		
 		game.start();
 		
@@ -297,9 +291,6 @@ public class EntregaDosTest {
 		Player jugadorDos = new Player("JugadorDos");
 		jugadores.add(jugadorUno);
 		jugadores.add(jugadorDos);
-		
-		Game game = new Game();
-		game.setPlayers(jugadores);
 
         GameOption opcionUno = new GameOption("1");
         GameOption opcionDos = new GameOption("2");
@@ -332,7 +323,7 @@ public class EntregaDosTest {
         List<Question> questions = new ArrayList<>();	
         questions.add(question);
 		
-		game.setQuestions(questions);
+        Game game = new Game(jugadores, questions);		
 		
 		game.start();
 		
@@ -355,9 +346,6 @@ public class EntregaDosTest {
 		Player jugadorDos = new Player("JugadorDos");
 		jugadores.add(jugadorUno);
 		jugadores.add(jugadorDos);
-		
-		Game game = new Game();
-		game.setPlayers(jugadores);
 
         List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
@@ -374,7 +362,7 @@ public class EntregaDosTest {
         List<Question> questions = new ArrayList<>();	
         questions.add(question);
 		
-		game.setQuestions(questions);
+        Game game = new Game(jugadores, questions);		
 		
 		game.start();
 		
@@ -397,9 +385,6 @@ public class EntregaDosTest {
 		Player jugadorDos = new Player("JugadorDos");
 		jugadores.add(jugadorUno);
 		jugadores.add(jugadorDos);
-		
-		Game game = new Game();
-		game.setPlayers(jugadores);
 
         List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
@@ -416,7 +401,7 @@ public class EntregaDosTest {
         List<Question> questions = new ArrayList<>();	
         questions.add(question);
 		
-		game.setQuestions(questions);
+        Game game = new Game(jugadores, questions);		
 		
 		game.start();
 		
@@ -439,9 +424,6 @@ public class EntregaDosTest {
 		Player jugadorDos = new Player("JugadorDos");
 		jugadores.add(jugadorUno);
 		jugadores.add(jugadorDos);
-		
-		Game game = new Game();
-		game.setPlayers(jugadores);
 
         List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
@@ -458,7 +440,7 @@ public class EntregaDosTest {
         List<Question> questions = new ArrayList<>();	
         questions.add(question);
 		
-		game.setQuestions(questions);
+        Game game = new Game(jugadores, questions);		
 		
 		game.start();
 		
