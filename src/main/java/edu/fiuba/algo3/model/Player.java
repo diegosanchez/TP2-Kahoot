@@ -40,6 +40,10 @@ public class Player {
 		}
 		return AugmenterType.NO_MULTIPLIER.getScoreAugmenter();		
 	}
+	
+	public boolean hasAugmenter(AugmenterType augmenterType) {
+		return augmenters.contains(augmenterType.getScoreAugmenter());
+	}
 
 	private void loadAugmenters() {
 		for(AugmenterType augmenterType : AugmenterType.values()) {

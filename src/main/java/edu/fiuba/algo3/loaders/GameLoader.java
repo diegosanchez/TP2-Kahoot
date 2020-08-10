@@ -17,15 +17,12 @@ public class GameLoader {
 	private static final Logger logger = LoggerFactory.getLogger(GameLoader.class);
 
 	public static Game loadGame(List<Player> players) {
-		Game game = new Game();
-		game.setPlayers(players);
-
 		try {
-			game.setQuestions(QuestionLoader.loadQuestions(ResourceConstants.QUESTIONS_PATH));
+			return new Game(players, QuestionLoader.loadQuestions(ResourceConstants.QUESTIONS_PATH));
 		} catch (QuestionsNotLoadedException ex) {
 			logger.error("Question not loaded", ex);
 			SceneLoader.loadErrorPage();
 		}
-		return game;
+		return null;
 	}
 }

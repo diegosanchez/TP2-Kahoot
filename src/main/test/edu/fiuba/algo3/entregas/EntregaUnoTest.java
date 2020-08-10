@@ -119,9 +119,6 @@ public class EntregaUnoTest {
 		jugadores.add(jugadorUno);
 		jugadores.add(jugadorDos);
 		
-		Game game = new Game();
-		game.setPlayers(jugadores);
-
 		List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
 		GameOption opcionTrue = new GameOption("True");
@@ -137,7 +134,7 @@ public class EntregaUnoTest {
 		List<Question> questions = new ArrayList<>();	
         questions.add(question);
 		
-		game.setQuestions(questions);
+        Game game = new Game(jugadores, questions);		
 		
 		game.start();
 		
@@ -160,9 +157,6 @@ public class EntregaUnoTest {
 		jugadores.add(jugadorUno);
 		jugadores.add(jugadorDos);
 		
-		Game game = new Game();
-		game.setPlayers(jugadores);
-
 		List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
 		GameOption opcionUno = new GameOption("1");
@@ -194,7 +188,7 @@ public class EntregaUnoTest {
 		List<Question> questions = new ArrayList<>();	
         questions.add(question);
 		
-		game.setQuestions(questions);
+        Game game = new Game(jugadores, questions);		
 		
 		game.start();
 		
@@ -216,9 +210,6 @@ public class EntregaUnoTest {
 		Player jugadorDos = new Player("JugadorDos");
 		jugadores.add(jugadorUno);
 		jugadores.add(jugadorDos);
-		
-		Game game = new Game();
-		game.setPlayers(jugadores);
 
 		List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
@@ -250,7 +241,7 @@ public class EntregaUnoTest {
 		List<Question> questions = new ArrayList<>();	
         questions.add(question);
 		
-		game.setQuestions(questions);
+        Game game = new Game(jugadores, questions);		
 		
 		game.start();
 		

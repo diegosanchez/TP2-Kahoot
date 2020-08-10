@@ -48,8 +48,7 @@ public class EntregaCeroTest {
 		jugadores.add(jugadorUno);
 		jugadores.add(jugadorDos);
 		
-		Game game = new Game();
-		game.setPlayers(jugadores);
+		
 
 		List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
@@ -65,8 +64,7 @@ public class EntregaCeroTest {
 		question.setCorrectOption(opcionFalse);
 		questions.add(question);
 		
-		game.setQuestions(questions);
-		
+		Game game = new Game(jugadores, questions);		
 		game.start();
 		
 		game.nextTurn(opcionTrue);

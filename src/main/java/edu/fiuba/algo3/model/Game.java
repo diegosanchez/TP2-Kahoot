@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.model;
 
 import edu.fiuba.algo3.constants.AugmenterType;
+import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,18 +18,19 @@ public class Game {
 	private List<MatchResult> matchResults;
 	private boolean isOver;
 
+	public Game(List<Player> players, List<Question> questions) {
+		this.players = players;
+		this.questions = questions;
+	}
+	
 	public List<Player> getPlayers() {
 		return players;
-	}
-
-	public void setPlayers(List<Player> players) {
-		this.players = players;
 	}
 
 	public List<Question> getQuestions() {
 		return questions;
 	}
-
+	
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
@@ -87,8 +89,9 @@ public class Game {
 			if(questionIterator.hasNext()){
 				currentQuestion = questionIterator.next();
 				newRound();
+			}else { 
+				isOver = true;
 			}
-			else isOver = true;
 		}
 	}
 	
@@ -121,5 +124,12 @@ public class Game {
 
 	public int getTurnCount(){
 		return players.size() * questions.size();
+	}
+	
+	public boolean isAugmenterAvailable(String augmenterString){
+		AugmenterType augmenter = AugmenterType.getEnumByName(augmenterString);	
+		ScoreAugmenter scoreAugmenter = augmenter.getScoreAugmenter();
+		
+		return scoreAugmenter.isForPenalty() == currentQuestion.hasPenalty() && currentPlayer.hasAugmenter(augmenter);		
 	}
 }
