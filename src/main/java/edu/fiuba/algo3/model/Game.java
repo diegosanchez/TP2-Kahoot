@@ -1,7 +1,6 @@
 package edu.fiuba.algo3.model;
 
 import edu.fiuba.algo3.constants.AugmenterType;
-import edu.fiuba.algo3.engine.score.ScoreCalculator;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -58,17 +57,32 @@ public class Game {
 		currentQuestion = questionIterator.next();
 		isOver = false;
 	}
+	
+	public void nextTurn(GameOption selectedOption){
+		nextTurn(selectedOption, null);
+	}
 
+	public void nextTurn(GameOption selectedOption, String augmenterString){
+		List<GameOption> selectedOptions = new ArrayList<>();
+		selectedOptions.add(selectedOption);
+		nextTurn(selectedOptions, augmenterString);
+	}
+	
+	public void nextTurn(List<GameOption> selectedOptions){
+		nextTurn(selectedOptions, null);
+	}
+	
 	public void nextTurn(List<GameOption> selectedOptions, String augmenterString){
-		AugmenterType selectedAugmenter = AugmenterType.getEnumByName(augmenterString);
+		AugmenterType selectedAugmenter = AugmenterType.getEnumByName(augmenterString);		
+		Score matchScore = new Score(currentQuestion.calculatePoints(selectedOptions));
 		
-		matchResults.add(new MatchResult(currentPlayer, currentQuestion, selectedAugmenter, selectedOptions));
+		matchResults.add(new MatchResult(currentPlayer, selectedAugmenter, matchScore));
 		
 		if(playersIterator.hasNext()){
 			currentPlayer = playersIterator.next();
 		}
 		else if(!isOver){
-			ScoreCalculator.calculateAndAssignPoints(matchResults);
+			calculateRoundEndResults();
 
 			if(questionIterator.hasNext()){
 				currentQuestion = questionIterator.next();
@@ -76,6 +90,23 @@ public class Game {
 			}
 			else isOver = true;
 		}
+	}
+	
+	private void calculateRoundEndResults() {
+		calculateAugmenters();
+		sumMatchScore();
+	}
+	
+	private void calculateAugmenters() {
+		matchResults.stream().forEach(result -> {
+			result.applyScoreAugmenter(matchResults);
+		});
+	}
+	
+	private void sumMatchScore() {
+		matchResults.stream().forEach(
+			MatchResult::sumMatchScoreToPlayer
+		);
 	}
 
 	public Player getWinner() {
