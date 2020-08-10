@@ -53,9 +53,6 @@ public class EntregaDosTest {
 
         List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
-        OptionGroup grupoPares = new OptionGroup("Pares");
-        OptionGroup grupoImpares = new OptionGroup("Impares");
-
         GameOption opcionUno = new GameOption("1", "Impares");
         GameOption opcionDos = new GameOption("2", "Pares");
         GameOption opcionTres = new GameOption("3", "Impares");

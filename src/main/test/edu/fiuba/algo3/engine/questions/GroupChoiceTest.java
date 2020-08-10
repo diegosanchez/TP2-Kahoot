@@ -9,16 +9,12 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import edu.fiuba.algo3.model.GameOption;
-import edu.fiuba.algo3.model.OptionGroup;
 
 public class GroupChoiceTest {
 	
 	@Test
 	public void opcionesCorrectasSumaUnPunto() {
 		List<GameOption> listaOpciones = new ArrayList<GameOption>();
-
-		OptionGroup grupoPares = new OptionGroup("Pares");
-		OptionGroup grupoImpares = new OptionGroup("Impares");
 
 		GameOption opcionUno = new GameOption("1", "Impares");
 		GameOption opcionDos = new GameOption("2", "Pares");

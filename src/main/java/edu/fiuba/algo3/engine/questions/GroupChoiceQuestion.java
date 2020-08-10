@@ -5,7 +5,6 @@ import java.util.List;
 
 import edu.fiuba.algo3.constants.QuestionType;
 import edu.fiuba.algo3.model.GameOption;
-import edu.fiuba.algo3.model.OptionGroup;
 import edu.fiuba.algo3.model.Question;
 
 public class GroupChoiceQuestion extends Question {	
