@@ -162,6 +162,7 @@ public class GameTest {
 
 		Assertions.assertEquals(new Score(1), jugadorUno.getScore());
 		Assertions.assertEquals(new Score(3), jugadorDos.getScore());
+		Assertions.assertEquals(jugadorDos, game.getWinner());
 	}
 
 	@Test
@@ -223,5 +224,15 @@ public class GameTest {
 
 		Assertions.assertEquals(new Score(0), jugadorUno.getScore());
 		Assertions.assertEquals(new Score(8), jugadorDos.getScore());
+		Assertions.assertEquals(jugadorDos, game.getWinner());
+	}
+	
+	@Test
+	public void sePasaDeTurnoHastaElFinalYSeObtieneElNumeroCorrectoTest(){
+
+		while(!game.isOver()){
+			game.nextTurn(game.getCurrentQuestion().getCorrectOptions(), AugmenterType.EXCLUSIVITY.toString());
+		}
+		Assertions.assertEquals(game.getQuestions().size() * game.getPlayers().size(), game.getTurnCount());
 	}
 }

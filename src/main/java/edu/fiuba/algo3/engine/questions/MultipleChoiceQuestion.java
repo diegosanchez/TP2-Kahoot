@@ -2,10 +2,9 @@ package edu.fiuba.algo3.engine.questions;
 
 import java.util.List;
 
+import edu.fiuba.algo3.constants.QuestionType;
 import edu.fiuba.algo3.model.GameOption;
 import edu.fiuba.algo3.model.Question;
-
-import static edu.fiuba.algo3.constants.Views.MULTIPLE_CHOICE_QUESTION_VIEW;
 
 public class MultipleChoiceQuestion extends Question {
 
@@ -22,5 +21,10 @@ public class MultipleChoiceQuestion extends Question {
 	@Override
 	public boolean hasPenalty() {
 		return false;
+	}
+	
+	@Override
+	public QuestionType getType() {
+		return QuestionType.MULTIPLE_CHOICE;
 	}
 }
