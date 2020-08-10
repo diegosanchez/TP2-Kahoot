@@ -4,10 +4,15 @@ public class GameOption {
 	
 	private Long id;
 	private String text;
-	private OptionGroup optionGroup;
+	private String optionGroup;
 	
 	public GameOption(String text) {
 		this.text = text;
+	}
+
+	public GameOption(String text, String optionGroup){
+		this(text);
+		this.optionGroup = optionGroup;
 	}
 	
 	public String getText() {
@@ -23,13 +28,9 @@ public class GameOption {
 		this.id = id;
 	}
 
-	public OptionGroup getOptionGroup() {
+	public String getOptionGroup() {
 		return optionGroup;
 	}
-
-	public void setOptionGroup(OptionGroup group) {
-		this.optionGroup = group;
-	}		
 	
 	@Override
 	public boolean equals(Object obj) {

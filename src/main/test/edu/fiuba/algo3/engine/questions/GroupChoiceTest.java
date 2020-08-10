@@ -20,16 +20,10 @@ public class GroupChoiceTest {
 		OptionGroup grupoPares = new OptionGroup("Pares");
 		OptionGroup grupoImpares = new OptionGroup("Impares");
 
-		GameOption opcionUno = new GameOption("1");
-		GameOption opcionDos = new GameOption("2");
-		GameOption opcionTres = new GameOption("3");
-		GameOption opcionCuatro = new GameOption("4");
-
-		opcionDos.setOptionGroup(grupoPares);
-		opcionCuatro.setOptionGroup(grupoPares);
-
-		opcionUno.setOptionGroup(grupoImpares);
-		opcionTres.setOptionGroup(grupoImpares);
+		GameOption opcionUno = new GameOption("1", "Impares");
+		GameOption opcionDos = new GameOption("2", "Pares");
+		GameOption opcionTres = new GameOption("3", "Impares");
+		GameOption opcionCuatro = new GameOption("4", "Impares");
 
 		listaOpciones.add(opcionUno);
 		listaOpciones.add(opcionDos);
@@ -49,15 +43,10 @@ public class GroupChoiceTest {
 		
 		List<GameOption> listaOpcionesElegidas = new ArrayList<GameOption>();				
 		
-		GameOption opcionElegidaUno = new GameOption("1");
-		GameOption opcionElegidaDos = new GameOption("2");
-		GameOption opcionElegidaTres = new GameOption("3");
-		GameOption opcionElegidaCuatro = new GameOption("4");
-		
-		opcionElegidaUno.setOptionGroup(grupoImpares);
-		opcionElegidaDos.setOptionGroup(grupoPares);
-		opcionElegidaTres.setOptionGroup(grupoImpares);
-		opcionElegidaCuatro.setOptionGroup(grupoPares);
+		GameOption opcionElegidaUno = new GameOption("1", "Impares");
+		GameOption opcionElegidaDos = new GameOption("2", "Pares");
+		GameOption opcionElegidaTres = new GameOption("3", "Impares");
+		GameOption opcionElegidaCuatro = new GameOption("4", "Impares");
 		
 		listaOpcionesElegidas.add(opcionElegidaUno);
 		listaOpcionesElegidas.add(opcionElegidaDos);
@@ -71,19 +60,13 @@ public class GroupChoiceTest {
 	public void gruposDevueltosPorLaPreguntaSonIgualesALosCreados() {
 		List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
-		OptionGroup grupoPares = new OptionGroup("Pares");
-		OptionGroup grupoImpares = new OptionGroup("Impares");
+		String grupoPares = "Pares";
+		String grupoImpares = "Impares";
 
-		GameOption opcionUno = new GameOption("1");
-		GameOption opcionDos = new GameOption("2");
-		GameOption opcionTres = new GameOption("3");
-		GameOption opcionCuatro = new GameOption("4");
-
-		opcionDos.setOptionGroup(grupoPares);
-		opcionCuatro.setOptionGroup(grupoPares);
-
-		opcionUno.setOptionGroup(grupoImpares);
-		opcionTres.setOptionGroup(grupoImpares);
+		GameOption opcionUno = new GameOption("1", "Impares");
+		GameOption opcionDos = new GameOption("2", "Pares");
+		GameOption opcionTres = new GameOption("3", "Impares");
+		GameOption opcionCuatro = new GameOption("4", "Pares");
 
 		listaOpciones.add(opcionUno);
 		listaOpciones.add(opcionDos);
@@ -108,19 +91,13 @@ public class GroupChoiceTest {
 	public void opcionesIncorrectasDevuelveCero() {
 		List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
-		OptionGroup grupoPares = new OptionGroup("Pares");
-		OptionGroup grupoImpares = new OptionGroup("Impares");
+		String grupoPares = "Pares";
+		String grupoImpares = "Impares";
 
-		GameOption opcionUno = new GameOption("1");
-		GameOption opcionDos = new GameOption("2");
-		GameOption opcionTres = new GameOption("3");
-		GameOption opcionCuatro = new GameOption("4");
-
-		opcionDos.setOptionGroup(grupoPares);
-		opcionCuatro.setOptionGroup(grupoPares);
-
-		opcionUno.setOptionGroup(grupoImpares);
-		opcionTres.setOptionGroup(grupoImpares);
+		GameOption opcionUno = new GameOption("1", "Impares");
+		GameOption opcionDos = new GameOption("2", "Pares");
+		GameOption opcionTres = new GameOption("3", "Impares");
+		GameOption opcionCuatro = new GameOption("4", "Pares");
 
 		listaOpciones.add(opcionUno);
 		listaOpciones.add(opcionDos);
@@ -139,15 +116,10 @@ public class GroupChoiceTest {
 		
 		List<GameOption> listaOpcionesElegidas = new ArrayList<GameOption>();				
 		
-		GameOption opcionElegidaUno = new GameOption("1");
-		GameOption opcionElegidaDos = new GameOption("2");
-		GameOption opcionElegidaTres = new GameOption("3");
-		GameOption opcionElegidaCuatro = new GameOption("4");
-		
-		opcionElegidaUno.setOptionGroup(grupoImpares);
-		opcionElegidaDos.setOptionGroup(grupoImpares);
-		opcionElegidaTres.setOptionGroup(grupoImpares);
-		opcionElegidaCuatro.setOptionGroup(grupoPares);
+		GameOption opcionElegidaUno = new GameOption("1", "Impares");
+		GameOption opcionElegidaDos = new GameOption("2", "Pares");
+		GameOption opcionElegidaTres = new GameOption("3", "Impares");
+		GameOption opcionElegidaCuatro = new GameOption("4", "Pares");
 		
 		listaOpcionesElegidas.add(opcionElegidaUno);
 		listaOpcionesElegidas.add(opcionElegidaDos);

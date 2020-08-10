@@ -20,8 +20,8 @@ public class GroupChoiceQuestion extends Question {
 		return 0;
 	}
 	
-	public List<OptionGroup> getOptionGroupList(){
-		List<OptionGroup> optionGroupList = new ArrayList<>();
+	public List<String> getOptionGroupList(){
+		List<String> optionGroupList = new ArrayList<>();
 		for(GameOption option : correctOptions) {
 			if(!optionGroupList.contains(option.getOptionGroup())) {
 				optionGroupList.add(option.getOptionGroup());
