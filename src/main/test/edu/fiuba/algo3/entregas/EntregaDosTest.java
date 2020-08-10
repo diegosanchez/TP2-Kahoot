@@ -185,8 +185,8 @@ public class EntregaDosTest {
 
         List<GameOption> listaOpciones = new ArrayList<GameOption>();
 
-        OptionGroup grupoPares = new OptionGroup("Pares");
-        OptionGroup grupoImpares = new OptionGroup("Impares");
+        String grupoPares = "Pares";
+        String grupoImpares = "Impares";
 
         GameOption opcionUno = new GameOption("1", "Impares");
         GameOption opcionDos = new GameOption("2", "Pares");
@@ -224,7 +224,7 @@ public class EntregaDosTest {
         //Opciones elegidas por Jugador 2
         List<GameOption> opcionesJugadorDos = new ArrayList<GameOption>();
         GameOption opcionElegidaJ2Uno = new GameOption("1", "Impares");
-        GameOption opcionElegidaJ2Dos = new GameOption("2", "Pares");
+        GameOption opcionElegidaJ2Dos = new GameOption("2", "Impares");
         GameOption opcionElegidaJ2Tres = new GameOption("3", "Impares");
         GameOption opcionElegidaJ2Cuatro = new GameOption("4", "Pares");
 

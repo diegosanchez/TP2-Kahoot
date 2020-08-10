@@ -189,22 +189,22 @@
 						{
 							"id":2,
 							"text":"2",
-							"optionGroup":{"text":"Pares"}
+							"optionGroup":"Pares"
 						},
 						{
 							"id":4,
 							"text":"4",
-							"optionGroup":{"text":"Pares"}
+							"optionGroup":"Pares"
 						},
 {
 							"id":1,
 							"text":"1",
-							"optionGroup":{"text":"Impares"}
+							"optionGroup":"Impares"
 						},
 						{
 							"id":3,
 							"text":"3",
-							"optionGroup":{"text":"Impares"}
+							"optionGroup":"Impares"
 						}							
 					]
 	}

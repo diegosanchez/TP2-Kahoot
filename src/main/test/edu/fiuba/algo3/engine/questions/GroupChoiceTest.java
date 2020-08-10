@@ -117,7 +117,7 @@ public class GroupChoiceTest {
 		List<GameOption> listaOpcionesElegidas = new ArrayList<GameOption>();				
 		
 		GameOption opcionElegidaUno = new GameOption("1", "Impares");
-		GameOption opcionElegidaDos = new GameOption("2", "Pares");
+		GameOption opcionElegidaDos = new GameOption("2", "Impares");
 		GameOption opcionElegidaTres = new GameOption("3", "Impares");
 		GameOption opcionElegidaCuatro = new GameOption("4", "Pares");
 		
