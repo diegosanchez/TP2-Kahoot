@@ -232,4 +232,18 @@ public class GameTest {
 		}
 		Assertions.assertEquals(game.getQuestions().size() * game.getPlayers().size(), game.getTurnCount());
 	}
+	
+	@Test
+	public void sePuedeSaberSiUnAugmenterExistenteEsValidoPorSuNombreTest(){
+		boolean augmenterValido = game.isAugmenterAvailable(AugmenterType.EXCLUSIVITY.toString());
+		Assertions.assertTrue(augmenterValido);
+	}
+	
+	@Test
+	public void sePuedeSaberSiUnAugmenterAgotadoEsValidoPorSuNombreYNoDebeSerloTest(){
+		game.getCurrentPlayer().getAugmenter(AugmenterType.MULTIPLY_PER_THREE);
+		boolean augmenterValido = game.isAugmenterAvailable(AugmenterType.MULTIPLY_PER_THREE.toString());
+		Assertions.assertFalse(augmenterValido);
+	}
+	
 }
