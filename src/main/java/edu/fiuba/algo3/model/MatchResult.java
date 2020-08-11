@@ -17,6 +17,12 @@ public class MatchResult {
 		this.matchScore = matchScore;
 	}
 	
+	public MatchResult(Player player, Score matchScore) {
+		this.player = player;
+		this.selectedAugmenter = AugmenterType.NO_MULTIPLIER.getScoreAugmenter();
+		this.matchScore = matchScore;
+	}
+	
 	
 	public Score getMatchScore() {
 		return matchScore;
