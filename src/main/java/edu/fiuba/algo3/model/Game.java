@@ -2,7 +2,9 @@ package edu.fiuba.algo3.model;
 
 import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.engine.score.ScoreCalculator;
+import edu.fiuba.algo3.engine.score.augmenters.NoMultiplier;
 import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;
+import javafx.animation.PauseTransition;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -72,11 +74,33 @@ public class Game {
 	}
 	
 	public void nextTurn(List<GameOption> selectedOptions){
-		nextTurn(selectedOptions, null);
+		nextTurn(selectedOptions, new NoMultiplier());
 	}
-	
+
+	public void nextTurn(List<GameOption> selectedOptions, ScoreAugmenter augmenter){
+		AugmenterType type = augmenter.getType();
+
+		Score matchScore = new Score(currentQuestion.calculatePoints(selectedOptions));
+
+		matchResults.add(new MatchResult(currentPlayer, type, matchScore));
+
+		if(playersIterator.hasNext()){
+			currentPlayer = playersIterator.next();
+		}
+		else if(!isOver){
+			ScoreCalculator.calculateRoundEndResults(matchResults);
+
+			if(questionIterator.hasNext()){
+				currentQuestion = questionIterator.next();
+				newRound();
+			}else {
+				isOver = true;
+			}
+		}
+	}
+
 	public void nextTurn(List<GameOption> selectedOptions, String augmenterString){
-		AugmenterType selectedAugmenter = AugmenterType.getEnumByName(augmenterString);		
+		AugmenterType selectedAugmenter = AugmenterType.getEnumByName(augmenterString);
 		Score matchScore = new Score(currentQuestion.calculatePoints(selectedOptions));
 		
 		matchResults.add(new MatchResult(currentPlayer, selectedAugmenter, matchScore));

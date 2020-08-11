@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import edu.fiuba.algo3.engine.score.augmenters.NoMultiplier;
+import edu.fiuba.algo3.engine.score.augmenters.TwoMultiplier;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,7 +51,7 @@ public class GameTest {
 	 @Test
 	 public void pasarDeTurnoCambiaElJugadorTest() {
 		 assertEquals(jugadorUno, game.getCurrentPlayer());
-		 game.nextTurn(new ArrayList<GameOption>(), AugmenterType.MULTIPLY_PER_TWO.toString());
+		 game.nextTurn(new ArrayList<GameOption>(), new TwoMultiplier());
 		 assertEquals(jugadorDos, game.getCurrentPlayer());
 	 }
 	 
@@ -95,7 +97,7 @@ public class GameTest {
 
 	@Test
 	public void ambosJugadoresRespondenTodoMalYLosPuntajesSonMenosUnoTest(){
-		while(!game.isOver()) game.nextTurn(new ArrayList(), null);
+		while(!game.isOver()) game.nextTurn(new ArrayList(), new NoMultiplier());
 
 		for(Player player : game.getPlayers()){
 			Assertions.assertEquals(new Score(-1), player.getScore());
@@ -152,7 +154,7 @@ public class GameTest {
 
 		while(!game.isOver()){
 			if(game.getCurrentPlayer().equals(jugadorUno))
-				game.nextTurn(iterador1.next(), null);
+				game.nextTurn(iterador1.next(), new NoMultiplier());
 			else
 				game.nextTurn(iterador2.next(), "");
 		}
