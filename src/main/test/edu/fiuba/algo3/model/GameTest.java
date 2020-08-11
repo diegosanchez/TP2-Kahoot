@@ -243,7 +243,7 @@ public class GameTest {
 
     @Test
     public void sePuedeSaberSiUnAugmenterAgotadoEsValidoPorSuNombreYNoDebeSerloTest() {
-        game.getCurrentPlayer().getAugmenter(AugmenterType.MULTIPLY_PER_THREE);
+        game.getCurrentPlayer().getAugmenter(new ThreeMultiplier());
         boolean augmenterValido = game.isAugmenterAvailable(AugmenterType.MULTIPLY_PER_THREE.toString());
         Assertions.assertFalse(augmenterValido);
     }

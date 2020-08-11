@@ -40,16 +40,6 @@ public class Player {
         return new NoMultiplier();
     }
 
-    public ScoreAugmenter getAugmenter(AugmenterType augmenterType) {
-        if (augmenterType != null) {
-            int index = augmenters.indexOf(augmenterType.getScoreAugmenter());
-            if (index > -1) {
-                return augmenters.remove(index);
-            }
-        }
-        return AugmenterType.NO_MULTIPLIER.getScoreAugmenter();
-    }
-
     public boolean hasAugmenter(AugmenterType augmenterType) {
         return augmenters.contains(augmenterType.getScoreAugmenter());
     }

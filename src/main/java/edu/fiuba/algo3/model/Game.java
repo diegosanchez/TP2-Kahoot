@@ -115,6 +115,7 @@ public class Game {
 		AugmenterType augmenter = AugmenterType.getEnumByName(augmenterString);	
 		ScoreAugmenter scoreAugmenter = augmenter.getScoreAugmenter();
 		
-		return scoreAugmenter.isForPenalty() == currentQuestion.hasPenalty() && currentPlayer.hasAugmenter(augmenter);		
+		return scoreAugmenter.isForPenalty() == currentQuestion.hasPenalty() &&
+				currentPlayer.hasAugmenter(augmenter);
 	}
 }
