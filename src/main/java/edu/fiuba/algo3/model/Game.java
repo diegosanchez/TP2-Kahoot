@@ -1,6 +1,7 @@
 package edu.fiuba.algo3.model;
 
 import edu.fiuba.algo3.constants.AugmenterType;
+import edu.fiuba.algo3.engine.score.ScoreCalculator;
 import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;
 
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public class Game {
 			currentPlayer = playersIterator.next();
 		}
 		else if(!isOver){
-			calculateRoundEndResults();
+			ScoreCalculator.calculateRoundEndResults(matchResults);
 
 			if(questionIterator.hasNext()){
 				currentQuestion = questionIterator.next();
@@ -93,23 +94,6 @@ public class Game {
 				isOver = true;
 			}
 		}
-	}
-	
-	private void calculateRoundEndResults() {
-		calculateAugmenters();
-		sumMatchScore();
-	}
-	
-	private void calculateAugmenters() {
-		matchResults.stream().forEach(result -> {
-			result.applyScoreAugmenter(matchResults);
-		});
-	}
-	
-	private void sumMatchScore() {
-		matchResults.stream().forEach(
-			MatchResult::sumMatchScoreToPlayer
-		);
 	}
 
 	public Player getWinner() {
