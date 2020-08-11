@@ -64,15 +64,15 @@ public class Game {
 	}
 	
 	public void nextTurn(GameOption selectedOption){
-		nextTurn(selectedOption, null);
+		nextTurn(selectedOption, new NoMultiplier());
 	}
 
-	public void nextTurn(GameOption selectedOption, String augmenterString){
+	public void nextTurn(GameOption selectedOption, ScoreAugmenter augmenter){
 		List<GameOption> selectedOptions = new ArrayList<>();
 		selectedOptions.add(selectedOption);
-		nextTurn(selectedOptions, augmenterString);
+		nextTurn(selectedOptions, augmenter);
 	}
-	
+
 	public void nextTurn(List<GameOption> selectedOptions){
 		nextTurn(selectedOptions, new NoMultiplier());
 	}

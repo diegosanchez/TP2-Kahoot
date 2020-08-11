@@ -2,6 +2,8 @@ package edu.fiuba.algo3.entregas;
 
 import edu.fiuba.algo3.constants.AugmenterType;
 import edu.fiuba.algo3.engine.questions.*;
+import edu.fiuba.algo3.engine.score.augmenters.ThreeMultiplier;
+import edu.fiuba.algo3.engine.score.augmenters.TwoMultiplier;
 import edu.fiuba.algo3.model.*;
 import org.junit.jupiter.api.Test;
 
@@ -367,7 +369,7 @@ public class EntregaDosTest {
 		game.start();
 		
 		game.nextTurn(opcionTrue);
-		game.nextTurn(opcionFalse, AugmenterType.MULTIPLY_PER_TWO.toString());	
+		game.nextTurn(opcionFalse, new TwoMultiplier());
 
         assertEquals(new Score(-1), jugadorUno.getScore());
         assertEquals(new Score(2), jugadorDos.getScore());
@@ -406,7 +408,7 @@ public class EntregaDosTest {
 		game.start();
 		
 		game.nextTurn(opcionTrue);
-		game.nextTurn(opcionFalse, AugmenterType.MULTIPLY_PER_THREE.toString());	
+		game.nextTurn(opcionFalse, new ThreeMultiplier());
 
         assertEquals(new Score(-1), jugadorUno.getScore());
         assertEquals(new Score(3), jugadorDos.getScore());
@@ -445,7 +447,7 @@ public class EntregaDosTest {
 		game.start();
 		
 		game.nextTurn(opcionFalse);
-		game.nextTurn(opcionTrue, AugmenterType.MULTIPLY_PER_TWO.toString());	
+		game.nextTurn(opcionTrue, new TwoMultiplier());
 
         assertEquals(new Score(1), jugadorUno.getScore());
         assertEquals(new Score(-2), jugadorDos.getScore());
