@@ -9,8 +9,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import edu.fiuba.algo3.engine.score.augmenters.NoMultiplier;
-import edu.fiuba.algo3.engine.score.augmenters.TwoMultiplier;
+import edu.fiuba.algo3.engine.score.augmenters.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -69,10 +68,10 @@ public class GameTest {
 		 questions.add(new TrueFalseQuestion("¿1 es mayor a 2?", listaOpciones));
 		 game.setQuestions(questions);
 		 game.start();
-		 game.nextTurn(new ArrayList<GameOption>(), AugmenterType.MULTIPLY_PER_TWO.toString());
-		 game.nextTurn(new ArrayList<GameOption>(), AugmenterType.MULTIPLY_PER_TWO.toString());
-		 game.nextTurn(new ArrayList<GameOption>(), AugmenterType.MULTIPLY_PER_TWO.toString());
-		 game.nextTurn(new ArrayList<GameOption>(), AugmenterType.MULTIPLY_PER_TWO.toString());
+		 game.nextTurn(new ArrayList<GameOption>(), new TwoMultiplier());
+		 game.nextTurn(new ArrayList<GameOption>(), new TwoMultiplier());
+		 game.nextTurn(new ArrayList<GameOption>(), new TwoMultiplier());
+		 game.nextTurn(new ArrayList<GameOption>(), new TwoMultiplier());
 		 assertTrue(game.isOver());
 	 }
 	 
@@ -91,7 +90,7 @@ public class GameTest {
 		 game.setQuestions(questions);
 		 Game game = new Game(lista, questions);
 		 game.start();
-		 game.nextTurn(new ArrayList<GameOption>(), AugmenterType.MULTIPLY_PER_TWO.toString());
+		 game.nextTurn(new ArrayList<GameOption>(), new TwoMultiplier());
 		 assertEquals(jugadorUno, game.getWinner());
 	 }
 
@@ -107,7 +106,7 @@ public class GameTest {
 	@Test
 	public void ambosJugadoresRespondenTodoBienYLosPuntajesSonNueveTest(){
 		while(!game.isOver())
-			game.nextTurn(game.getCurrentQuestion().getCorrectOptions(), "");
+			game.nextTurn(game.getCurrentQuestion().getCorrectOptions(), new NoMultiplier());
 
 		for(Player player : game.getPlayers()){
 			Assertions.assertEquals(new Score(9), player.getScore());
@@ -118,7 +117,7 @@ public class GameTest {
 	public void ambosJugadoresAgotanSuExclusividadYNoGananPuntajeEnLasPrimerasDosPreguntasTest(){
 
 		while(!game.isOver()){
-			game.nextTurn(game.getCurrentQuestion().getCorrectOptions(), AugmenterType.EXCLUSIVITY.toString());
+			game.nextTurn(game.getCurrentQuestion().getCorrectOptions(), new ExclusivityMultiplier());
 		}
 
 		for(Player player : game.getPlayers()){
@@ -156,7 +155,7 @@ public class GameTest {
 			if(game.getCurrentPlayer().equals(jugadorUno))
 				game.nextTurn(iterador1.next(), new NoMultiplier());
 			else
-				game.nextTurn(iterador2.next(), "");
+				game.nextTurn(iterador2.next(), new NoMultiplier());
 		}
 
 		Assertions.assertEquals(new Score(1), jugadorUno.getScore());
@@ -198,21 +197,21 @@ public class GameTest {
 				Arrays.asList() // suma cero
 		);
 
-		List<String> multiplicadoresJugador2 = Arrays.asList(
-				AugmenterType.EXCLUSIVITY.toString(), 
-				"", 
-				"",
-				AugmenterType.EXCLUSIVITY.toString(),
-				AugmenterType.MULTIPLY_PER_THREE.toString(),
-				AugmenterType.MULTIPLY_PER_TWO.toString(),
-				"");
+		List<ScoreAugmenter> multiplicadoresJugador2 = Arrays.asList(
+				new ExclusivityMultiplier(),
+				new NoMultiplier(),
+				new NoMultiplier(),
+				new ExclusivityMultiplier(),
+				new ThreeMultiplier(),
+				new TwoMultiplier(),
+				new NoMultiplier());
 		
 		// 2 + 1 + 0 + 4 + 3 - 2 = 8
 
 		Iterator<List<GameOption>> iterador1 = respuestasJugador1.iterator();
 		Iterator<List<GameOption>> iterador2 = respuestasJugador2.iterator();
 		Iterator<String> multiplicadores1 = multiplicadoresJugador1.iterator();
-		Iterator<String> multiplicadores2 = multiplicadoresJugador2.iterator();
+		Iterator<ScoreAugmenter> multiplicadores2 = multiplicadoresJugador2.iterator();
 
 		while(!game.isOver()){
 			if(game.getCurrentPlayer().equals(jugadorUno))
@@ -230,7 +229,7 @@ public class GameTest {
 	public void sePasaDeTurnoHastaElFinalYSeObtieneElNumeroCorrectoTest(){
 
 		while(!game.isOver()){
-			game.nextTurn(game.getCurrentQuestion().getCorrectOptions(), AugmenterType.EXCLUSIVITY.toString());
+			game.nextTurn(game.getCurrentQuestion().getCorrectOptions(), new ExclusivityMultiplier());
 		}
 		Assertions.assertEquals(game.getQuestions().size() * game.getPlayers().size(), game.getTurnCount());
 	}
