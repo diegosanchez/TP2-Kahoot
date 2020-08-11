@@ -10,4 +10,15 @@ public abstract class ScoreAugmenter {
 	public abstract boolean isForPenalty();
 
     public abstract AugmenterType getType();
+
+	@Override
+	public boolean equals(Object obj) {
+		ScoreAugmenter other = (ScoreAugmenter)obj;
+
+		if ( other == null) {
+			return false;
+		}
+
+		return other.getType().equals(this.getType());
+	}
 }

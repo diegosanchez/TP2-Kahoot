@@ -78,11 +78,9 @@ public class Game {
 	}
 
 	public void nextTurn(List<GameOption> selectedOptions, ScoreAugmenter augmenter){
-		AugmenterType type = augmenter.getType();
-
 		Score matchScore = new Score(currentQuestion.calculatePoints(selectedOptions));
 
-		matchResults.add(new MatchResult(currentPlayer, type, matchScore));
+		matchResults.add(new MatchResult(currentPlayer, augmenter, matchScore));
 
 		if(playersIterator.hasNext()){
 			currentPlayer = playersIterator.next();
