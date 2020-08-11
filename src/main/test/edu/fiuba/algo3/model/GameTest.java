@@ -191,7 +191,7 @@ public class GameTest {
 				Arrays.asList(new GameOption("2"), new GameOption("3"), new GameOption("4")), // suma uno
 				Arrays.asList(new GameOption("1"), new GameOption("2")), // suma cero
 				Arrays.asList(new GameOption("1"), new GameOption("2"), new GameOption("3"), new GameOption("4")), // suma uno -> suma cuatro
-				Arrays.asList(new GameOption("Verdadero")), // suma uno -> suma tres
+				Arrays.asList(new GameOption("Verdadero")), // suma uno -> suma uno porque no es una pregunta con penalidad
 				Arrays.asList(new GameOption("Falso")), // resta uno -> resta dos
 				Arrays.asList() // suma cero
 		);
@@ -205,7 +205,7 @@ public class GameTest {
 				AugmenterType.MULTIPLY_PER_TWO.toString(),
 				"");
 		
-		// 2 + 1 + 0 + 4 + 3 - 2 = 8
+		// 2 + 1 + 0 + 4 + 1 - 2 = 8
 
 		Iterator<List<GameOption>> iterador1 = respuestasJugador1.iterator();
 		Iterator<List<GameOption>> iterador2 = respuestasJugador2.iterator();
@@ -220,7 +220,7 @@ public class GameTest {
 		}
 
 		Assertions.assertEquals(new Score(0), jugadorUno.getScore());
-		Assertions.assertEquals(new Score(8), jugadorDos.getScore());
+		Assertions.assertEquals(new Score(6), jugadorDos.getScore());
 		Assertions.assertEquals(jugadorDos, game.getWinner());
 	}
 	

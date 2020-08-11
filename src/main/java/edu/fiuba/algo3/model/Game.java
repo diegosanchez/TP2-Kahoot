@@ -75,11 +75,15 @@ public class Game {
 		nextTurn(selectedOptions, null);
 	}
 	
-	public void nextTurn(List<GameOption> selectedOptions, String augmenterString){
-		AugmenterType selectedAugmenter = AugmenterType.getEnumByName(augmenterString);		
-		Score matchScore = new Score(currentQuestion.calculatePoints(selectedOptions));
+	public void nextTurn(List<GameOption> selectedOptions, String augmenterString){			
+		Score matchScore = new Score(currentQuestion.calculatePoints(selectedOptions));		
 		
-		matchResults.add(new MatchResult(currentPlayer, selectedAugmenter, matchScore));
+		if(isAugmenterAvailable(augmenterString)) {
+			AugmenterType selectedAugmenter = AugmenterType.getEnumByName(augmenterString);
+			matchResults.add(new MatchResult(currentPlayer, selectedAugmenter, matchScore));
+		}else {
+			matchResults.add(new MatchResult(currentPlayer, matchScore));
+		}
 		
 		if(playersIterator.hasNext()){
 			currentPlayer = playersIterator.next();
@@ -97,10 +101,10 @@ public class Game {
 	}
 
 	public Player getWinner() {
-		if (players.get(0).getScore().getValue() == players.get(1).getScore().getValue()){
+		if (players.get(0).getScore() == players.get(1).getScore()){
 			return null;
-		};
-		if (players.get(0).getScore().getValue() > players.get(1).getScore().getValue()){
+		}
+		if (players.get(0).getScore().biggerThan(players.get(1).getScore())){
 			return players.get(0);
 		}
 		return players.get(1);
