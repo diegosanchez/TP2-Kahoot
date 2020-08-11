@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import edu.fiuba.algo3.constants.AugmenterType;
+import edu.fiuba.algo3.engine.score.augmenters.NoMultiplier;
 import edu.fiuba.algo3.engine.score.augmenters.ScoreAugmenter;
 
 public class Player {
@@ -36,7 +37,7 @@ public class Player {
         if (index > -1) {
             return augmenters.remove(index);
         }
-        return AugmenterType.NO_MULTIPLIER.getScoreAugmenter();
+        return new NoMultiplier();
     }
 
     public ScoreAugmenter getAugmenter(AugmenterType augmenterType) {
