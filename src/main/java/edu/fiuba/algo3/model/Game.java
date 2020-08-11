@@ -99,27 +99,6 @@ public class Game {
 		}
 	}
 
-	public void nextTurn(List<GameOption> selectedOptions, String augmenterString){
-		AugmenterType selectedAugmenter = AugmenterType.getEnumByName(augmenterString);
-		Score matchScore = new Score(currentQuestion.calculatePoints(selectedOptions));
-		
-		matchResults.add(new MatchResult(currentPlayer, selectedAugmenter, matchScore));
-		
-		if(playersIterator.hasNext()){
-			currentPlayer = playersIterator.next();
-		}
-		else if(!isOver){
-			ScoreCalculator.calculateRoundEndResults(matchResults);
-
-			if(questionIterator.hasNext()){
-				currentQuestion = questionIterator.next();
-				newRound();
-			}else { 
-				isOver = true;
-			}
-		}
-	}
-
 	public Player getWinner() {
 		if (players.get(0).getScore().getValue() == players.get(1).getScore().getValue()){
 			return null;
