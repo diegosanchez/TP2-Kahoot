@@ -205,7 +205,7 @@ public class GameTest {
 				AugmenterType.MULTIPLY_PER_TWO.toString(),
 				"");
 		
-		// 2 + 1 + 0 + 4 + 1 - 2 = 8
+		// 2 + 1 + 0 + 4 + 1 - 2 = 6
 
 		Iterator<List<GameOption>> iterador1 = respuestasJugador1.iterator();
 		Iterator<List<GameOption>> iterador2 = respuestasJugador2.iterator();
