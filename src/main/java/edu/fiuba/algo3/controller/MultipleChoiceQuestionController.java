@@ -14,10 +14,10 @@ import java.util.List;
 public class MultipleChoiceQuestionController extends GenericQuestionController{
 
     @FXML
-    public GridPane gridPane;
+    public VBox vBox;
 
     public void setUpView(){
-        List<CheckBox> buttonList = (List) gridPane.getChildren();
+        List<CheckBox> buttonList = (List) vBox.getChildren();
 
         int i = 0;
         for (GameOption option : (gameController.getCurrentQuestion().getOptions())) {
@@ -27,10 +27,13 @@ public class MultipleChoiceQuestionController extends GenericQuestionController{
             button.setVisible(true);
             i++;
         }
+        /*
         while (i<5){
             CheckBox unusedButton = buttonList.get(i);
             unusedButton.setVisible(false);
             i++;
         }
+
+         */
     }
 }
