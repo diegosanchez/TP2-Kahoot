@@ -3,6 +3,7 @@ package edu.fiuba.algo3.resources;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,12 +13,13 @@ import edu.fiuba.algo3.engine.questions.MultipleChoiceQuestion;
 import edu.fiuba.algo3.engine.questions.OrderedChoiceQuestion;
 import edu.fiuba.algo3.engine.questions.TrueFalseQuestion;
 import edu.fiuba.algo3.model.GameOption;
+import edu.fiuba.algo3.model.OptionGroup;
 
 public class QuestionViewRouterTest {
 	
 	@Test
 	public void traerViewDePreguntaPorTipoTest() {
-		GroupChoiceQuestion groupChoiceQuestion = new GroupChoiceQuestion("Agrupar las opciones según corresponda.", new ArrayList<GameOption>());
+		GroupChoiceQuestion groupChoiceQuestion = new GroupChoiceQuestion("Agrupar las opciones según corresponda.", new ArrayList<GameOption>(), Arrays.asList(new OptionGroup("grupo")));
 		assertEquals(Views.GROUP_CHOICE_QUESTION_VIEW, QuestionViewRouter.getViewByQuestionType(groupChoiceQuestion.getType()));
 		
 		MultipleChoiceQuestion multipleChoiceQuestion = new MultipleChoiceQuestion("Agrupar las opciones según corresponda.", new ArrayList<GameOption>());
