@@ -20,6 +20,10 @@ public class Score {
 		value = score.getValue() + value;
 	}
 	
+	public boolean biggerThan(Score score) {
+		return value > score.getValue();
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

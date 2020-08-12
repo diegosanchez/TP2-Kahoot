@@ -247,5 +247,4 @@ public class GameTest {
         boolean augmenterValido = game.isAugmenterAvailable(AugmenterType.MULTIPLY_PER_THREE.toString());
         Assertions.assertFalse(augmenterValido);
     }
-
 }

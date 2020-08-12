@@ -1,19 +1,47 @@
 package edu.fiuba.algo3.model;
 
-public class OptionGroup {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class OptionGroup extends GameOption{
 	
-	private String text;
+	List<GameOption> options = new ArrayList<>();
 	
 	public OptionGroup(String text) {
-		this.text = text;
+		super(text);
 	}
 
-	public String getText() {
-		return text;
+	public List<GameOption> getOptions() {
+		return options;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setOptions(List<GameOption> options) {
+		this.options = options;
 	}
+	
+	public void addOptions(GameOption ... option){
+		options.addAll(Arrays.asList(option));
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OptionGroup other = (OptionGroup) obj;
+		if (options == null) {
+			if (other.options != null)
+				return false;
+		} else if (!options.equals(other.options))
+			return false;
+		return true;
+	}
+	
+	
+	
 
 }

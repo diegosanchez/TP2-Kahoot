@@ -76,12 +76,13 @@ public class Game {
 	public void nextTurn(List<GameOption> selectedOptions){
 		nextTurn(selectedOptions, new NoMultiplier());
 	}
-
+  
+  
 	public void nextTurn(List<GameOption> selectedOptions, ScoreAugmenter augmenter){
 		Score matchScore = new Score(currentQuestion.calculatePoints(selectedOptions));
 
 		matchResults.add(new MatchResult(currentPlayer, augmenter, matchScore));
-
+    
 		if(playersIterator.hasNext()){
 			currentPlayer = playersIterator.next();
 		}
@@ -98,10 +99,10 @@ public class Game {
 	}
 
 	public Player getWinner() {
-		if (players.get(0).getScore().getValue() == players.get(1).getScore().getValue()){
+		if (players.get(0).getScore() == players.get(1).getScore()){
 			return null;
-		};
-		if (players.get(0).getScore().getValue() > players.get(1).getScore().getValue()){
+		}
+		if (players.get(0).getScore().biggerThan(players.get(1).getScore())){
 			return players.get(0);
 		}
 		return players.get(1);

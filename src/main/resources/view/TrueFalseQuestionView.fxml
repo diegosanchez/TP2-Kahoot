@@ -1,32 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.CheckBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="174.0" prefWidth="402.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.TrueFalseQuestionController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.fiuba.algo3.controller.TrueFalseQuestionController">
    <children>
-      <GridPane fx:id="gridPane" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="155.0" prefWidth="390.0">
-         <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints maxHeight="55.0" minHeight="10.0" prefHeight="41.0" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="43.0" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="67.0" minHeight="0.0" prefHeight="44.0" valignment="CENTER" vgrow="SOMETIMES" />
-         </rowConstraints>
+      <VBox prefHeight="250.0" prefWidth="440.0">
          <children>
-            <CheckBox mnemonicParsing="false" text="CheckBox" visible="false" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" visible="false" GridPane.columnIndex="1" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" visible="false" GridPane.rowIndex="1" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" visible="false" GridPane.rowIndex="2" />
-            <CheckBox mnemonicParsing="false" text="CheckBox" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <HBox alignment="CENTER" prefHeight="250.0" prefWidth="440.0" spacing="100.0">
+               <children>
+                  <RadioButton fx:id="radioButton1" mnemonicParsing="false" onAction="#choiceOption" text="Radio1">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="radioGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="radioButton2" mnemonicParsing="false" onAction="#choiceOption" text="Radio2" toggleGroup="$radioGroup" />
+               </children>
+            </HBox>
          </children>
-      </GridPane>
+         <padding>
+            <Insets bottom="50.0" />
+         </padding>
+      </VBox>
    </children>
 </AnchorPane>
