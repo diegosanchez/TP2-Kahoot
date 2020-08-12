@@ -24,7 +24,7 @@ import static edu.fiuba.algo3.constants.Views.*;
 public class GameController {
 
     @FXML
-    public Text questionText;
+    public Label questionText;
     @FXML
     public Pane questionPane;
     @FXML
